@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * Created by zhengwei on 2015/11/6.
  */
-public class DefaultWechatPaymentClient extends DefaultWeixinApiClient implements WechatPaymentClient {
+public class DefaultWechatPaymentClient extends DefaultWeiXinClient implements WechatPaymentClient {
 
     /**
      * 商户id

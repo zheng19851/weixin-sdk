@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api;
 
 import com.runssnail.weixin.api.common.Lifecycle;
-import com.runssnail.weixin.api.exception.WeixinApiException;
+import com.runssnail.weixin.api.exception.WeiXinApiException;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
 
@@ -40,7 +40,7 @@ public interface WechatPaymentClient extends Lifecycle {
      * @param req 请求对象
      * @param <R>
      * @return
-     * @throws WeixinApiException
+     * @throws WeiXinApiException
      */
-    <R extends Response> R execute(Request<R> req) throws WeixinApiException;
+    <R extends Response> R execute(Request<R> req) throws WeiXinApiException;
 }

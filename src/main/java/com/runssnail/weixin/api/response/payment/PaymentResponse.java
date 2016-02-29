@@ -4,9 +4,8 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import com.runssnail.weixin.api.config.WeixinConfig;
 import com.runssnail.weixin.api.exception.SignatureException;
-import com.runssnail.weixin.api.exception.WeixinApiException;
+import com.runssnail.weixin.api.exception.WeiXinApiException;
 import com.runssnail.weixin.api.internal.utils.XmlTool;
 import com.runssnail.weixin.api.response.Response;
 import com.runssnail.weixin.api.internal.support.PaymentHelper;
@@ -192,7 +191,7 @@ public abstract class PaymentResponse extends Response {
         return "SUCCESS".equalsIgnoreCase(this.result_code);
     }
 
-    public void check(String paySignKey) throws WeixinApiException {
+    public void check(String paySignKey) throws WeiXinApiException {
         if (!isReturnCodeSuccess()) {
             return;
         }

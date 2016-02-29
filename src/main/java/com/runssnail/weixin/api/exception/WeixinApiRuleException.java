@@ -5,14 +5,14 @@ package com.runssnail.weixin.api.exception;
  * 
  * @author zhengwei
  */
-public class WeixinApiRuleException extends WeixinApiException {
+public class WeiXinApiRuleException extends WeiXinApiException {
 
     /**
      * 
      */
     private static final long serialVersionUID = -1202569302451253834L;
 
-    public WeixinApiRuleException(String msg) {
+    public WeiXinApiRuleException(String msg) {
         super(msg);
     }
 

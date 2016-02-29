@@ -3,7 +3,7 @@ package com.runssnail.weixin.api.request.payment;
 import com.runssnail.weixin.api.common.SignType;
 import com.runssnail.weixin.api.constants.Constants;
 import com.runssnail.weixin.api.domain.payment.TradeType;
-import com.runssnail.weixin.api.exception.WeixinApiRuleException;
+import com.runssnail.weixin.api.exception.WeiXinApiRuleException;
 import com.runssnail.weixin.api.internal.support.PaymentHelper;
 import com.runssnail.weixin.api.internal.utils.DateUtil;
 import com.runssnail.weixin.api.request.PostRequest;
@@ -311,7 +311,7 @@ public class CreatePrepayOrderRequest extends PostRequest<CreatePrepayOrderRespo
     }
 
     @Override
-    public void doCheck() throws WeixinApiRuleException {
+    public void doCheck() throws WeiXinApiRuleException {
         // 校验参数
 
         notNull(this.productDesc, "productDesc is required");

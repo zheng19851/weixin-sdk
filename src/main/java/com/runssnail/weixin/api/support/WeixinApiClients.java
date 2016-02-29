@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.support;
 
-import com.runssnail.weixin.api.DefaultWeixinApiClient;
-import com.runssnail.weixin.api.RetryWeixinApiClient;
+import com.runssnail.weixin.api.DefaultWeiXinClient;
+import com.runssnail.weixin.api.RetryWeiXinClient;
 import com.runssnail.weixin.api.service.AccessTokenManager;
 import com.runssnail.weixin.api.service.AccessTokenService;
 import com.runssnail.weixin.api.service.DefaultAccessTokenService;
@@ -24,11 +24,11 @@ public class WeixinApiClients {
      * @param appSecret appSecret
      * @return RetryWeiXinApiClient
      */
-    public static RetryWeixinApiClient buildRetryWeixinApiClient(String appId, String appSecret) {
+    public static RetryWeiXinClient buildRetryWeixinClient(String appId, String appSecret) {
         Validate.isTrue(StringUtils.isNotBlank(appId), "appId is required");
         Validate.isTrue(StringUtils.isNotBlank(appSecret), "appSecret is required");
 
-        return WeixinApiClients.buildRetryWeixinApiClient(appId, appSecret, null);
+        return WeixinApiClients.buildRetryWeixinClient(appId, appSecret, null);
     }
 
     /**
@@ -38,32 +38,32 @@ public class WeixinApiClients {
      * @param appSecret appSecret
      * @return DefaultWeiXinApiClient
      */
-    public static DefaultWeixinApiClient buildDefaultWeixinApiClient(String appId, String appSecret) {
+    public static DefaultWeiXinClient buildDefaultWeixinClient(String appId, String appSecret) {
         Validate.isTrue(StringUtils.isNotBlank(appId), "appId is required");
         Validate.isTrue(StringUtils.isNotBlank(appSecret), "appSecret is required");
 
-        DefaultWeixinApiClient defaultWeiXinApiClient = new DefaultWeixinApiClient(appId, appSecret);
-        defaultWeiXinApiClient.init();
+        DefaultWeiXinClient defaultWeixinClient = new DefaultWeiXinClient(appId, appSecret);
+        defaultWeixinClient.init();
 
-        return defaultWeiXinApiClient;
+        return defaultWeixinClient;
     }
 
     /**
      * 创建RetryWeiXinApiClient
      *
-     * @param defaultWeiXinApiClient 默认的WeiXinApiClient
+     * @param defaultWeixinClient 默认的WeiXinApiClient
      * @param accessTokenManager     AccessTokenManager
      * @return RetryWeiXinApiClient
      */
-    public static RetryWeixinApiClient buildRetryWeixinApiClient(DefaultWeixinApiClient defaultWeiXinApiClient,
-                                                                 AccessTokenManager accessTokenManager) {
-        Validate.notNull(defaultWeiXinApiClient, "DefaultWeiXinApiClient is required");
+    public static RetryWeiXinClient buildRetryWeixinClient(DefaultWeiXinClient defaultWeixinClient,
+                                                           AccessTokenManager accessTokenManager) {
+        Validate.notNull(defaultWeixinClient, "DefaultWeixinClient is required");
 
         if (accessTokenManager == null) {
-            accessTokenManager = buildAccessTokenManager(defaultWeiXinApiClient);
+            accessTokenManager = buildAccessTokenManager(defaultWeixinClient);
         }
 
-        RetryWeixinApiClient retryWeiXinApiClient = new RetryWeixinApiClient(defaultWeiXinApiClient);
+        RetryWeiXinClient retryWeiXinApiClient = new RetryWeiXinClient(defaultWeixinClient);
 
         retryWeiXinApiClient.setAccessTokenManager(accessTokenManager);
 
@@ -78,17 +78,17 @@ public class WeixinApiClients {
      * @param accessTokenManager AccessTokenManager
      * @return RetryWeiXinApiClient
      */
-    public static RetryWeixinApiClient buildRetryWeixinApiClient(String appId, String appSecret,
-                                                                 AccessTokenManager accessTokenManager) {
+    public static RetryWeiXinClient buildRetryWeixinClient(String appId, String appSecret,
+                                                           AccessTokenManager accessTokenManager) {
 
-        DefaultWeixinApiClient defaultWeiXinApiClient = new DefaultWeixinApiClient(appId, appSecret);
+        DefaultWeiXinClient defaultWeixinClient = new DefaultWeiXinClient(appId, appSecret);
 
         // AccessTokenManager
         if (accessTokenManager == null) {
-            accessTokenManager = buildAccessTokenManager(defaultWeiXinApiClient);
+            accessTokenManager = buildAccessTokenManager(defaultWeixinClient);
         }
 
-        RetryWeixinApiClient retryWeiXinApiClient = new RetryWeixinApiClient(defaultWeiXinApiClient);
+        RetryWeiXinClient retryWeiXinApiClient = new RetryWeiXinClient(defaultWeixinClient);
 
         retryWeiXinApiClient.setAccessTokenManager(accessTokenManager);
 
@@ -100,14 +100,14 @@ public class WeixinApiClients {
     /**
      * 创建AccessTokenService
      *
-     * @param defaultWeiXinApiClient 默认的WeiXinApiClient
+     * @param defaultWeixinClient 默认的WeiXinApiClient
      * @return AccessTokenService
      */
-    public static AccessTokenService buildAccessTokenService(DefaultWeixinApiClient defaultWeiXinApiClient) {
-        Validate.notNull(defaultWeiXinApiClient, "DefaultWeiXinApiClient is required");
+    public static AccessTokenService buildAccessTokenService(DefaultWeiXinClient defaultWeixinClient) {
+        Validate.notNull(defaultWeixinClient, "DefaultWeixinClient is required");
 
         DefaultAccessTokenService defaultAccessTokenService = new DefaultAccessTokenService();
-        defaultAccessTokenService.setWeixinApiClient(defaultWeiXinApiClient);
+        defaultAccessTokenService.setWeiXinClient(defaultWeixinClient);
         defaultAccessTokenService.init();
         return defaultAccessTokenService;
     }
@@ -123,19 +123,19 @@ public class WeixinApiClients {
         Validate.isTrue(StringUtils.isNotBlank(appId), "appId is required");
         Validate.isTrue(StringUtils.isNotBlank(appSecret), "appSecret is required");
 
-        return WeixinApiClients.buildAccessTokenService(new DefaultWeixinApiClient(appId, appSecret));
+        return WeixinApiClients.buildAccessTokenService(new DefaultWeiXinClient(appId, appSecret));
     }
 
     /**
      * 创建AccessTokenManager
      *
-     * @param defaultWeiXinApiClient DefaultWeiXinApiClient
+     * @param defaultWeixinClient DefaultWeiXinApiClient
      * @return AccessTokenManager
      */
-    public static AccessTokenManager buildAccessTokenManager(DefaultWeixinApiClient defaultWeiXinApiClient) {
-        Validate.notNull(defaultWeiXinApiClient, "DefaultWeiXinApiClient is required");
+    public static AccessTokenManager buildAccessTokenManager(DefaultWeiXinClient defaultWeixinClient) {
+        Validate.notNull(defaultWeixinClient, "DefaultWeixinClient is required");
 
-        LocalMemoryAccessTokenManager accessTokenManager = new LocalMemoryAccessTokenManager(defaultWeiXinApiClient);
+        LocalMemoryAccessTokenManager accessTokenManager = new LocalMemoryAccessTokenManager(defaultWeixinClient);
         accessTokenManager.init();
         return accessTokenManager;
     }

@@ -2,9 +2,6 @@ package com.runssnail.weixin.api.response;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.runssnail.weixin.api.config.WeixinConfig;
-import com.runssnail.weixin.api.exception.WeixinApiException;
-
 /**
  * josn response
  *

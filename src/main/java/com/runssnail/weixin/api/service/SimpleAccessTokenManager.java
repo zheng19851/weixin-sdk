@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.service;
 
-import com.runssnail.weixin.api.DefaultWeixinApiClient;
+import com.runssnail.weixin.api.DefaultWeiXinClient;
 import com.runssnail.weixin.api.common.Result;
 
 /**
@@ -10,7 +10,7 @@ import com.runssnail.weixin.api.common.Result;
  */
 public class SimpleAccessTokenManager extends AbstractAccessTokenManager {
 
-    public SimpleAccessTokenManager(DefaultWeixinApiClient weixinApiClient) {
+    public SimpleAccessTokenManager(DefaultWeiXinClient weixinApiClient) {
         super(weixinApiClient);
     }
 

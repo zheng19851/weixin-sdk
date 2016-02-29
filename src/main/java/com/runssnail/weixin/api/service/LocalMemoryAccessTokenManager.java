@@ -4,7 +4,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import com.runssnail.weixin.api.DefaultWeixinApiClient;
+import com.runssnail.weixin.api.DefaultWeiXinClient;
 import com.runssnail.weixin.api.common.Result;
 
 /**
@@ -34,7 +34,7 @@ public class LocalMemoryAccessTokenManager extends AbstractAccessTokenManager {
      */
     private volatile boolean         disableCache  = false;
 
-    public LocalMemoryAccessTokenManager(DefaultWeixinApiClient weixinApiClient) {
+    public LocalMemoryAccessTokenManager(DefaultWeiXinClient weixinApiClient) {
         super(weixinApiClient);
     }
 

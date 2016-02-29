@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.service;
 
-import com.runssnail.weixin.api.WeixinApiClient;
+import com.runssnail.weixin.api.WeiXinClient;
 import com.runssnail.weixin.api.common.Result;
 import com.runssnail.weixin.api.request.credential.GetAccessTokenRequest;
 import com.runssnail.weixin.api.response.credential.GetAccessTokenResponse;
@@ -15,7 +15,7 @@ public class DefaultAccessTokenService implements AccessTokenService {
 
     private final Logger log         = Logger.getLogger(getClass());
 
-    private WeixinApiClient weixinApiClient;
+    private WeiXinClient weiXinClient;
 
     /**
      * 是否已经初始化
@@ -25,8 +25,8 @@ public class DefaultAccessTokenService implements AccessTokenService {
     public DefaultAccessTokenService() {
     }
 
-    public DefaultAccessTokenService(WeixinApiClient weixinApiClient) {
-        this.weixinApiClient = weixinApiClient;
+    public DefaultAccessTokenService(WeiXinClient weiXinClient) {
+        this.weiXinClient = weiXinClient;
     }
 
     public synchronized void init() {
@@ -34,7 +34,7 @@ public class DefaultAccessTokenService implements AccessTokenService {
             return;
         }
 
-        this.weixinApiClient.init();
+        this.weiXinClient.init();
 
         this.initialized = true;
     }
@@ -42,10 +42,10 @@ public class DefaultAccessTokenService implements AccessTokenService {
     private Result<String> refresh() {
         Result<String> result = new Result<String>();
 
-        GetAccessTokenRequest req = new GetAccessTokenRequest(weixinApiClient.getAppId(),
-                weixinApiClient.getAppSecret());
+        GetAccessTokenRequest req = new GetAccessTokenRequest(weiXinClient.getAppId(),
+                weiXinClient.getAppSecret());
 
-        GetAccessTokenResponse res = weixinApiClient.execute(req);
+        GetAccessTokenResponse res = weiXinClient.execute(req);
 
         if (res.isSuccess()) {
             result.setResult(res.getAccess_token()).setSuccess(true);
@@ -65,15 +65,15 @@ public class DefaultAccessTokenService implements AccessTokenService {
 
     @Override
     public void close() {
-        this.weixinApiClient.close();
+        this.weiXinClient.close();
     }
 
-    public WeixinApiClient getWeixinApiClient() {
-        return weixinApiClient;
+    public WeiXinClient getWeiXinClient() {
+        return weiXinClient;
     }
 
-    public void setWeixinApiClient(WeixinApiClient weixinApiClient) {
-        this.weixinApiClient = weixinApiClient;
+    public void setWeiXinClient(WeiXinClient weiXinClient) {
+        this.weiXinClient = weiXinClient;
     }
 
 }

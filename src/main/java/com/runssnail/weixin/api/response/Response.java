@@ -1,7 +1,6 @@
 package com.runssnail.weixin.api.response;
 
 import com.runssnail.weixin.api.domain.BaseDomain;
-import com.runssnail.weixin.api.exception.WeixinApiException;
 
 /**
  * weixin api response

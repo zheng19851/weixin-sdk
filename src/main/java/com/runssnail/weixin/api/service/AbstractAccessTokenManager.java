@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.service;
 
-import com.runssnail.weixin.api.DefaultWeixinApiClient;
+import com.runssnail.weixin.api.DefaultWeiXinClient;
 import org.apache.log4j.Logger;
 
 /**
@@ -19,7 +19,7 @@ public abstract class AbstractAccessTokenManager implements AccessTokenManager {
      */
     private volatile boolean     initialized = false;
 
-    public AbstractAccessTokenManager(DefaultWeixinApiClient weixinApiClient) {
+    public AbstractAccessTokenManager(DefaultWeiXinClient weixinApiClient) {
         this.accessTokenService = new DefaultAccessTokenService(weixinApiClient);
     }
 

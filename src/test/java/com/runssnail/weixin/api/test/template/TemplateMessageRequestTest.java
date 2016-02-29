@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.test.template;
 
-import com.runssnail.weixin.api.RetryWeixinApiClient;
+import com.runssnail.weixin.api.RetryWeiXinClient;
 import com.runssnail.weixin.api.domain.template.KeyNoteValue;
 import com.runssnail.weixin.api.request.template.TemplateMessageRequest;
 import com.runssnail.weixin.api.response.template.TemplateMessageResponse;
@@ -15,10 +15,10 @@ public class TemplateMessageRequestTest {
         String appId = "wxe58afcd99f7a997e";
         String appSecret = "5dcf8eac1e99e983fc58e42376ab0267";
 
-        RetryWeixinApiClient weixinApiClient = null;
+        RetryWeiXinClient weixinApiClient = null;
 
         try {
-            weixinApiClient = WeixinApiClients.buildRetryWeixinApiClient(appId, appSecret);
+            weixinApiClient = WeixinApiClients.buildRetryWeixinClient(appId, appSecret);
             Map<String, KeyNoteValue> data = new HashMap<String, KeyNoteValue>();
             data.put("first", new KeyNoteValue("购买成功"));
             data.put("keyword1", new KeyNoteValue("亲爱的，李先生"));
