@@ -4,7 +4,8 @@ import com.runssnail.weixin.api.WeiXinClient;
 import com.runssnail.weixin.api.common.Result;
 import com.runssnail.weixin.api.request.credential.GetAccessTokenRequest;
 import com.runssnail.weixin.api.response.credential.GetAccessTokenResponse;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * 默认的获取accessToken服务
@@ -13,7 +14,7 @@ import org.apache.log4j.Logger;
  */
 public class DefaultAccessTokenService implements AccessTokenService {
 
-    private final Logger log         = Logger.getLogger(getClass());
+    private final Log log = LogFactory.getLog(getClass());
 
     private WeiXinClient weiXinClient;
 

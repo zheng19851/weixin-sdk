@@ -1,7 +1,8 @@
 package com.runssnail.weixin.api.service;
 
 import com.runssnail.weixin.api.DefaultWeiXinClient;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * {@link AccessTokenManager} 抽象实现
@@ -10,7 +11,7 @@ import org.apache.log4j.Logger;
  */
 public abstract class AbstractAccessTokenManager implements AccessTokenManager {
 
-    protected final Logger log         = Logger.getLogger(getClass());
+    protected final Log log = LogFactory.getLog(getClass());
 
     protected AccessTokenService accessTokenService;
 

@@ -3,7 +3,7 @@ package com.runssnail.weixin.api.test.ticket;
 import com.runssnail.weixin.api.RetryWeiXinClient;
 import com.runssnail.weixin.api.request.ticket.GetTicketRequest;
 import com.runssnail.weixin.api.response.Response;
-import com.runssnail.weixin.api.support.WeixinApiClients;
+import com.runssnail.weixin.api.support.WeiXinApiClients;
 
 /**
  * GetTicketRequestTest
@@ -18,7 +18,7 @@ public class GetTicketRequestTest {
 
         RetryWeiXinClient weixinApiClient = null;
         try {
-            weixinApiClient = WeixinApiClients.buildRetryWeixinClient(appId, appSecret);
+            weixinApiClient = WeiXinApiClients.buildRetryWeixinClient(appId, appSecret);
 
             Response res = weixinApiClient.execute(new GetTicketRequest(), true);
 

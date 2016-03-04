@@ -15,7 +15,7 @@ import org.apache.commons.lang.Validate;
  * @author zhengwei
  * @since 1.0-SNAPSHOT
  */
-public class WeixinApiClients {
+public class WeiXinApiClients {
 
     /**
      * 创建RetryWeiXinApiClient
@@ -28,7 +28,7 @@ public class WeixinApiClients {
         Validate.isTrue(StringUtils.isNotBlank(appId), "appId is required");
         Validate.isTrue(StringUtils.isNotBlank(appSecret), "appSecret is required");
 
-        return WeixinApiClients.buildRetryWeixinClient(appId, appSecret, null);
+        return WeiXinApiClients.buildRetryWeixinClient(appId, appSecret, null);
     }
 
     /**
@@ -123,7 +123,7 @@ public class WeixinApiClients {
         Validate.isTrue(StringUtils.isNotBlank(appId), "appId is required");
         Validate.isTrue(StringUtils.isNotBlank(appSecret), "appSecret is required");
 
-        return WeixinApiClients.buildAccessTokenService(new DefaultWeiXinClient(appId, appSecret));
+        return WeiXinApiClients.buildAccessTokenService(new DefaultWeiXinClient(appId, appSecret));
     }
 
     /**

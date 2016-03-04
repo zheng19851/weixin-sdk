@@ -5,7 +5,8 @@ import com.runssnail.weixin.api.domain.payment.JsApiPayReq;
 import com.runssnail.weixin.api.internal.utils.MD5Util;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -21,7 +22,7 @@ import static com.runssnail.weixin.api.constants.Constants.DEFAULT_ENCODING;
  */
 public abstract class PaymentHelper {
 
-    private static final Logger log              = Logger.getLogger(PaymentHelper.class);
+    private static final Log log = LogFactory.getLog(PaymentHelper.class);
 
     /**
      * 生成js api 支付请求参数

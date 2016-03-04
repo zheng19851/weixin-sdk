@@ -1,6 +1,7 @@
 package com.runssnail.weixin.api.internal.utils;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -10,7 +11,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class DateUtil {
-    private static Logger log = Logger.getLogger(DateUtil.class);
+
+    private static final Log log = LogFactory.getLog(DateUtil.class);
+
     private static final String TIME_PATTERN = "HH:mm";
 
     /**

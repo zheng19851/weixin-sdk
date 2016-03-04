@@ -3,7 +3,7 @@ package com.runssnail.weixin.api.test.credential;
 import com.runssnail.weixin.api.WeiXinClient;
 import com.runssnail.weixin.api.request.credential.GetAccessTokenRequest;
 import com.runssnail.weixin.api.response.Response;
-import com.runssnail.weixin.api.support.WeixinApiClients;
+import com.runssnail.weixin.api.support.WeiXinApiClients;
 
 /**
  * 获取api的access token
@@ -19,7 +19,7 @@ public class GetAccessTokenRequestTest {
 
         WeiXinClient weiXinClient = null;
         try {
-            weiXinClient = WeixinApiClients.buildRetryWeixinClient(appId, appSecret);
+            weiXinClient = WeiXinApiClients.buildRetryWeixinClient(appId, appSecret);
             GetAccessTokenRequest req = new GetAccessTokenRequest(appId, appSecret);
 
             Response res = weiXinClient.execute(req);
