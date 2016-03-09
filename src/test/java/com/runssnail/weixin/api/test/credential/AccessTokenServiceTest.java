@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.test.credential;
 
 import com.runssnail.weixin.api.service.AccessTokenService;
-import com.runssnail.weixin.api.support.WeiXinApiClients;
+import com.runssnail.weixin.api.support.WeiXinClients;
 
 public class AccessTokenServiceTest {
 
@@ -13,7 +13,7 @@ public class AccessTokenServiceTest {
         AccessTokenService accessTokenService = null;
         try {
 
-            accessTokenService = WeiXinApiClients.buildAccessTokenService(appId, appSecret);
+            accessTokenService = WeiXinClients.buildAccessTokenService(appId, appSecret);
             String accessToken = accessTokenService.getAccessToken();
 
             System.out.println("accessToken=" + accessToken);

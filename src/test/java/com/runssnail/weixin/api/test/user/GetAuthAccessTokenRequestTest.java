@@ -3,7 +3,7 @@ package com.runssnail.weixin.api.test.user;
 import com.runssnail.weixin.api.WeiXinClient;
 import com.runssnail.weixin.api.request.user.GetAuthAccessTokenRequest;
 import com.runssnail.weixin.api.response.Response;
-import com.runssnail.weixin.api.support.WeiXinApiClients;
+import com.runssnail.weixin.api.support.WeiXinClients;
 
 public class GetAuthAccessTokenRequestTest {
 
@@ -14,7 +14,7 @@ public class GetAuthAccessTokenRequestTest {
 
         WeiXinClient weiXinClient = null;
         try {
-            weiXinClient = WeiXinApiClients.buildRetryWeixinClient(appId, appSecret);
+            weiXinClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);
 
             GetAuthAccessTokenRequest req = new GetAuthAccessTokenRequest(appId, appSecret, "faflafl");
 

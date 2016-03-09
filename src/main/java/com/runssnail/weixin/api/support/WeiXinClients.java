@@ -15,7 +15,7 @@ import org.apache.commons.lang.Validate;
  * @author zhengwei
  * @since 1.0-SNAPSHOT
  */
-public class WeiXinApiClients {
+public class WeiXinClients {
 
     /**
      * 创建RetryWeiXinApiClient
@@ -24,11 +24,11 @@ public class WeiXinApiClients {
      * @param appSecret appSecret
      * @return RetryWeiXinApiClient
      */
-    public static RetryWeiXinClient buildRetryWeixinClient(String appId, String appSecret) {
+    public static RetryWeiXinClient buildRetryWeiXinClient(String appId, String appSecret) {
         Validate.isTrue(StringUtils.isNotBlank(appId), "appId is required");
         Validate.isTrue(StringUtils.isNotBlank(appSecret), "appSecret is required");
 
-        return WeiXinApiClients.buildRetryWeixinClient(appId, appSecret, null);
+        return WeiXinClients.buildRetryWeiXinClient(appId, appSecret, null);
     }
 
     /**
@@ -38,7 +38,7 @@ public class WeiXinApiClients {
      * @param appSecret appSecret
      * @return DefaultWeiXinApiClient
      */
-    public static DefaultWeiXinClient buildDefaultWeixinClient(String appId, String appSecret) {
+    public static DefaultWeiXinClient buildDefaultWeiXinClient(String appId, String appSecret) {
         Validate.isTrue(StringUtils.isNotBlank(appId), "appId is required");
         Validate.isTrue(StringUtils.isNotBlank(appSecret), "appSecret is required");
 
@@ -55,9 +55,9 @@ public class WeiXinApiClients {
      * @param accessTokenManager     AccessTokenManager
      * @return RetryWeiXinApiClient
      */
-    public static RetryWeiXinClient buildRetryWeixinClient(DefaultWeiXinClient defaultWeixinClient,
+    public static RetryWeiXinClient buildRetryWeiXinClient(DefaultWeiXinClient defaultWeixinClient,
                                                            AccessTokenManager accessTokenManager) {
-        Validate.notNull(defaultWeixinClient, "DefaultWeixinClient is required");
+        Validate.notNull(defaultWeixinClient, "DefaultWeiXinClient is required");
 
         if (accessTokenManager == null) {
             accessTokenManager = buildAccessTokenManager(defaultWeixinClient);
@@ -78,7 +78,7 @@ public class WeiXinApiClients {
      * @param accessTokenManager AccessTokenManager
      * @return RetryWeiXinApiClient
      */
-    public static RetryWeiXinClient buildRetryWeixinClient(String appId, String appSecret,
+    public static RetryWeiXinClient buildRetryWeiXinClient(String appId, String appSecret,
                                                            AccessTokenManager accessTokenManager) {
 
         DefaultWeiXinClient defaultWeixinClient = new DefaultWeiXinClient(appId, appSecret);
@@ -104,7 +104,7 @@ public class WeiXinApiClients {
      * @return AccessTokenService
      */
     public static AccessTokenService buildAccessTokenService(DefaultWeiXinClient defaultWeixinClient) {
-        Validate.notNull(defaultWeixinClient, "DefaultWeixinClient is required");
+        Validate.notNull(defaultWeixinClient, "DefaultWeiXinClient is required");
 
         DefaultAccessTokenService defaultAccessTokenService = new DefaultAccessTokenService();
         defaultAccessTokenService.setWeiXinClient(defaultWeixinClient);
@@ -123,7 +123,7 @@ public class WeiXinApiClients {
         Validate.isTrue(StringUtils.isNotBlank(appId), "appId is required");
         Validate.isTrue(StringUtils.isNotBlank(appSecret), "appSecret is required");
 
-        return WeiXinApiClients.buildAccessTokenService(new DefaultWeiXinClient(appId, appSecret));
+        return WeiXinClients.buildAccessTokenService(new DefaultWeiXinClient(appId, appSecret));
     }
 
     /**
@@ -133,7 +133,7 @@ public class WeiXinApiClients {
      * @return AccessTokenManager
      */
     public static AccessTokenManager buildAccessTokenManager(DefaultWeiXinClient defaultWeixinClient) {
-        Validate.notNull(defaultWeixinClient, "DefaultWeixinClient is required");
+        Validate.notNull(defaultWeixinClient, "DefaultWeiXinClient is required");
 
         LocalMemoryAccessTokenManager accessTokenManager = new LocalMemoryAccessTokenManager(defaultWeixinClient);
         accessTokenManager.init();

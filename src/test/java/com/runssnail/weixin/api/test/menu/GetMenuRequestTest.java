@@ -3,7 +3,7 @@ package com.runssnail.weixin.api.test.menu;
 import com.runssnail.weixin.api.RetryWeiXinClient;
 import com.runssnail.weixin.api.request.menu.GetMenuRequest;
 import com.runssnail.weixin.api.response.Response;
-import com.runssnail.weixin.api.support.WeiXinApiClients;
+import com.runssnail.weixin.api.support.WeiXinClients;
 
 public class GetMenuRequestTest {
 
@@ -13,7 +13,7 @@ public class GetMenuRequestTest {
 
         RetryWeiXinClient weixinApiClient = null;
         try {
-            weixinApiClient = WeiXinApiClients.buildRetryWeixinClient(appId, appSecret);
+            weixinApiClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);
 
             GetMenuRequest req = new GetMenuRequest();
 

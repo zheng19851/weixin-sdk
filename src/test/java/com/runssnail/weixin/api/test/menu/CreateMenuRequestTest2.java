@@ -4,7 +4,7 @@ import com.runssnail.weixin.api.RetryWeiXinClient;
 import com.runssnail.weixin.api.domain.menu.Menu;
 import com.runssnail.weixin.api.request.menu.CreateMenuRequest;
 import com.runssnail.weixin.api.response.Response;
-import com.runssnail.weixin.api.support.WeiXinApiClients;
+import com.runssnail.weixin.api.support.WeiXinClients;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class CreateMenuRequestTest2 {
 
         RetryWeiXinClient weixinApiClient = null;
         try {
-            weixinApiClient = WeiXinApiClients.buildRetryWeixinClient(appId, appSecret);
+            weixinApiClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);
 
             List<Menu> menus = new ArrayList<Menu>();
 
