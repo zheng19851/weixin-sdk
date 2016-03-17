@@ -1,10 +1,10 @@
 package com.runssnail.weixin.api.request.payment;
 
 import com.runssnail.weixin.api.common.SignType;
+import com.runssnail.weixin.api.common.SignUtils;
 import com.runssnail.weixin.api.constants.Constants;
 import com.runssnail.weixin.api.domain.payment.TradeType;
 import com.runssnail.weixin.api.exception.WeiXinApiRuleException;
-import com.runssnail.weixin.api.internal.support.PaymentHelper;
 import com.runssnail.weixin.api.internal.utils.DateUtil;
 import com.runssnail.weixin.api.request.PostRequest;
 import com.runssnail.weixin.api.response.payment.CreatePrepayOrderResponse;
@@ -260,7 +260,7 @@ public class CreatePrepayOrderRequest extends PostRequest<CreatePrepayOrderRespo
         SortedMap params = getParams(this.appId, this.merchantId);
 
         // 创建sign
-        String sign = PaymentHelper.buildSign(params, this.paySignKey, SignType.MD5);
+        String sign = SignUtils.buildSign(params, this.paySignKey, SignType.MD5);
         params.put("sign", sign);
 
         return params;
@@ -274,7 +274,7 @@ public class CreatePrepayOrderRequest extends PostRequest<CreatePrepayOrderRespo
         if (StringUtils.isNotBlank(this.deviceInfo)) {
             params.put("device_info", this.deviceInfo); // 设备号
         }
-        params.put("nonce_str", PaymentHelper.buildNonce(Constants.DEFAULT_ENCODING));
+        params.put("nonce_str", SignUtils.buildNonce(Constants.DEFAULT_ENCODING));
         params.put("body", this.productDesc); // 商品描述
         if (StringUtils.isNotBlank(this.attach)) {
             params.put("attach", this.attach); // 附加数据，原样返回

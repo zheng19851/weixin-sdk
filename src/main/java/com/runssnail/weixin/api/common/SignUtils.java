@@ -1,7 +1,5 @@
-package com.runssnail.weixin.api.internal.support;
+package com.runssnail.weixin.api.common;
 
-import com.runssnail.weixin.api.common.SignType;
-import com.runssnail.weixin.api.domain.payment.JsApiPayReq;
 import com.runssnail.weixin.api.internal.utils.MD5Util;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
@@ -11,69 +9,42 @@ import org.apache.commons.logging.LogFactory;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.*;
-import java.util.Map.Entry;
-
-import static com.runssnail.weixin.api.constants.Constants.DEFAULT_ENCODING;
 
 /**
- * 微信支付帮助类
- *
- * @author zhengwei
+ * Created by zhengwei on 2016/3/17.
  */
-public abstract class PaymentHelper {
+public class SignUtils {
 
-    private static final Log log = LogFactory.getLog(PaymentHelper.class);
+    private static final Log log = LogFactory.getLog(SignUtils.class);
 
-    /**
-     * 生成js api 支付请求参数
-     *
-     * @param appId
-     * @param prepayId 微信预支付单id
-     * @param paySignKey 微信支付密钥
-     * @return 支付签名，随机字符串，时间戳
-     */
-    public static JsApiPayReq buildJsApiPayReq(String appId, String prepayId, String paySignKey) {
-        JsApiPayReq req = new JsApiPayReq();
-        String nonceStr = buildNonce(DEFAULT_ENCODING);
-        long timeStamp = System.currentTimeMillis() / 1000;
-        String paySign = buildPaySign(appId, prepayId, paySignKey, nonceStr, timeStamp);
-
-        req.setAppId(appId);
-        req.setNonceStr(nonceStr);
-        req.setTimeStamp(timeStamp);
-        req.setPaySign(paySign);
-        req.setPrepayId(prepayId);
-
-        return req;
-    }
+    public static final String  DEFAULT_CHARSET = "UTF-8";
 
     /**
      * 生成支付签名
      *
-     * @param appId 微信公众号id，必填
-     * @param prepayId 微信预支付单id，必填
+     * @param appId      微信公众号id，必填
+     * @param prepayId   微信预支付单id，必填
      * @param paySignKey 支付密钥，必填
-     * @return
+     * @return 支付签名
      */
     public static String buildPaySign(String appId, String prepayId, String paySignKey) {
 
-        return buildPaySign(appId, prepayId, paySignKey, buildNonce(DEFAULT_ENCODING),
-                System.currentTimeMillis() / 1000);
+        return buildPaySign(appId, prepayId, paySignKey, buildNonce(DEFAULT_CHARSET), System.currentTimeMillis() / 1000);
     }
 
     /**
      * 生成支付签名
      *
-     * @param appId 微信公众号id，必填
-     * @param prepayId 微信预支付单id，必填
+     * @param appId      微信公众号id，必填
+     * @param prepayId   微信预支付单id，必填
      * @param paySignKey 支付密钥，必填
-     * @param nonceStr 随机字符串，不超过32个字符，必填
-     * @param timeStamp 时间戳，精确到秒，必填
-     * @return
+     * @param nonceStr   随机字符串，不超过32个字符，必填
+     * @param timeStamp  时间戳，精确到秒，必填
+     * @return 支付签名
      */
     public static String buildPaySign(String appId, String prepayId, String paySignKey, String nonceStr, long timeStamp) {
 
-        SortedMap<String, Object> params = new TreeMap<String, Object>();
+        SortedMap<String, String> params = new TreeMap<String, String>();
         params.put("appId", appId);
         params.put("timeStamp", String.valueOf(timeStamp));
         params.put("nonceStr", nonceStr);
@@ -85,8 +56,8 @@ public abstract class PaymentHelper {
     /**
      * 生成随机字符串
      *
-     * @param charset
-     * @return
+     * @param charset 字符集
+     * @return 随机字符串
      */
     public static String buildNonce(String charset) {
         Random random = new Random();
@@ -96,20 +67,20 @@ public abstract class PaymentHelper {
     /**
      * 生成随机字符串
      *
-     * @return 随机串
+     * @return 随机字符串
      */
     public static String buildNonce() {
-        return buildNonce(DEFAULT_ENCODING);
+        return buildNonce(DEFAULT_CHARSET);
     }
 
     /**
      * 生成sign
      *
      * @param params 参数
-     * @param key 签名密钥
-     * @return
+     * @param key    签名密钥
+     * @return 签名
      */
-    public static String buildSign(Map<String, Object> params, String key) {
+    public static String buildSign(SortedMap<String, String> params, String key) {
 
         return buildSign(params, key, SignType.MD5);
 
@@ -118,12 +89,12 @@ public abstract class PaymentHelper {
     /**
      * 生成签名sign
      *
-     * @param params 参数
-     * @param key 签名密钥
+     * @param params   参数
+     * @param key      签名密钥
      * @param signType 签名方式
      * @return
      */
-    public static String buildSign(Map<String, Object> params, String key, SignType signType) {
+    public static String buildSign(SortedMap<String, String> params, String key, SignType signType) {
         if (log.isDebugEnabled()) {
             log.debug("genSign, params=" + params + ", signType=" + signType);
         }
@@ -153,21 +124,16 @@ public abstract class PaymentHelper {
         return sign;
     }
 
-    public static String buildUrlParamsStr(Map<String, Object> packageParams, String charset) {
+    public static String buildUrlParamsStr(SortedMap<String, String> packageParams, String charset) {
         StringBuilder sb = new StringBuilder();
-        Set<Entry<String, Object>> es = packageParams.entrySet();
-        for (Entry<String, Object> entry : es) {
+        Set<Map.Entry<String, String>> es = packageParams.entrySet();
+        for (Map.Entry<String, String> entry : es) {
             String k = entry.getKey();
-            Object v = entry.getValue();
-            if (StringUtils.isNotBlank(k) && v != null) {
-                String strVal = v.toString();
-                if (StringUtils.isNotBlank(strVal)) {
-                    if (StringUtils.isNotBlank(charset)) {
-                        strVal = urlEncode(strVal, charset);
-                    }
-                    sb.append(k + "=" + strVal + "&");
-                }
+            String v = entry.getValue();
+            if (StringUtils.isNotBlank(charset)) {
+                v = urlEncode(v, charset);
             }
+            sb.append(k + "=" + v + "&");
         }
 
         String params = sb.substring(0, sb.lastIndexOf("&"));
@@ -177,7 +143,7 @@ public abstract class PaymentHelper {
 
     // 特殊字符处理
     private static String urlEncode(String src, String charset) {
-        String str;
+        String str = null;
         try {
             str = URLEncoder.encode(src, charset).replace("+", "%20");
         } catch (UnsupportedEncodingException e) {
