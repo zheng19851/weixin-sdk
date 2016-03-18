@@ -19,7 +19,7 @@ public class AccessTokenServiceTest {
             System.out.println("accessToken=" + accessToken);
         } finally {
             if (accessTokenService != null) {
-                accessTokenService.close();
+//                accessTokenService.close();
             }
         }
     }

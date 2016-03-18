@@ -4,6 +4,7 @@ import com.runssnail.weixin.api.RetryWeiXinClient;
 import com.runssnail.weixin.api.domain.menu.Menu;
 import com.runssnail.weixin.api.request.menu.CreateMenuRequest;
 import com.runssnail.weixin.api.response.Response;
+import com.runssnail.weixin.api.service.MemoryAccessTokenService;
 import com.runssnail.weixin.api.support.WeiXinClients;
 
 import java.util.ArrayList;
@@ -18,6 +19,9 @@ public class CreateMenuRequestTest2 {
         RetryWeiXinClient weixinApiClient = null;
         try {
             weixinApiClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);
+
+            MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
+            accessTokenService.setWeiXinClient(weixinApiClient);
 
             List<Menu> menus = new ArrayList<Menu>();
 
@@ -40,7 +44,7 @@ public class CreateMenuRequestTest2 {
 
             CreateMenuRequest req = new CreateMenuRequest(menus);
 
-            Response res = weixinApiClient.execute(req, true);
+            Response res = weixinApiClient.execute(req, accessTokenService.getAccessToken());
 
             System.out.println(res);
 

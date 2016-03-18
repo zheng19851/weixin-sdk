@@ -3,6 +3,7 @@ package com.runssnail.weixin.api.test.user;
 import com.runssnail.weixin.api.WeiXinClient;
 import com.runssnail.weixin.api.request.user.GetUserRequest;
 import com.runssnail.weixin.api.response.Response;
+import com.runssnail.weixin.api.service.MemoryAccessTokenService;
 import com.runssnail.weixin.api.support.WeiXinClients;
 
 
@@ -16,9 +17,12 @@ public class GetUserRequestTest {
         try {
             weiXinClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);
 
+            MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
+            accessTokenService.setWeiXinClient(weiXinClient);
+
             GetUserRequest req = new GetUserRequest(appId, appSecret);
 
-            Response res = weiXinClient.execute(req);
+            Response res = weiXinClient.execute(req, accessTokenService.getAccessToken());
 
             System.out.println(res);
 

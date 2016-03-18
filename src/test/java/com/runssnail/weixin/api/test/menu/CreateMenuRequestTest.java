@@ -42,7 +42,7 @@ public class CreateMenuRequestTest {
 
         CreateMenuRequest req = new CreateMenuRequest(menus);
 
-        Response res = weixinApiClient.execute(req, true);
+        Response res = weixinApiClient.execute(req);
 
         System.out.println(res);
         weixinApiClient.close();

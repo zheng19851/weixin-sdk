@@ -191,16 +191,6 @@ public class DefaultWeiXinClient implements WeiXinClient {
         return this.appSecret;
     }
 
-    @Override
-    public void init() {
-        // ignore
-    }
-
-    @Override
-    public void close() {
-        // ignore
-    }
-
     /**
      * http 连接超时时间，单位毫秒
      *
@@ -235,5 +225,15 @@ public class DefaultWeiXinClient implements WeiXinClient {
      */
     public void setReadTimeout(int readTimeout) {
         this.readTimeout = readTimeout;
+    }
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void close() {
+
     }
 }
