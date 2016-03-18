@@ -50,4 +50,19 @@ public class DefaultWeiXinService implements WeiXinService {
         return weiXinClient.execute(request, accessToken);
     }
 
+    public WeiXinClient getWeiXinClient() {
+        return weiXinClient;
+    }
+
+    public void setWeiXinClient(WeiXinClient weiXinClient) {
+        this.weiXinClient = weiXinClient;
+    }
+
+    public AccessTokenService getAccessTokenService() {
+        return accessTokenService;
+    }
+
+    public void setAccessTokenService(AccessTokenService accessTokenService) {
+        this.accessTokenService = accessTokenService;
+    }
 }
