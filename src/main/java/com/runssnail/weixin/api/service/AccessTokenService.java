@@ -1,20 +1,24 @@
 package com.runssnail.weixin.api.service;
 
-import com.runssnail.weixin.api.common.Lifecycle;
-
 /**
- * AccessToken管理服务
+ * 微信Access Token服务
  *
- * @author zhengwei
- * @date 2014-2-14
+ * Created by zhengwei on 2016/3/17.
  */
-public interface AccessTokenService extends Lifecycle {
+public interface AccessTokenService {
 
     /**
-     * 公众号access token
+     * 获取AccessToken
      *
-     * @return access token
+     * @return
      */
     String getAccessToken();
+
+    /**
+     * 刷新AccessToken
+     *
+     * @return
+     */
+    String refresh();
 
 }
