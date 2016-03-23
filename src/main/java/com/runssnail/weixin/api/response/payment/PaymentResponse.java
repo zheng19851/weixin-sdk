@@ -78,6 +78,22 @@ public abstract class PaymentResponse extends Response {
      */
     private String sign;
 
+    public String getMch_appid() {
+        return this.appid;
+    }
+
+    public void setMch_appid(String appId) {
+        this.appid = appId;
+    }
+
+    public String getMchid() {
+        return mch_id;
+    }
+
+    public void setMchid(String mchId) {
+        this.mch_id = mchId;
+    }
+
     public String getAppid() {
         return appid;
     }
@@ -198,7 +214,7 @@ public abstract class PaymentResponse extends Response {
 
         Map paramsMap = XmlTool.toMapStringValue(this.getResponseBody());
         paramsMap.put("sign", null);
-        SortedMap<String, String> sortedMap = new TreeMap<String, String>(paramsMap);
+        SortedMap<String, Object> sortedMap = new TreeMap<String, Object>(paramsMap);
 
         String signFromParams = SignUtils.buildSign(sortedMap, paySignKey);
         if (!signFromParams.equals(this.sign)) {

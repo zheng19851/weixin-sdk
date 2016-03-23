@@ -1,10 +1,17 @@
 package com.runssnail.weixin.api;
 
+import com.runssnail.weixin.api.common.SignType;
+import com.runssnail.weixin.api.common.SignUtils;
+import com.runssnail.weixin.api.constants.Constants;
+import com.runssnail.weixin.api.exception.WeiXinApiException;
+import com.runssnail.weixin.api.internal.support.WeixinApiRuleValidate;
 import com.runssnail.weixin.api.internal.support.WeixinPayResponseHelper;
 import com.runssnail.weixin.api.internal.utils.XmlTool;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
 import com.runssnail.weixin.api.response.payment.PaymentResponse;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.Map;
 
@@ -13,7 +20,21 @@ import java.util.Map;
  *
  * Created by zhengwei on 2015/11/6.
  */
-public class DefaultWechatPaymentClient extends DefaultWeiXinClient implements WechatPaymentClient {
+public class DefaultWechatPaymentClient implements WechatPaymentClient {
+
+    private static final Log log = LogFactory.getLog(DefaultWechatPaymentClient.class);
+
+    /**
+     * 连接超时时间，单位毫秒，默认3秒
+     */
+    private int connectTimeout = Constants.DEFAULT_CONNECT_TIMEOUT;
+
+    /**
+     * 读取超时时间，单位毫秒，默认10秒
+     */
+    private int readTimeout = Constants.DEFAULT_READ_TIMEOUT;
+
+    private String appId;
 
     /**
      * 商户id
@@ -25,11 +46,26 @@ public class DefaultWechatPaymentClient extends DefaultWeiXinClient implements W
      */
     private String paySignKey;
 
-    public DefaultWechatPaymentClient(String appId, String mchId, String paySignKey) {
-        super(appId, null);
+    /**
+     * https client
+     */
+    private HttpsClient httpsClient;
 
+    /**
+     * 创建DefaultWechatPaymentClient
+     *
+     * @param appId 微信公众号id
+     * @param mchId 商户号
+     * @param paySignKey 支付秘钥
+     * @param certPath 证书路径
+     * @param certPassword  证书密码
+     */
+    public DefaultWechatPaymentClient(String appId, String mchId, String paySignKey, String certPath, String certPassword) {
+        this.appId = appId;
         this.mchId = mchId;
         this.paySignKey = paySignKey;
+
+        this.httpsClient = new HttpsClient(certPath, certPassword);
     }
 
     public String getMchId() {
@@ -54,12 +90,15 @@ public class DefaultWechatPaymentClient extends DefaultWeiXinClient implements W
      * @param params
      * @return
      */
-    @Override
     protected String buildPostParams(Map<String, Object> params) {
+
+        // 创建sign
+        String sign = SignUtils.buildSign(params, this.paySignKey, SignType.MD5);
+        params.put("sign", sign);
+
         return XmlTool.toXml(params);
     }
 
-    @Override
     protected <R extends Response> R buildResponse(String result, Request<R> req) {
         return WeixinPayResponseHelper.getObjectFromXml(result, req.getResponseClass());
     }
@@ -72,5 +111,103 @@ public class DefaultWechatPaymentClient extends DefaultWeiXinClient implements W
      */
     protected <R extends Response> void checkResponse(R res) {
         ((PaymentResponse) res).check(this.paySignKey);
+    }
+
+
+    @Override
+    public <R extends Response> R execute(Request<R> req) throws WeiXinApiException {
+        WeixinApiRuleValidate.notNull(req, "request is required");
+
+        return executeInternal(req);
+    }
+
+    /**
+     * 执行请求
+     *
+     * @param req    请求
+     * @param <R>    响应对象
+     * @return 响应对象
+     */
+    private <R extends Response> R executeInternal(Request<R> req) {
+        String apiUrl = req.getApiUrl();
+
+        if (log.isDebugEnabled()) {
+            log.debug("execute start, apiUrl=" + apiUrl + ", request=" + req);
+        }
+
+        long start = System.currentTimeMillis();
+
+        req.check();
+
+//      String      result = HttpUtils.doPost(apiUrl, buildPostParams(req.getParams()), this.connectTimeout, this.readTimeout);
+
+        String result = httpsClient.doPost(apiUrl, buildPostParams(req.getParams()));
+
+        if (log.isDebugEnabled()) {
+            log.debug("execute request success, apiUrl=" + apiUrl + ", request=" + req + ", result=" + result);
+        }
+
+        R res = buildResponse(result, req);
+
+        res.setResponseBody(result);
+
+//        res.check();
+        checkResponse(res);
+
+        if (log.isDebugEnabled()) {
+            log.debug("execute end, used total " + (System.currentTimeMillis() - start) + " ms, response=" + res);
+        }
+        return res;
+    }
+
+    @Override
+    public String getAppId() {
+        return this.appId;
+    }
+
+    /**
+     * http 连接超时时间，单位毫秒
+     *
+     * @return http 连接超时时间，单位毫秒
+     */
+    public int getConnectTimeout() {
+        return connectTimeout;
+    }
+
+    /**
+     * 设置 http 连接超时时间，单位毫秒
+     *
+     * @param connectTimeout http 连接超时时间，单位毫秒
+     */
+    public void setConnectTimeout(int connectTimeout) {
+        this.connectTimeout = connectTimeout;
+    }
+
+    /**
+     * http 读取时间，单位毫秒
+     *
+     * @return http 读取时间，单位毫秒
+     */
+    public int getReadTimeout() {
+        return readTimeout;
+    }
+
+    /**
+     * 设置http 读取时间，单位毫秒
+     *
+     * @param readTimeout http 读取时间，单位毫秒
+     */
+    public void setReadTimeout(int readTimeout) {
+        this.readTimeout = readTimeout;
+    }
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void close() {
+
     }
 }

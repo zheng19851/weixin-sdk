@@ -9,7 +9,10 @@ import java.util.Map;
  * 创建预支付单请求，这里参数用map保存
  *
  * @author zhengwei
+ *
+ * @see CreatePrepayOrderRequest
  */
+@Deprecated
 public class CreatePrepayOrder2Request extends PostRequest<CreatePrepayOrderResponse> {
 
     /**

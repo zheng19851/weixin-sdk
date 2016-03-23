@@ -44,7 +44,7 @@ public class SignUtils {
      */
     public static String buildPaySign(String appId, String prepayId, String paySignKey, String nonceStr, long timeStamp) {
 
-        SortedMap<String, String> params = new TreeMap<String, String>();
+        SortedMap<String, Object> params = new TreeMap<String, Object>();
         params.put("appId", appId);
         params.put("timeStamp", String.valueOf(timeStamp));
         params.put("nonceStr", nonceStr);
@@ -80,7 +80,7 @@ public class SignUtils {
      * @param key    签名密钥
      * @return 签名
      */
-    public static String buildSign(SortedMap<String, String> params, String key) {
+    public static String buildSign(Map<String, Object> params, String key) {
 
         return buildSign(params, key, SignType.MD5);
 
@@ -94,7 +94,7 @@ public class SignUtils {
      * @param signType 签名方式
      * @return
      */
-    public static String buildSign(SortedMap<String, String> params, String key, SignType signType) {
+    public static String buildSign(Map<String, Object> params, String key, SignType signType) {
         if (log.isDebugEnabled()) {
             log.debug("genSign, params=" + params + ", signType=" + signType);
         }
@@ -124,14 +124,14 @@ public class SignUtils {
         return sign;
     }
 
-    public static String buildUrlParamsStr(SortedMap<String, String> packageParams, String charset) {
+    public static String buildUrlParamsStr(Map<String, Object> packageParams, String charset) {
         StringBuilder sb = new StringBuilder();
-        Set<Map.Entry<String, String>> es = packageParams.entrySet();
-        for (Map.Entry<String, String> entry : es) {
+        Set<Map.Entry<String, Object>> es = packageParams.entrySet();
+        for (Map.Entry<String, Object> entry : es) {
             String k = entry.getKey();
-            String v = entry.getValue();
-            if (StringUtils.isNotBlank(charset)) {
-                v = urlEncode(v, charset);
+            Object v = entry.getValue();
+            if (StringUtils.isNotBlank(charset) && v != null) {
+                v = urlEncode(v.toString(), charset);
             }
             sb.append(k + "=" + v + "&");
         }
