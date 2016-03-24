@@ -4,7 +4,6 @@ import com.runssnail.weixin.api.common.SignUtils;
 import com.runssnail.weixin.api.domain.payment.TradeType;
 import com.runssnail.weixin.api.exception.WeiXinApiRuleException;
 import com.runssnail.weixin.api.internal.utils.DateUtil;
-import com.runssnail.weixin.api.request.PostRequest;
 import com.runssnail.weixin.api.response.payment.CreatePrepayOrderResponse;
 import org.apache.commons.lang.StringUtils;
 
@@ -20,7 +19,7 @@ import static org.apache.commons.lang.Validate.notNull;
  *
  * @author zhengwei
  */
-public class CreatePrepayOrderRequest extends PostRequest<CreatePrepayOrderResponse> {
+public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderResponse> {
 
     /**
      *

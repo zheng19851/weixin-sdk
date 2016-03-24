@@ -11,8 +11,18 @@ import com.runssnail.weixin.api.response.Response;
  */
 public interface WeiXinService {
 
+    /**
+     * 微信 appId
+     *
+     * @return
+     */
     String getAppId();
 
+    /**
+     * 微信 appSecret
+     *
+     * @return
+     */
     String getAppSecret();
 
     /**
@@ -23,8 +33,8 @@ public interface WeiXinService {
     /**
      * 发送微信请求
      *
-     * @param request
-     * @param <R>
+     * @param request 请求对象
+     * @param <R> 响应对象
      * @return
      */
     <R extends Response> R execute(Request<R> request);

@@ -1,7 +1,6 @@
 package com.runssnail.weixin.api.request.payment;
 
 import com.runssnail.weixin.api.common.SignUtils;
-import com.runssnail.weixin.api.request.PostRequest;
 import com.runssnail.weixin.api.response.payment.EnterprisePayResponse;
 import org.apache.commons.lang.StringUtils;
 
@@ -29,7 +28,7 @@ import java.util.TreeMap;
  * <p>
  * Created by zhengwei on 2016/3/23.
  */
-public class EnterprisePayRequest extends PostRequest<EnterprisePayResponse> {
+public class EnterprisePayRequest extends PaymentRequest<EnterprisePayResponse> {
 
     /**
      * 公众账号	mch_appid
