@@ -1,5 +1,6 @@
 package com.runssnail.weixin.api.service;
 
+import com.runssnail.weixin.api.domain.jssdk.Config;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
 
@@ -27,4 +28,12 @@ public interface WeiXinService {
      * @return
      */
     <R extends Response> R execute(Request<R> request);
+
+    /**
+     * 获取微信js sdk配置信息
+     *
+     * @param url 网页url
+     * @return
+     */
+    Config getJsSdkConfig(String url);
 }

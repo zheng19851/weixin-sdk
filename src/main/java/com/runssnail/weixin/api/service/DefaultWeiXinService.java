@@ -1,8 +1,12 @@
 package com.runssnail.weixin.api.service;
 
 import com.runssnail.weixin.api.WeiXinClient;
+import com.runssnail.weixin.api.common.JsSdkUtils;
+import com.runssnail.weixin.api.domain.jssdk.Config;
 import com.runssnail.weixin.api.request.Request;
+import com.runssnail.weixin.api.request.ticket.GetTicketRequest;
 import com.runssnail.weixin.api.response.Response;
+import com.runssnail.weixin.api.response.ticket.GetTicketResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -48,6 +52,16 @@ public class DefaultWeiXinService implements WeiXinService {
     public <R extends Response> R execute(Request<R> request) {
         String accessToken = this.accessTokenService.getAccessToken();
         return weiXinClient.execute(request, accessToken);
+    }
+
+    @Override
+    public Config getJsSdkConfig(String url) {
+
+        assert url != null;
+
+        GetTicketResponse response = this.execute(new GetTicketRequest());
+
+        return JsSdkUtils.getConfig(this.getAppId(), response.getTicket(), url);
     }
 
     public WeiXinClient getWeiXinClient() {
