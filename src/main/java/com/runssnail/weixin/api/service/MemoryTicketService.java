@@ -1,5 +1,7 @@
 package com.runssnail.weixin.api.service;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * 用本地内存来保存 ticket，单机可用，集群时请不要使用
  *
@@ -16,6 +18,9 @@ public class MemoryTicketService extends AbstractTicketService {
 
     @Override
     public String getTicket() {
+        if (StringUtils.isBlank(this.ticket)) {
+            return refresh();
+        }
         return this.ticket;
     }
 }
