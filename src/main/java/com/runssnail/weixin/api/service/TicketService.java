@@ -12,7 +12,7 @@ public interface TicketService {
      *
      * @return
      */
-    String get();
+    String getTicket();
 
     /**
      * 刷新

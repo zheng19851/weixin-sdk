@@ -12,7 +12,7 @@ public interface AccessTokenService {
      *
      * @return
      */
-    String get();
+    String getAccessToken();
 
     /**
      * 刷新AccessToken

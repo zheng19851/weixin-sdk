@@ -21,7 +21,7 @@ public class GetMenuRequestTest {
 
             GetMenuRequest req = new GetMenuRequest();
 
-            Response res = weixinApiClient.execute(req, accessTokenService.get());
+            Response res = weixinApiClient.execute(req, accessTokenService.getAccessToken());
 
             System.out.println(res);
 

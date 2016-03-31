@@ -10,12 +10,12 @@ public class MemoryTicketService extends AbstractTicketService {
     private volatile String ticket;
 
     @Override
-    protected void save(String ticket) {
+    protected void saveTicket(String ticket) {
         this.ticket = ticket;
     }
 
     @Override
-    public String get() {
+    public String getTicket() {
         return this.ticket;
     }
 }

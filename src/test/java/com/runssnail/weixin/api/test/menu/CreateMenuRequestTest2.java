@@ -44,7 +44,7 @@ public class CreateMenuRequestTest2 {
 
             CreateMenuRequest req = new CreateMenuRequest(menus);
 
-            Response res = weixinApiClient.execute(req, accessTokenService.get());
+            Response res = weixinApiClient.execute(req, accessTokenService.getAccessToken());
 
             System.out.println(res);
 

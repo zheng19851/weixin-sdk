@@ -24,7 +24,7 @@ public class GetTicketRequestTest {
             MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
             accessTokenService.setWeiXinClient(weixinApiClient);
 
-            Response res = weixinApiClient.execute(new GetTicketRequest(), accessTokenService.get());
+            Response res = weixinApiClient.execute(new GetTicketRequest(), accessTokenService.getAccessToken());
 
             System.out.println(res);
 

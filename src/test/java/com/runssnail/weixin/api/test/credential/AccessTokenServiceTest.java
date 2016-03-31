@@ -14,7 +14,7 @@ public class AccessTokenServiceTest {
         try {
 
             accessTokenService = WeiXinClients.buildAccessTokenService(appId, appSecret);
-            String accessToken = accessTokenService.get();
+            String accessToken = accessTokenService.getAccessToken();
 
             System.out.println("accessToken=" + accessToken);
         } finally {

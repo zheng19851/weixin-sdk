@@ -17,7 +17,7 @@ public class MemoryAccessTokenService extends AbstractAccessTokenService {
     private volatile String accessToken;
 
     @Override
-    public String get() {
+    public String getAccessToken() {
 
         if (StringUtils.isBlank(this.accessToken)) {
             return refresh();
@@ -27,7 +27,7 @@ public class MemoryAccessTokenService extends AbstractAccessTokenService {
     }
 
     @Override
-    protected void save(String accessToken) {
+    protected void saveAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
 }

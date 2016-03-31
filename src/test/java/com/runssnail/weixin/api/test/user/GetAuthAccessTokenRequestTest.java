@@ -22,7 +22,7 @@ public class GetAuthAccessTokenRequestTest {
             MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
             accessTokenService.setWeiXinClient(weiXinClient);
 
-            Response res = weiXinClient.execute(req, accessTokenService.get());
+            Response res = weiXinClient.execute(req, accessTokenService.getAccessToken());
 
             System.out.println(res);
         } finally {

@@ -64,7 +64,7 @@ public class DefaultWeiXinService implements WeiXinService {
             return wechatPaymentClient.execute(request);
         }
 
-        String accessToken = this.accessTokenService.get();
+        String accessToken = this.accessTokenService.getAccessToken();
         return weiXinClient.execute(request, accessToken);
     }
 
@@ -73,7 +73,7 @@ public class DefaultWeiXinService implements WeiXinService {
 
         assert url != null;
 
-        return JsSdkUtils.getConfig(this.getAppId(), ticketService.get(), url);
+        return JsSdkUtils.getConfig(this.getAppId(), ticketService.getTicket(), url);
     }
 
     public WeiXinClient getWeiXinClient() {

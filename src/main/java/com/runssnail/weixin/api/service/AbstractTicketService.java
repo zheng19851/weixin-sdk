@@ -23,9 +23,9 @@ public abstract class AbstractTicketService implements TicketService {
             log.info("refreshAccessToken start");
         }
 
-        GetTicketResponse response = weiXinClient.execute(new GetTicketRequest(), accessTokenService.get());
+        GetTicketResponse response = weiXinClient.execute(new GetTicketRequest(), accessTokenService.getAccessToken());
         if (response.isSuccess()) {
-            save(response.getTicket());
+            saveTicket(response.getTicket());
             if (log.isInfoEnabled()) {
                 log.info("refresh ticket success, new ticket->" + response.getTicket());
             }
@@ -43,7 +43,7 @@ public abstract class AbstractTicketService implements TicketService {
      *
      * @param ticket
      */
-    protected abstract void save(String ticket);
+    protected abstract void saveTicket(String ticket);
 
     public WeiXinClient getWeiXinClient() {
         return weiXinClient;
