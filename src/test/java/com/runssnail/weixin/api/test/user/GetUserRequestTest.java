@@ -20,9 +20,11 @@ public class GetUserRequestTest {
             MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
             accessTokenService.setWeiXinClient(weiXinClient);
 
-            GetUserRequest req = new GetUserRequest(appId, appSecret);
+            String token = "OezXcEiiBSKSxW0eoylIeJzncPOWyDcs4M0mnDjDyefojf46BkBFzjVLcygaNmtT_QZyAZezyaSMcKYQWnfpbjfb30oC4OoUlrbT-wDz87S5rXxM896PBjZogxXo1hXbp1hOByWHSUeg_ND7ohPjAg";
 
-            Response res = weiXinClient.execute(req, accessTokenService.getAccessToken());
+            GetUserRequest req = new GetUserRequest(token, "oeumFjrOrsYmEV-MAElyRnscFwoo");
+
+            Response res = weiXinClient.execute(req);
 
             System.out.println(res);
 

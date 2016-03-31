@@ -33,7 +33,7 @@ public class TemplateMessageRequestTest {
             TemplateMessageRequest req = new TemplateMessageRequest("KRZM_j4dDvEj3khkluna67BMT14RA59o_NZVq7JpqzI",
                                                                     "oeumFjrOrsYmEV-MAElyRnscFwoo", data);
 
-            TemplateMessageResponse res = weixinApiClient.execute(req, accessTokenService.getAccessToken());
+            TemplateMessageResponse res = weixinApiClient.execute(req, accessTokenService.get());
             System.out.println(res);
         } finally {
             if (weixinApiClient != null) {

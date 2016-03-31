@@ -1,24 +1,23 @@
 package com.runssnail.weixin.api.service;
 
 /**
- * 微信Access Token服务
+ * jsapi ticket 服务
  *
- * Created by zhengwei on 2016/3/17.
+ * Created by zhengwei on 2016/3/31.
  */
-public interface AccessTokenService {
+public interface TicketService {
 
     /**
-     * 获取AccessToken
+     * 获取
      *
      * @return
      */
     String get();
 
     /**
-     * 刷新AccessToken
+     * 刷新
      *
      * @return
      */
     String refresh();
-
 }

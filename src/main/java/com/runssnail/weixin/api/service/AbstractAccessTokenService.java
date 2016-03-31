@@ -23,7 +23,7 @@ public abstract class AbstractAccessTokenService implements AccessTokenService {
 
         GetAccessTokenResponse response = weiXinClient.execute(new GetAccessTokenRequest(this.weiXinClient.getAppId(), this.weiXinClient.getAppSecret()));
         if (response.isSuccess()) {
-            saveAccessToken(response.getAccess_token());
+            save(response.getAccess_token());
             if (log.isInfoEnabled()) {
                 log.info("refreshAccessToken success, new Access Token->" + response.getAccess_token());
             }
@@ -41,7 +41,7 @@ public abstract class AbstractAccessTokenService implements AccessTokenService {
      *
      * @param accessToken
      */
-    protected abstract void saveAccessToken(String accessToken);
+    protected abstract void save(String accessToken);
 
     public void setWeiXinClient(WeiXinClient weiXinClient) {
         this.weiXinClient = weiXinClient;

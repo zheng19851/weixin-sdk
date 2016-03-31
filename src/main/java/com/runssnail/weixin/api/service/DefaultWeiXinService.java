@@ -6,9 +6,7 @@ import com.runssnail.weixin.api.common.JsSdkUtils;
 import com.runssnail.weixin.api.domain.jssdk.Config;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.request.payment.PaymentRequest;
-import com.runssnail.weixin.api.request.ticket.GetTicketRequest;
 import com.runssnail.weixin.api.response.Response;
-import com.runssnail.weixin.api.response.ticket.GetTicketResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -24,6 +22,8 @@ public class DefaultWeiXinService implements WeiXinService {
     private WeiXinClient weiXinClient;
 
     private AccessTokenService accessTokenService;
+
+    private TicketService ticketService;
 
     /**
      * 微信支付api client
@@ -64,7 +64,7 @@ public class DefaultWeiXinService implements WeiXinService {
             return wechatPaymentClient.execute(request);
         }
 
-        String accessToken = this.accessTokenService.getAccessToken();
+        String accessToken = this.accessTokenService.get();
         return weiXinClient.execute(request, accessToken);
     }
 
@@ -73,9 +73,7 @@ public class DefaultWeiXinService implements WeiXinService {
 
         assert url != null;
 
-        GetTicketResponse response = this.execute(new GetTicketRequest());
-
-        return JsSdkUtils.getConfig(this.getAppId(), response.getTicket(), url);
+        return JsSdkUtils.getConfig(this.getAppId(), ticketService.get(), url);
     }
 
     public WeiXinClient getWeiXinClient() {
@@ -100,5 +98,13 @@ public class DefaultWeiXinService implements WeiXinService {
 
     public void setWechatPaymentClient(WechatPaymentClient wechatPaymentClient) {
         this.wechatPaymentClient = wechatPaymentClient;
+    }
+
+    public TicketService getTicketService() {
+        return ticketService;
+    }
+
+    public void setTicketService(TicketService ticketService) {
+        this.ticketService = ticketService;
     }
 }

@@ -20,7 +20,7 @@ public class DeleteMenuRequestTest {
 
         DeleteMenuRequest req = new DeleteMenuRequest();
 
-        Response res = weixinApiClient.execute(req, accessTokenService.getAccessToken());
+        Response res = weixinApiClient.execute(req, accessTokenService.get());
 
         System.out.println(res);
 
