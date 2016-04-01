@@ -46,4 +46,11 @@ public interface WeiXinService {
      * @return
      */
     Config getJsSdkConfig(String url);
+
+    /**
+     * 刷新js sdk用到的ticket
+     *
+     * @return
+     */
+    String refreshTicket();
 }

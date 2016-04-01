@@ -76,6 +76,11 @@ public class DefaultWeiXinService implements WeiXinService {
         return JsSdkUtils.getConfig(this.getAppId(), ticketService.getTicket(), url);
     }
 
+    @Override
+    public String refreshTicket() {
+        return this.ticketService.refresh();
+    }
+
     public WeiXinClient getWeiXinClient() {
         return weiXinClient;
     }
