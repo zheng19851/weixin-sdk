@@ -1,4 +1,4 @@
-package com.runssnail.weixin.api.common;
+package com.runssnail.weixin.api.common.utils;
 
 import com.runssnail.weixin.api.domain.payment.JsApiPayReq;
 import org.apache.commons.logging.Log;

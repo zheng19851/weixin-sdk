@@ -41,7 +41,7 @@ public class DefaultWeiXinService implements WeiXinService {
     }
 
     @Override
-    public void refreshAccessToken() {
+    public String refreshAccessToken() {
 
         if (log.isInfoEnabled()) {
             log.info("refreshAccessToken start");
@@ -52,6 +52,8 @@ public class DefaultWeiXinService implements WeiXinService {
         if (log.isInfoEnabled()) {
             log.info("refreshAccessToken end, new Access Token->" + accessToken);
         }
+
+        return accessToken;
 
     }
 

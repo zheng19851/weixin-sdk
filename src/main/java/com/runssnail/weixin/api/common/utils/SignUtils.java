@@ -1,5 +1,6 @@
-package com.runssnail.weixin.api.common;
+package com.runssnail.weixin.api.common.utils;
 
+import com.runssnail.weixin.api.common.SignType;
 import com.runssnail.weixin.api.internal.utils.MD5Util;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;

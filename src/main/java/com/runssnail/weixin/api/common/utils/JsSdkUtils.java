@@ -1,4 +1,4 @@
-package com.runssnail.weixin.api.common;
+package com.runssnail.weixin.api.common.utils;
 
 import com.runssnail.weixin.api.domain.jssdk.Config;
 import org.apache.commons.codec.digest.DigestUtils;

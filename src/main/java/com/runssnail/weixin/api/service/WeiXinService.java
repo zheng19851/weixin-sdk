@@ -28,7 +28,7 @@ public interface WeiXinService {
     /**
      * 刷新access token
      */
-    void refreshAccessToken();
+    String refreshAccessToken();
 
     /**
      * 发送微信请求
