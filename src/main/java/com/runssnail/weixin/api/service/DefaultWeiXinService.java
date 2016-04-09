@@ -2,7 +2,7 @@ package com.runssnail.weixin.api.service;
 
 import com.runssnail.weixin.api.WechatPaymentClient;
 import com.runssnail.weixin.api.WeiXinClient;
-import com.runssnail.weixin.api.common.JsSdkUtils;
+import com.runssnail.weixin.api.common.utils.JsSdkUtils;
 import com.runssnail.weixin.api.domain.jssdk.Config;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.request.payment.PaymentRequest;

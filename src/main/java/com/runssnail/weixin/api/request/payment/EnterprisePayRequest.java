@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.request.payment;
 
-import com.runssnail.weixin.api.common.SignUtils;
+import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.response.payment.EnterprisePayResponse;
 import org.apache.commons.lang.StringUtils;
 

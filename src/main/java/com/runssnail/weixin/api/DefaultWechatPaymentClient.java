@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api;
 
 import com.runssnail.weixin.api.common.SignType;
-import com.runssnail.weixin.api.common.SignUtils;
+import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.constants.Constants;
 import com.runssnail.weixin.api.exception.WeiXinApiException;
 import com.runssnail.weixin.api.internal.support.WeixinApiRuleValidate;

@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.response.payment;
 
-import com.runssnail.weixin.api.common.SignUtils;
+import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.exception.SignatureException;
 import com.runssnail.weixin.api.exception.WeiXinApiException;
 import com.runssnail.weixin.api.internal.utils.XmlTool;

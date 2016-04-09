@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.request.payment;
 
-import com.runssnail.weixin.api.common.SignUtils;
+import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.domain.payment.TradeType;
 import com.runssnail.weixin.api.exception.WeiXinApiRuleException;
 import com.runssnail.weixin.api.internal.utils.DateUtil;
