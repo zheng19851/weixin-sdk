@@ -1,5 +1,6 @@
 package com.runssnail.weixin.api.test.credential;
 
+import com.runssnail.weixin.api.DefaultWeiXinClient;
 import com.runssnail.weixin.api.WeiXinClient;
 import com.runssnail.weixin.api.request.credential.GetAccessTokenRequest;
 import com.runssnail.weixin.api.response.Response;
@@ -17,9 +18,8 @@ public class GetAccessTokenRequestTest {
         String appId = "wxe58afcd99f7a997e";
         String appSecret = "5dcf8eac1e99e983fc58e42376ab0267";
 
-        WeiXinClient weiXinClient = null;
+        WeiXinClient weiXinClient = new DefaultWeiXinClient(appId, appSecret);
         try {
-            weiXinClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);
             GetAccessTokenRequest req = new GetAccessTokenRequest(appId, appSecret);
 
             Response res = weiXinClient.execute(req);
