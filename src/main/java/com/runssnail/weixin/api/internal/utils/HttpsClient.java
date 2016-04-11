@@ -1,4 +1,4 @@
-package com.runssnail.weixin.api;
+package com.runssnail.weixin.api.internal.utils;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -21,7 +21,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.security.KeyStore;
 
-class HttpsClient {
+public class HttpsClient {
 
     private static Log log = LogFactory.getLog(HttpsClient.class);
 

@@ -6,6 +6,7 @@ import com.runssnail.weixin.api.constants.Constants;
 import com.runssnail.weixin.api.exception.WeiXinApiException;
 import com.runssnail.weixin.api.internal.support.WeixinApiRuleValidate;
 import com.runssnail.weixin.api.internal.support.WeixinPayResponseHelper;
+import com.runssnail.weixin.api.internal.utils.HttpsClient;
 import com.runssnail.weixin.api.internal.utils.XmlTool;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
