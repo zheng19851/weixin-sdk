@@ -22,5 +22,5 @@ public interface RedisClient {
      * @param value 值
      * @param liveTime 存活时间,单位秒
      */
-    void set(String key, String value, long liveTime);
+    void set(String key, Object value, long liveTime);
 }
