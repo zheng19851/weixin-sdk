@@ -170,12 +170,19 @@ public class EnterprisePayRequest extends PaymentRequest<EnterprisePayResponse> 
 //        NO_CHECK：不校验真实姓名
 //        FORCE_CHECK：强校验真实姓名（未实名认证的用户会校验失败，无法转账）
 //        OPTION_CHECK：针对已实名认证的用户才校验真实姓名（未实名认证用户不校验，可以转账成功）
+        if(StringUtils.isBlank(this.userName)) {
+            params.put("check_name", "NO_CHECK"); // 校验用户姓名选项
+        } else {
+            params.put("check_name", "OPTION_CHECK"); // 校验用户姓名选项
+            params.put("re_user_name", this.userName); // 收款用户姓名
+        }
+
         params.put("check_name", "OPTION_CHECK"); // 校验用户姓名选项
         params.put("nonce_str", SignUtils.buildNonce()); // 随机数
         params.put("openid", this.openId); // 商户appid下，某用户的openid
         params.put("spbill_create_ip", this.ip); // ip
         params.put("partner_trade_no", this.orderNo); // 商户系统内部的订单号
-        params.put("re_user_name", this.userName); // 收款用户姓名
+
         params.put("amount", this.amount); // 金额，单位分
         params.put("desc", this.desc); // 描述
 

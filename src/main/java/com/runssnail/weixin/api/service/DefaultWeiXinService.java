@@ -58,6 +58,11 @@ public class DefaultWeiXinService implements WeiXinService {
     }
 
     @Override
+    public String getAccessToken() {
+        return this.accessTokenService.getAccessToken();
+    }
+
+    @Override
     public <R extends Response> R execute(Request<R> request) {
 
         assert request != null;
@@ -81,6 +86,11 @@ public class DefaultWeiXinService implements WeiXinService {
     @Override
     public String refreshTicket() {
         return this.ticketService.refresh();
+    }
+
+    @Override
+    public String getTicket() {
+        return this.ticketService.getTicket();
     }
 
     public WeiXinClient getWeiXinClient() {

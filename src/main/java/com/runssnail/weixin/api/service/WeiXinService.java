@@ -31,6 +31,13 @@ public interface WeiXinService {
     String refreshAccessToken();
 
     /**
+     * 获取当前访问access token
+     *
+     * @return
+     */
+    String getAccessToken();
+
+    /**
      * 发送微信请求
      *
      * @param request 请求对象
@@ -53,4 +60,11 @@ public interface WeiXinService {
      * @return
      */
     String refreshTicket();
+
+    /**
+     * 获取ticket
+     *
+     * @return
+     */
+    String getTicket();
 }
