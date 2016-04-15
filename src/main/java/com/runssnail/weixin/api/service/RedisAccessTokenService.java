@@ -1,6 +1,8 @@
 package com.runssnail.weixin.api.service;
 
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * 用redis来存放AccessToken
  *
@@ -17,7 +19,13 @@ public class RedisAccessTokenService extends AbstractAccessTokenService {
 
     @Override
     public String getAccessToken() {
-        return redisClient.getString(ACCESS_TOKEN_KEY_PREFIX + getAppId());
+
+        String accessToken = redisClient.getString(ACCESS_TOKEN_KEY_PREFIX + getAppId());
+        if (StringUtils.isBlank(accessToken)) {
+            accessToken = refresh();
+        }
+
+        return accessToken;
     }
 
     @Override
