@@ -32,6 +32,8 @@ public class EnterprisePayRequestTest {
 
         System.out.println(response);
 
+        paymentClient.close();
+
 //        String postData = "<xml>" +
 //                "<mch_appid>wxe062425f740c30d8</mch_appid>" +
 //                "<mchid>10000098</mchid>" +

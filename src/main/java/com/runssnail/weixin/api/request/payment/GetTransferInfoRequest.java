@@ -1,6 +1,5 @@
 package com.runssnail.weixin.api.request.payment;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.response.payment.GetTransferInfoResponse;
 

@@ -1,5 +1,7 @@
 package com.runssnail.weixin.api.response.payment;
 
+import com.runssnail.weixin.api.exception.WeiXinApiException;
+
 /**
  * 用于商户的企业付款操作进行结果查询
  *
@@ -106,5 +108,10 @@ public class GetTransferInfoResponse extends PaymentResponse {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    @Override
+    public void check(String paySignKey) throws WeiXinApiException {
+        // ignore
     }
 }
