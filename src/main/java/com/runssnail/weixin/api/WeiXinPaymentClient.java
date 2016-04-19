@@ -11,7 +11,7 @@ import com.runssnail.weixin.api.response.Response;
  * <p/>
  * Created by zhengwei on 2015/11/6.
  */
-public interface WechatPaymentClient extends Lifecycle {
+public interface WeiXinPaymentClient extends Lifecycle {
 
     /**
      * appId appId

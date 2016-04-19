@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.service;
 
-import com.runssnail.weixin.api.WechatPaymentClient;
+import com.runssnail.weixin.api.WeiXinPaymentClient;
 import com.runssnail.weixin.api.WeiXinClient;
 import com.runssnail.weixin.api.common.utils.JsSdkUtils;
 import com.runssnail.weixin.api.domain.jssdk.Config;
@@ -28,7 +28,7 @@ public class DefaultWeiXinService implements WeiXinService {
     /**
      * 微信支付api client
      */
-    private WechatPaymentClient wechatPaymentClient;
+    private WeiXinPaymentClient weiXinPaymentClient;
 
     @Override
     public String getAppId() {
@@ -68,7 +68,7 @@ public class DefaultWeiXinService implements WeiXinService {
         assert request != null;
 
         if (request instanceof PaymentRequest) {
-            return wechatPaymentClient.execute(request);
+            return weiXinPaymentClient.execute(request);
         }
 
         String accessToken = this.accessTokenService.getAccessToken();
@@ -109,12 +109,12 @@ public class DefaultWeiXinService implements WeiXinService {
         this.accessTokenService = accessTokenService;
     }
 
-    public WechatPaymentClient getWechatPaymentClient() {
-        return wechatPaymentClient;
+    public WeiXinPaymentClient getWeiXinPaymentClient() {
+        return weiXinPaymentClient;
     }
 
-    public void setWechatPaymentClient(WechatPaymentClient wechatPaymentClient) {
-        this.wechatPaymentClient = wechatPaymentClient;
+    public void setWeiXinPaymentClient(WeiXinPaymentClient weiXinPaymentClient) {
+        this.weiXinPaymentClient = weiXinPaymentClient;
     }
 
     public TicketService getTicketService() {

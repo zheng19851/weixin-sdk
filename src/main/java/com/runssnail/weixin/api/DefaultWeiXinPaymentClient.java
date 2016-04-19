@@ -15,16 +15,15 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * 默认的微信支付api client
  *
  * Created by zhengwei on 2015/11/6.
  */
-public class DefaultWechatPaymentClient implements WechatPaymentClient {
+public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
 
-    private static final Log log = LogFactory.getLog(DefaultWechatPaymentClient.class);
+    private static final Log log = LogFactory.getLog(DefaultWeiXinPaymentClient.class);
 
     /**
      * 连接超时时间，单位毫秒，默认3秒
@@ -62,7 +61,7 @@ public class DefaultWechatPaymentClient implements WechatPaymentClient {
      * @param certPath 证书路径
      * @param certPassword  证书密码
      */
-    public DefaultWechatPaymentClient(String appId, String mchId, String paySignKey, String certPath, String certPassword) {
+    public DefaultWeiXinPaymentClient(String appId, String mchId, String paySignKey, String certPath, String certPassword) {
         this.appId = appId;
         this.mchId = mchId;
         this.paySignKey = paySignKey;
