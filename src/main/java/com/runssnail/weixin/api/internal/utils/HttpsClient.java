@@ -1,8 +1,5 @@
 package com.runssnail.weixin.api.internal.utils;
 
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
-import com.thoughtworks.xstream.io.xml.XmlFriendlyNameCoder;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.HttpEntity;
@@ -19,11 +16,12 @@ import org.apache.http.util.EntityUtils;
 import javax.net.ssl.SSLContext;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.security.KeyStore;
 
 public class HttpsClient {
 
-    private static Log log = LogFactory.getLog(HttpsClient.class);
+    private static final Log log = LogFactory.getLog(HttpsClient.class);
 
     //连接超时时间，默认10秒
     private int socketTimeout = 10000;
@@ -141,6 +139,16 @@ public class HttpsClient {
         }
 
         return result;
+    }
+
+    public void close() {
+        if (this.httpClient != null) {
+            try {
+                this.httpClient.close();
+            } catch (IOException e) {
+                log.error("close http client error", e);
+            }
+        }
     }
 
     /**

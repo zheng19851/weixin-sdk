@@ -209,6 +209,8 @@ public class DefaultWechatPaymentClient implements WechatPaymentClient {
 
     @Override
     public void close() {
-
+        if (httpsClient != null) {
+            httpsClient.close();
+        }
     }
 }
