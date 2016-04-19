@@ -96,27 +96,27 @@ public class HttpsClient {
      * 通过Https往API post xml数据
      *
      * @param url    API地址
-     * @param data 要提交的数据对象
+     * @param postData 要提交的数据对象
      * @return API回包的实际数据
      */
-    public String doPost(String url, Object data) {
+    public String doPost(String url, String postData) {
 
         String result = null;
 
         HttpPost httpPost = new HttpPost(url);
 
         //解决XStream对出现双下划线的bug
-        XStream xStreamForRequestPostData = new XStream(new DomDriver("UTF-8", new XmlFriendlyNameCoder("-_", "_")));
+//        XStream xStreamForRequestPostData = new XStream(new DomDriver("UTF-8", new XmlFriendlyNameCoder("-_", "_")));
 
         //将要提交给API的数据对象转换成XML格式数据Post给API
-        String postDataXML = xStreamForRequestPostData.toXML(data);
+//        String postDataXML = xStreamForRequestPostData.toXML(data);
 
         if (log.isDebugEnabled()) {
-            log.debug("API，POST过去的数据是：" + postDataXML);
+            log.debug("API，POST过去的数据是：" + postData);
         }
 
-        //得指明使用UTF-8编码，否则到API服务器XML的中文不能被成功识别
-        StringEntity postEntity = new StringEntity(postDataXML, "UTF-8");
+        //得指明使用UTF-8编码，
+        StringEntity postEntity = new StringEntity(postData, "UTF-8");
         httpPost.addHeader("Content-Type", "text/xml");
         httpPost.setEntity(postEntity);
 

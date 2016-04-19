@@ -1,5 +1,7 @@
 package com.runssnail.weixin.api.response.payment;
 
+import com.runssnail.weixin.api.exception.WeiXinApiException;
+
 /**
  * 企业付款响应对象
  *
@@ -45,5 +47,10 @@ public class EnterprisePayResponse extends PaymentResponse {
 
     public void setPayment_time(String payment_time) {
         this.payment_time = payment_time;
+    }
+
+    @Override
+    public void check(String paySignKey) throws WeiXinApiException {
+        // ignore
     }
 }

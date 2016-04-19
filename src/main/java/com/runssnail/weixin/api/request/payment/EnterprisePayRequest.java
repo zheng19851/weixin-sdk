@@ -1,6 +1,7 @@
 package com.runssnail.weixin.api.request.payment;
 
 import com.runssnail.weixin.api.common.utils.SignUtils;
+import com.runssnail.weixin.api.exception.WeiXinApiRuleException;
 import com.runssnail.weixin.api.response.payment.EnterprisePayResponse;
 import org.apache.commons.lang.StringUtils;
 
@@ -61,7 +62,7 @@ public class EnterprisePayRequest extends PaymentRequest<EnterprisePayResponse> 
     private String userName;
 
     /**
-     * 金额	amount
+     * 金额	amount 单位分
      */
     private Long amount;
 
@@ -177,7 +178,6 @@ public class EnterprisePayRequest extends PaymentRequest<EnterprisePayResponse> 
             params.put("re_user_name", this.userName); // 收款用户姓名
         }
 
-        params.put("check_name", "OPTION_CHECK"); // 校验用户姓名选项
         params.put("nonce_str", SignUtils.buildNonce()); // 随机数
         params.put("openid", this.openId); // 商户appid下，某用户的openid
         params.put("spbill_create_ip", this.ip); // ip

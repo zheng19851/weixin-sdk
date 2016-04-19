@@ -15,6 +15,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 默认的微信支付api client
@@ -140,8 +141,6 @@ public class DefaultWechatPaymentClient implements WechatPaymentClient {
 
         req.check();
 
-//      String      result = HttpUtils.doPost(apiUrl, buildPostParams(req.getParams()), this.connectTimeout, this.readTimeout);
-
         String result = httpsClient.doPost(apiUrl, buildPostParams(req.getParams()));
 
         if (log.isDebugEnabled()) {
@@ -152,8 +151,9 @@ public class DefaultWechatPaymentClient implements WechatPaymentClient {
 
         res.setResponseBody(result);
 
-//        res.check();
-        checkResponse(res);
+        if (res.isSuccess()) {
+            checkResponse(res);
+        }
 
         if (log.isDebugEnabled()) {
             log.debug("execute end, used total " + (System.currentTimeMillis() - start) + " ms, response=" + res);

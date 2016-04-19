@@ -213,7 +213,7 @@ public abstract class PaymentResponse extends Response {
         }
 
         Map paramsMap = XmlTool.toMapStringValue(this.getResponseBody());
-        paramsMap.put("sign", null);
+        paramsMap.remove("sign");
         SortedMap<String, Object> sortedMap = new TreeMap<String, Object>(paramsMap);
 
         String signFromParams = SignUtils.buildSign(sortedMap, paySignKey);
