@@ -150,9 +150,7 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
 
         res.setResponseBody(result);
 
-        if (res.isSuccess()) {
-            checkResponse(res);
-        }
+        checkResponse(res);
 
         if (log.isDebugEnabled()) {
             log.debug("execute end, used total " + (System.currentTimeMillis() - start) + " ms, response=" + res);
