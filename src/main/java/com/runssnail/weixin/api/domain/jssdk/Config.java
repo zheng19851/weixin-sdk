@@ -73,4 +73,13 @@ public class Config implements Serializable {
         this.signature = signature;
     }
 
+    @Override
+    public String toString() {
+        return "Config{" +
+                "appId='" + appId + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                ", nonceStr='" + nonceStr + '\'' +
+                ", signature='" + signature + '\'' +
+                '}';
+    }
 }
