@@ -1,5 +1,7 @@
 package com.runssnail.weixin.api.domain.jssdk;
 
+import com.runssnail.weixin.api.domain.BaseDomain;
+
 import java.io.Serializable;
 
 /**
@@ -7,7 +9,7 @@ import java.io.Serializable;
  * 
  * @author zhengwei
  */
-public class Config implements Serializable {
+public class Config extends BaseDomain implements Serializable {
 
     /**
      * 
@@ -34,11 +36,17 @@ public class Config implements Serializable {
      */
     private String signature;
 
-    public Config(String appId, String timestamp, String noncestr, String signature) {
+    /**
+     * jsapi ticket
+     */
+    private String ticket;
+
+    public Config(String appId, String timestamp, String noncestr, String signature, String ticket) {
         this.appId = appId;
         this.timestamp = timestamp;
         this.nonceStr = noncestr;
         this.signature = signature;
+        this.ticket = ticket;
     }
 
     public String getAppId() {
@@ -71,15 +79,5 @@ public class Config implements Serializable {
 
     public void setSignature(String signature) {
         this.signature = signature;
-    }
-
-    @Override
-    public String toString() {
-        return "Config{" +
-                "appId='" + appId + '\'' +
-                ", timestamp='" + timestamp + '\'' +
-                ", nonceStr='" + nonceStr + '\'' +
-                ", signature='" + signature + '\'' +
-                '}';
     }
 }

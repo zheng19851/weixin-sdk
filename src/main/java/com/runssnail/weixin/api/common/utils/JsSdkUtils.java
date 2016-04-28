@@ -41,7 +41,7 @@ public class JsSdkUtils {
 
         String signature = buildSign(params);
 
-        Config config = new Config(appId, timestamp, nonceStr, signature);
+        Config config = new Config(appId, timestamp, nonceStr, signature, ticket);
 
         return config;
     }
