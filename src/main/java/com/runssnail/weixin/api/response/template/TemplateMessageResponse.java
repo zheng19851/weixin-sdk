@@ -1,5 +1,6 @@
 package com.runssnail.weixin.api.response.template;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.runssnail.weixin.api.response.JSONResponse;
 
 /**
@@ -14,18 +15,14 @@ public class TemplateMessageResponse extends JSONResponse {
      */
     private static final long serialVersionUID = -6700224160125268959L;
 
-    private String            msgid;
+    @JSONField(name = "msgid")
+    private String            msgId;
 
     public String getMsgId() {
-        return this.msgid;
+        return msgId;
     }
 
-    public String getMsgid() {
-        return msgid;
+    public void setMsgId(String msgId) {
+        this.msgId = msgId;
     }
-
-    public void setMsgid(String msgid) {
-        this.msgid = msgid;
-    }
-
 }

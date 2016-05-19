@@ -1,5 +1,6 @@
 package com.runssnail.weixin.api.response.credential;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.runssnail.weixin.api.response.JSONResponse;
 
 /**
@@ -17,27 +18,36 @@ public class GetAccessTokenResponse extends JSONResponse {
     /**
      * 获取到的凭证
      */
-    private String            access_token;
+    @JSONField(name = "access_token")
+    private String            accessToken;
 
     /**
      * 凭证有效时间，单位：秒
      */
-    private long              expires_in;
+    @JSONField(name = "expires_in")
+    private long              expiresIn;
 
     public String getAccess_token() {
-        return access_token;
-    }
-
-    public void setAccess_token(String access_token) {
-        this.access_token = access_token;
+        return accessToken;
     }
 
     public long getExpires_in() {
-        return expires_in;
+        return expiresIn;
     }
 
-    public void setExpires_in(long expires_in) {
-        this.expires_in = expires_in;
+    public String getAccessToken() {
+        return accessToken;
     }
 
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public long getExpiresIn() {
+        return expiresIn;
+    }
+
+    public void setExpiresIn(long expiresIn) {
+        this.expiresIn = expiresIn;
+    }
 }

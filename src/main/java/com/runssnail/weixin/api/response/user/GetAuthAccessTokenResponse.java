@@ -1,5 +1,6 @@
 package com.runssnail.weixin.api.response.user;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.runssnail.weixin.api.response.JSONResponse;
 
 /**
@@ -22,12 +23,14 @@ public class GetAuthAccessTokenResponse extends JSONResponse {
     /**
      * 授权时用的accessToken
      */
-    private String            access_token;
+    @JSONField(name = "access_token")
+    private String            accessToken;
 
     /**
      * 用户刷新access_token
      */
-    private String            refresh_token;
+    @JSONField(name = "access_token")
+    private String            refreshToken;
     /**
      * 用户授权的作用域，使用逗号（,）分隔
      */
@@ -36,14 +39,11 @@ public class GetAuthAccessTokenResponse extends JSONResponse {
     /**
      * 只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。详见：获取用户个人信息（UnionID机制）
      */
-    private String            unionid;
+    @JSONField(name = "unionid")
+    private String            unionId;
 
     public String getRefresh_token() {
-        return refresh_token;
-    }
-
-    public void setRefresh_token(String refresh_token) {
-        this.refresh_token = refresh_token;
+        return accessToken;
     }
 
     public String getScope() {
@@ -55,11 +55,7 @@ public class GetAuthAccessTokenResponse extends JSONResponse {
     }
 
     public String getUnionid() {
-        return unionid;
-    }
-
-    public void setUnionid(String unionid) {
-        this.unionid = unionid;
+        return this.unionId;
     }
 
     public String getOpenId() {
@@ -67,7 +63,7 @@ public class GetAuthAccessTokenResponse extends JSONResponse {
     }
 
     public String getAccessToken() {
-        return this.access_token;
+        return this.accessToken;
     }
 
     public String getOpenid() {
@@ -79,11 +75,26 @@ public class GetAuthAccessTokenResponse extends JSONResponse {
     }
 
     public String getAccess_token() {
-        return access_token;
+        return this.accessToken;
     }
 
-    public void setAccess_token(String access_token) {
-        this.access_token = access_token;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
+
+    public String getUnionId() {
+        return unionId;
+    }
+
+    public void setUnionId(String unionId) {
+        this.unionId = unionId;
+    }
 }
