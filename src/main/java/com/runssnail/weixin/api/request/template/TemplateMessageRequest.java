@@ -134,6 +134,14 @@ public class TemplateMessageRequest extends PostRequest<TemplateMessageResponse>
         data.put(key, new KeyNoteValue(value));
     }
 
+    public void addKeyNote(String key, KeyNoteValue k) {
+        if (data == null) {
+            data = new HashMap<String, KeyNoteValue>();
+        }
+
+        data.put(key, k);
+    }
+
     public String getToUser() {
         return toUser;
     }
