@@ -29,7 +29,7 @@ public class GetAuthAccessTokenResponse extends JSONResponse {
     /**
      * 用户刷新access_token
      */
-    @JSONField(name = "access_token")
+    @JSONField(name = "refresh_token")
     private String            refreshToken;
     /**
      * 用户授权的作用域，使用逗号（,）分隔
@@ -37,10 +37,18 @@ public class GetAuthAccessTokenResponse extends JSONResponse {
     private String            scope;
 
     /**
-     * 只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。详见：获取用户个人信息（UnionID机制）
+     * access_token接口调用凭证超时时间，单位（秒）
      */
-    @JSONField(name = "unionid")
-    private String            unionId;
+    @JSONField(name = "expires_in")
+    private Integer expiresIn;
+
+    public Integer getExpiresIn() {
+        return expiresIn;
+    }
+
+    public void setExpiresIn(Integer expiresIn) {
+        this.expiresIn = expiresIn;
+    }
 
     public String getRefresh_token() {
         return accessToken;
@@ -52,10 +60,6 @@ public class GetAuthAccessTokenResponse extends JSONResponse {
 
     public void setScope(String scope) {
         this.scope = scope;
-    }
-
-    public String getUnionid() {
-        return this.unionId;
     }
 
     public String getOpenId() {
@@ -90,11 +94,4 @@ public class GetAuthAccessTokenResponse extends JSONResponse {
         this.refreshToken = refreshToken;
     }
 
-    public String getUnionId() {
-        return unionId;
-    }
-
-    public void setUnionId(String unionId) {
-        this.unionId = unionId;
-    }
 }

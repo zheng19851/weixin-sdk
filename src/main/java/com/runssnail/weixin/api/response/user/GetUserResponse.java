@@ -1,5 +1,6 @@
 package com.runssnail.weixin.api.response.user;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.runssnail.weixin.api.response.JSONResponse;
 
 /**
@@ -37,6 +38,20 @@ public class GetUserResponse extends JSONResponse {
 
     // privilege 用户特权信息，json 数组，如微信沃卡用户为（chinaunicom）
     private String            privilege;
+
+    /**
+     * 只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。详见：获取用户个人信息（UnionID机制）
+     */
+    @JSONField(name = "unionid")
+    private String            unionId;
+
+    public String getUnionId() {
+        return unionId;
+    }
+
+    public void setUnionId(String unionId) {
+        this.unionId = unionId;
+    }
 
     public String getOpenid() {
         return openid;
