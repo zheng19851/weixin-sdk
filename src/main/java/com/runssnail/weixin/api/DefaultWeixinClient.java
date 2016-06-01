@@ -18,9 +18,8 @@ import java.util.Map;
 /**
  * 默认的WeiXinApiClient服务实现
  *
- * @see WeiXinClient
- *
  * @author zhengwei
+ * @see WeiXinClient
  */
 public class DefaultWeiXinClient implements WeiXinClient {
 
@@ -104,7 +103,7 @@ public class DefaultWeiXinClient implements WeiXinClient {
             }
 
             if (log.isDebugEnabled()) {
-                log.debug("execute request success, apiUrl=" + apiUrl + ", request=" + req + ", result=" + result);
+                log.debug("execute request finished, used total " + (System.currentTimeMillis() - start) + " ms, apiUrl=" + apiUrl + ", request=" + req + ", result=" + result);
             }
 
         } catch (IOException e) {
@@ -115,7 +114,6 @@ public class DefaultWeiXinClient implements WeiXinClient {
 
         res.setResponseBody(result);
 
-//        res.check();
         checkResponse(res);
 
         if (log.isDebugEnabled()) {
@@ -138,8 +136,8 @@ public class DefaultWeiXinClient implements WeiXinClient {
      * 将响应数据生成对象
      *
      * @param result 响应字符串
-     * @param req 请求对象
-     * @param <R> 响应对象
+     * @param req    请求对象
+     * @param <R>    响应对象
      * @return 响应对象
      */
     protected <R extends Response> R buildResponse(String result, Request<R> req) {

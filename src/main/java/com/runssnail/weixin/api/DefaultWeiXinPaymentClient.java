@@ -160,7 +160,7 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
         String result = httpsClient.doPost(apiUrl, buildPostParams(req));
 
         if (log.isDebugEnabled()) {
-            log.debug("execute request success, apiUrl=" + apiUrl + ", request=" + req + ", result=" + result);
+            log.debug("execute request finished, used total " + (System.currentTimeMillis() - start) + " ms, apiUrl=" + apiUrl + ", request=" + req + ", result=" + result);
         }
 
         R res = buildResponse(result, req);
