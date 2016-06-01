@@ -15,23 +15,11 @@ import java.util.TreeMap;
 public class GetTransferInfoRequest extends PaymentRequest<GetTransferInfoResponse> {
 
     /**
-     * 公众账号	mch_appid
-     */
-    private String appId;
-
-    /**
-     * 商户id mchid
-     */
-    private String merchantId;
-
-    /**
      * 商户订单号 partner_trade_no
      */
     private String orderNo;
 
-    public GetTransferInfoRequest(String appId, String merchantId, String orderNo) {
-        this.appId = appId;
-        this.merchantId = merchantId;
+    public GetTransferInfoRequest(String orderNo) {
         this.orderNo = orderNo;
     }
 
@@ -50,8 +38,6 @@ public class GetTransferInfoRequest extends PaymentRequest<GetTransferInfoRespon
 //        Appid	appid	是	wxe062425f740d30d8	String(32)	商户号的appid
 
         SortedMap<String, Object> params = new TreeMap<>();
-        params.put("appid", appId);
-        params.put("mch_id", merchantId); // 商户号
 
         params.put("partner_trade_no", this.orderNo);
         params.put("nonce_str", SignUtils.buildNonce());
@@ -62,22 +48,6 @@ public class GetTransferInfoRequest extends PaymentRequest<GetTransferInfoRespon
     @Override
     public Class<GetTransferInfoResponse> getResponseClass() {
         return GetTransferInfoResponse.class;
-    }
-
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
-
-    public String getMerchantId() {
-        return merchantId;
-    }
-
-    public void setMerchantId(String merchantId) {
-        this.merchantId = merchantId;
     }
 
     public String getOrderNo() {

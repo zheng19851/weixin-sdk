@@ -1,7 +1,8 @@
 package com.runssnail.weixin.api.request.payment;
 
+import com.runssnail.weixin.api.AppIdAware;
+import com.runssnail.weixin.api.MerchantIdAware;
 import com.runssnail.weixin.api.common.utils.SignUtils;
-import com.runssnail.weixin.api.exception.WeiXinApiRuleException;
 import com.runssnail.weixin.api.response.payment.EnterprisePayResponse;
 import org.apache.commons.lang.StringUtils;
 
@@ -29,17 +30,7 @@ import java.util.TreeMap;
  * <p>
  * Created by zhengwei on 2016/3/23.
  */
-public class EnterprisePayRequest extends PaymentRequest<EnterprisePayResponse> {
-
-    /**
-     * 公众账号	mch_appid
-     */
-    private String appId;
-
-    /**
-     * 商户id mchid
-     */
-    private String merchantId;
+public class EnterprisePayRequest extends PaymentRequest<EnterprisePayResponse> implements AppIdAware, MerchantIdAware {
 
     /**
      * 设备号 device_info
@@ -80,20 +71,14 @@ public class EnterprisePayRequest extends PaymentRequest<EnterprisePayResponse> 
 
     }
 
-    public String getAppId() {
-        return appId;
+    @Override
+    public String getAppIdKey() {
+        return "mch_appid";
     }
 
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
-
-    public String getMerchantId() {
-        return merchantId;
-    }
-
-    public void setMerchantId(String merchantId) {
-        this.merchantId = merchantId;
+    @Override
+    public String getMerchantIdKey() {
+        return "mchid";
     }
 
     public String getDeviceInfo() {
@@ -161,8 +146,6 @@ public class EnterprisePayRequest extends PaymentRequest<EnterprisePayResponse> 
     public Map<String, Object> getParams() {
 
         SortedMap<String, Object> params = new TreeMap<>();
-        params.put("mch_appid", appId);
-        params.put("mchid", merchantId); // 商户号
 
         if (StringUtils.isNotBlank(this.deviceInfo)) {
             params.put("device_info", this.deviceInfo); // 设备号

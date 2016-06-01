@@ -16,7 +16,7 @@ public class TemplateMessageRequestTest {
 
     private static final String DEFAULT_TITLE_COLOR = "#000000"; // 灰色BEBEBE
 
-    private static final String DEFAULT_REMARK_COLOR = "#ABABAB";
+    private static final String DEFAULT_REMARK_COLOR = "#a6a6a6";
 
     private static final String DEFAULT_CONTENT_COLOR = "#000000";
 

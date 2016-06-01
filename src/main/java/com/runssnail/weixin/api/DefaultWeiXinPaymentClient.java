@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * 默认的微信支付api client
- *
+ * <p>
  * Created by zhengwei on 2015/11/6.
  */
 public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
@@ -55,11 +55,11 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
     /**
      * 创建DefaultWechatPaymentClient
      *
-     * @param appId 微信公众号id
-     * @param mchId 商户号
-     * @param paySignKey 支付秘钥
-     * @param certPath 证书路径
-     * @param certPassword  证书密码
+     * @param appId        微信公众号id
+     * @param mchId        商户号
+     * @param paySignKey   支付秘钥
+     * @param certPath     证书路径
+     * @param certPassword 证书密码
      */
     public DefaultWeiXinPaymentClient(String appId, String mchId, String paySignKey, String certPath, String certPassword) {
         this.appId = appId;
@@ -88,10 +88,27 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
     /**
      * 将post参数转换成字符串
      *
-     * @param params
+     * @param request
      * @return
      */
-    protected String buildPostParams(Map<String, Object> params) {
+    protected <R extends Response> String buildPostParams(Request<R> request) {
+
+        Map<String, Object> params = request.getParams();
+        if (request instanceof AppIdAware) {
+            params.put("mch_appid", this.appId);
+        } else {
+            if (!params.containsKey("appid")) {
+                params.put("appid", this.appId);
+            }
+        }
+
+        if (request instanceof MerchantIdAware) {
+            params.put("mchid", this.mchId); // 商户号
+        } else {
+            if (!params.containsKey("mch_id")) {
+                params.put("mch_id", this.mchId);
+            }
+        }
 
         // 创建sign
         String sign = SignUtils.buildSign(params, this.paySignKey, SignType.MD5);
@@ -125,8 +142,8 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
     /**
      * 执行请求
      *
-     * @param req    请求
-     * @param <R>    响应对象
+     * @param req 请求
+     * @param <R> 响应对象
      * @return 响应对象
      */
     private <R extends Response> R executeInternal(Request<R> req) {
@@ -140,7 +157,7 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
 
         req.check();
 
-        String result = httpsClient.doPost(apiUrl, buildPostParams(req.getParams()));
+        String result = httpsClient.doPost(apiUrl, buildPostParams(req));
 
         if (log.isDebugEnabled()) {
             log.debug("execute request success, apiUrl=" + apiUrl + ", request=" + req + ", result=" + result);

@@ -21,8 +21,8 @@ public class EnterprisePayRequestTest {
 
         EnterprisePayRequest request = new EnterprisePayRequest();
         request.setAmount(100L);
-        request.setMerchantId(mchId);
-        request.setAppId(appId);
+//        request.setMerchantId(mchId);
+//        request.setAppId(appId);
         request.setOrderNo("32739393939338332739393939338335");
         request.setOpenId("o9dkewPqU8xj9E39Ph-UfqCJdIew"); // o9dkewEqSw354trjs4sshGFnBois
         request.setDesc("提现");

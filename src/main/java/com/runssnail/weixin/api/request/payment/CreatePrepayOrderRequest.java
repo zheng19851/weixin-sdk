@@ -26,18 +26,6 @@ public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderRe
      */
     private static final long serialVersionUID = 4575293546194222001L;
 
-    private String appId;
-
-    /**
-     * ΢商户id
-     */
-    private String merchantId;
-
-    /**
-     * ΢支付签名秘钥
-     */
-    private String paySignKey;
-
     /**
      * 商品描述，必填
      */
@@ -111,36 +99,6 @@ public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderRe
 
     public CreatePrepayOrderRequest() {
 
-    }
-
-    public CreatePrepayOrderRequest(String appId, String merchantId, String paySignKey) {
-        this.appId = appId;
-        this.merchantId = merchantId;
-        this.paySignKey = paySignKey;
-    }
-
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
-
-    public String getMerchantId() {
-        return merchantId;
-    }
-
-    public void setMerchantId(String merchantId) {
-        this.merchantId = merchantId;
-    }
-
-    public String getPaySignKey() {
-        return paySignKey;
-    }
-
-    public void setPaySignKey(String paySignKey) {
-        this.paySignKey = paySignKey;
     }
 
     public String getProductDesc() {
@@ -254,19 +212,7 @@ public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderRe
 
     @Override
     public Map<String, Object> getParams() {
-        SortedMap params = getParams(this.appId, this.merchantId);
-
-//        // 创建sign
-//        String sign = SignUtils.buildSign(params, this.paySignKey, SignType.MD5);
-//        params.put("sign", sign);
-
-        return params;
-    }
-
-    private SortedMap<String, String> getParams(String appId, String merchantId) {
-        SortedMap<String, String> params = new TreeMap<String, String>();
-        params.put("appid", appId);
-        params.put("mch_id", merchantId); // 商户号
+        SortedMap<String, Object> params = new TreeMap<String, Object>();
 
         if (StringUtils.isNotBlank(this.deviceInfo)) {
             params.put("device_info", this.deviceInfo); // 设备号

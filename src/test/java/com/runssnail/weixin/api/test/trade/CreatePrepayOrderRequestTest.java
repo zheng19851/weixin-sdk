@@ -30,9 +30,9 @@ public class CreatePrepayOrderRequestTest {
         try {
 
             CreatePrepayOrderRequest req = new CreatePrepayOrderRequest();
-            req.setAppId(appId);
-            req.setMerchantId(merchantId);
-            req.setPaySignKey(paySignKey);
+//            req.setAppId(appId);
+//            req.setMerchantId(merchantId);
+//            req.setPaySignKey(paySignKey);
             req.setProductDesc("耳机");
             req.setOrderId("1229282");
 
