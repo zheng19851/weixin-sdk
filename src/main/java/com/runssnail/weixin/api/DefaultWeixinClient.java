@@ -116,6 +116,10 @@ public class DefaultWeiXinClient implements WeiXinClient {
 
         checkResponse(res);
 
+        if (!res.isSuccess()) {
+            log.error("execute request error, apiUrl=" + apiUrl + ", request=" + req + ", response=" + res);
+        }
+
         if (log.isDebugEnabled()) {
             log.debug("execute end, used total " + (System.currentTimeMillis() - start) + " ms, response=" + res);
         }
