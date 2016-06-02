@@ -11,6 +11,7 @@ import com.runssnail.weixin.api.internal.utils.XmlTool;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
 import com.runssnail.weixin.api.response.payment.PaymentResponse;
+import org.apache.commons.lang.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -95,7 +96,9 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
 
         Map<String, Object> params = request.getParams();
         if (request instanceof AppIdAware) {
-            params.put("mch_appid", this.appId);
+            String appIdKey = ((AppIdAware) request).getAppIdKey();
+            Validate.notEmpty(appIdKey, "appIdKey is required");
+            params.put(appIdKey, this.appId);
         } else {
             if (!params.containsKey("appid")) {
                 params.put("appid", this.appId);
@@ -103,7 +106,9 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
         }
 
         if (request instanceof MerchantIdAware) {
-            params.put("mchid", this.mchId); // 商户号
+            String mchIdKey = ((MerchantIdAware) request).getMerchantIdKey();
+            Validate.notEmpty(mchIdKey, "mchIdKey is required");
+            params.put(mchIdKey, this.mchId); // 商户号
         } else {
             if (!params.containsKey("mch_id")) {
                 params.put("mch_id", this.mchId);
@@ -168,6 +173,10 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
         res.setResponseBody(result);
 
         checkResponse(res);
+
+        if (!res.isSuccess()) {
+            log.error("execute request error, apiUrl=" + apiUrl + ", request=" + req + ", response=" + res);
+        }
 
         if (log.isDebugEnabled()) {
             log.debug("execute end, used total " + (System.currentTimeMillis() - start) + " ms, response=" + res);
