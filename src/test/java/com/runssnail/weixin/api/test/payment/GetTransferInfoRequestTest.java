@@ -10,9 +10,9 @@ import com.runssnail.weixin.api.response.payment.GetTransferInfoResponse;
 public class GetTransferInfoRequestTest {
 
     public static void main(String[] args) {
-        String appId = "wxada6b9ac122390ff";
-        String mchId = "1334006201";
-        String paySignKey = "MgxJjILkONRsd85H5bUqTib02RFhRnS4";
+        String appId = "";
+        String mchId = "";
+        String paySignKey = "";
 
         String certPath = "/Users/zhengwei/apiclient_cert.p12";
         String certPassword = mchId;
