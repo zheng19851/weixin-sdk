@@ -6,7 +6,7 @@ package com.runssnail.weixin.api.common;
  * @author zhengwei
  */
 public enum DataType {
-    XML, JSON;
+    XML, JSON, TXT;
 
     public boolean isJson() {
         return JSON == this;
@@ -15,5 +15,7 @@ public enum DataType {
     public boolean isXml() {
         return XML == this;
     }
+
+    public boolean isTxt() {return TXT == this;}
 
 }

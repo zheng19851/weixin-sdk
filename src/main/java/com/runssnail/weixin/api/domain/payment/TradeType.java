@@ -12,27 +12,23 @@ public enum TradeType {
 
     JSAPI("JSAPI"), NATIVE("NATIVE"), APP("APP");
 
-    private String                                  val;
+    private String code;
 
     private static final Map<String, TradeType> CACHE = new HashMap<String, TradeType>(values().length);
 
     static {
         for (TradeType entry : values()) {
-            CACHE.put(entry.val, entry);
+            CACHE.put(entry.code, entry);
         }
 
     }
 
-    private TradeType(String val) {
-        this.val = val;
+    TradeType(String code) {
+        this.code = code;
     }
 
-    public String getVal() {
-        return val;
-    }
-
-    public void setVal(String val) {
-        this.val = val;
+    public String getCode() {
+        return code;
     }
 
     public boolean isJsApi() {

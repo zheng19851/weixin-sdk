@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.exception;
 
 /**
- * ΢微信api异常
+ * 微信api异常
  * 
  * @author zhengwei
  *

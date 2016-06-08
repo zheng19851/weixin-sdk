@@ -3,6 +3,7 @@ package com.runssnail.weixin.api;
 import com.runssnail.weixin.api.common.SignType;
 import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.constants.Constants;
+import com.runssnail.weixin.api.exception.PaymentApiException;
 import com.runssnail.weixin.api.exception.WeiXinApiException;
 import com.runssnail.weixin.api.internal.support.WeixinApiRuleValidate;
 import com.runssnail.weixin.api.internal.support.WeixinPayResponseHelper;
@@ -54,7 +55,7 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
     private HttpsClient httpsClient;
 
     /**
-     * 创建DefaultWechatPaymentClient
+     * 创建DefaultWeiXinPaymentClient
      *
      * @param appId        微信公众号id
      * @param mchId        商户号
@@ -123,7 +124,22 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
     }
 
     protected <R extends Response> R buildResponse(String result, Request<R> req) {
-        return WeixinPayResponseHelper.getObjectFromXml(result, req.getResponseClass());
+
+        R res = null;
+        try {
+            res = req.getResponseClass().newInstance();
+        } catch (InstantiationException e) {
+            throw new PaymentApiException(e);
+        } catch (IllegalAccessException e) {
+            throw new PaymentApiException(e);
+        }
+        if (res.getDataType().isXml()) {
+            return (R)WeixinPayResponseHelper.getObjectFromXml(result, res);
+        } else {
+            return res;
+        }
+
+
     }
 
     /**

@@ -23,6 +23,7 @@ public class WeixinPayResponseHelper {
 
         XStream xStream = new XStream();
         xStream.alias("xml", res.getClass());
+        xStream.processAnnotations(res.getClass());
         xStream.ignoreUnknownElements();// 暂时忽略掉一些新增的字段
         result = xStream.fromXML(xml, res);
         return result;
@@ -41,6 +42,7 @@ public class WeixinPayResponseHelper {
 
         XStream xStream = new XStream();
         xStream.alias("xml", clazz);
+        xStream.processAnnotations(clazz);
         xStream.ignoreUnknownElements();// 暂时忽略掉一些新增的字段
         result = (T)xStream.fromXML(xml);
         return result;

@@ -1,5 +1,6 @@
 package com.runssnail.weixin.api.response.payment;
 
+import com.runssnail.weixin.api.common.DataType;
 import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.exception.SignatureException;
 import com.runssnail.weixin.api.exception.WeiXinApiException;
@@ -205,6 +206,15 @@ public abstract class PaymentResponse extends Response {
 
     private boolean isResultCodeSuccess() {
         return "SUCCESS".equalsIgnoreCase(this.result_code);
+    }
+
+    /**
+     * 响应数据格式
+     *
+     * @return
+     */
+    public DataType getDataType() {
+        return DataType.XML;
     }
 
     public void check(String paySignKey) throws WeiXinApiException {

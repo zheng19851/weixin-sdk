@@ -25,22 +25,28 @@ public class CreateMenuRequestTest2 {
 
             List<Menu> menus = new ArrayList<Menu>();
 
-            Menu click = new Menu("click", "歌曲");
-            click.setKey("fajflajlf");
-            menus.add(click);
+//            Menu click = new Menu("view", "歌曲");
+//            click.setKey("fajflajlf");
+//            menus.add(click);
+//
+//            List<Menu> subMenus = new ArrayList<Menu>();
+//            Menu viewMenu1 = new Menu("view", "搜索");
+//            viewMenu1.setUrl("http://www.soso.com/");
+//            subMenus.add(viewMenu1);
+//
+//            Menu click1 = new Menu("click", "2级");
+//            click1.setKey("fajflajlaaaaf");
+//            subMenus.add(click1);
+//
+//            Menu notFunc = new Menu("一级菜单", subMenus);
 
-            List<Menu> subMenus = new ArrayList<Menu>();
-            Menu viewMenu1 = new Menu("view", "搜索");
-            viewMenu1.setUrl("http://www.soso.com/");
-            subMenus.add(viewMenu1);
+            Menu viewMenu1 = new Menu("view", "挖铜板");
+            viewMenu1.setUrl("http://m.juboyi.com:81/");
+            menus.add(viewMenu1);
 
-            Menu click1 = new Menu("click", "2级");
-            click1.setKey("fajflajlaaaaf");
-            subMenus.add(click1);
-
-            Menu notFunc = new Menu("一级菜单", subMenus);
-
-            menus.add(notFunc);
+            Menu viewMenu2 = new Menu("view", "我的");
+            viewMenu2.setUrl("http://m.juboyi.com:81/member/index.htm");
+            menus.add(viewMenu2);
 
             CreateMenuRequest req = new CreateMenuRequest(menus);
 

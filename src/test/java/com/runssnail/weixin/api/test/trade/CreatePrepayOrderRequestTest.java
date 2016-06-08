@@ -33,7 +33,7 @@ public class CreatePrepayOrderRequestTest {
 //            req.setAppId(appId);
 //            req.setMerchantId(merchantId);
 //            req.setPaySignKey(paySignKey);
-            req.setProductDesc("耳机");
+            req.setBody("耳机");
             req.setOrderId("1229282");
 
             req.setTotalFee(1L);

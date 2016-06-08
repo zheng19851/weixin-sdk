@@ -29,7 +29,7 @@ public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderRe
     /**
      * 商品描述，必填
      */
-    private String productDesc;
+    private String body;
 
     /**
      * 系统订单号，必填
@@ -101,12 +101,12 @@ public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderRe
 
     }
 
-    public String getProductDesc() {
-        return productDesc;
+    public String getBody() {
+        return body;
     }
 
-    public void setProductDesc(String productDesc) {
-        this.productDesc = productDesc;
+    public void setBody(String body) {
+        this.body = body;
     }
 
     public String getOrderId() {
@@ -218,7 +218,7 @@ public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderRe
             params.put("device_info", this.deviceInfo); // 设备号
         }
         params.put("nonce_str", SignUtils.buildNonce());
-        params.put("body", this.productDesc); // 商品描述
+        params.put("body", this.body); // 商品描述
         if (StringUtils.isNotBlank(this.attach)) {
             params.put("attach", this.attach); // 附加数据，原样返回
         }
@@ -257,7 +257,7 @@ public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderRe
     public void doCheck() throws WeiXinApiRuleException {
         // 校验参数
 
-        notNull(this.productDesc, "productDesc is required");
+        notNull(this.body, "body is required");
 
         notNull(this.orderId, "orderId is required");
         notNull(this.totalFee, "totalFee is required");

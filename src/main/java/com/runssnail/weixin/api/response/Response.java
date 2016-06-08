@@ -1,5 +1,6 @@
 package com.runssnail.weixin.api.response;
 
+import com.runssnail.weixin.api.common.DataType;
 import com.runssnail.weixin.api.domain.BaseDomain;
 
 /**
@@ -13,6 +14,15 @@ public abstract class Response extends BaseDomain {
      *
      */
     private static final long serialVersionUID = -5684236406783615047L;
+
+    /**
+     * 响应数据格式
+     *
+     * @return
+     */
+    public DataType getDataType() {
+        return DataType.JSON;
+    }
 
     /**
      * 响应body
