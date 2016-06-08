@@ -4,11 +4,11 @@ import com.runssnail.weixin.api.domain.payment.TradeType;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
- * 创建预支付单相应对象
+ * 统一下单响应对象
  *
  * @author zhengwei
  */
-public class CreatePrepayOrderResponse extends PaymentResponse {
+public class UnifiedOrderResponse extends PaymentResponse {
 
     /**
      *
@@ -33,7 +33,7 @@ public class CreatePrepayOrderResponse extends PaymentResponse {
      * trade_type为NATIVE是有返回，此参数可直接生成二维码展示出来进行扫码支付
      */
     @XStreamAlias("code_url")
-    private String            code_url;
+    private String            codeUrl;
 
     public String getPrepayId() {
         return prepayId;
@@ -51,11 +51,11 @@ public class CreatePrepayOrderResponse extends PaymentResponse {
         this.tradeType = tradeType;
     }
 
-    public String getCode_url() {
-        return code_url;
+    public String getCodeUrl() {
+        return codeUrl;
     }
 
-    public void setCode_url(String code_url) {
-        this.code_url = code_url;
+    public void setCodeUrl(String codeUrl) {
+        this.codeUrl = codeUrl;
     }
 }

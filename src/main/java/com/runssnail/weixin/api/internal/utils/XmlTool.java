@@ -1,25 +1,19 @@
 package com.runssnail.weixin.api.internal.utils;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.apache.commons.lang.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.runssnail.weixin.api.request.payment.CreatePrepayOrderRequest;
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
-import com.thoughtworks.xstream.io.xml.XmlFriendlyNameCoder;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * xml数据转成map
@@ -124,22 +118,5 @@ public class XmlTool {
         sb.append("</xml>");
         return sb.toString();
     }
-
-    public static void main(String[] args) throws Exception {
-        // String xml =
-        // "<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName> <CreateTime>1348831860</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[this is a test]]></Content><MsgId>1234567890123456</MsgId></xml>";
-        //
-        // Map<String, Object> map = XmlTool.toMap(xml);
-        // System.out.println(map);
-
-        XStream xStreamForRequestPostData = new XStream(new DomDriver("UTF-8", new XmlFriendlyNameCoder("-_", "_")));
-
-        CreatePrepayOrderRequest req = new CreatePrepayOrderRequest();
-        req.setAttach("ffffaa");
-
-        System.out.println(xStreamForRequestPostData.toXML(req));
-
-    }
-
 
 }

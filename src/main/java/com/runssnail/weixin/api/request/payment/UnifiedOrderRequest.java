@@ -4,7 +4,7 @@ import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.domain.payment.TradeType;
 import com.runssnail.weixin.api.exception.WeiXinApiRuleException;
 import com.runssnail.weixin.api.internal.utils.DateUtil;
-import com.runssnail.weixin.api.response.payment.CreatePrepayOrderResponse;
+import com.runssnail.weixin.api.response.payment.UnifiedOrderResponse;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Date;
@@ -15,11 +15,11 @@ import java.util.TreeMap;
 import static org.apache.commons.lang.Validate.notNull;
 
 /**
- * 创建预支付单请求
+ * 统一下单请求
  *
  * @author zhengwei
  */
-public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderResponse> {
+public class UnifiedOrderRequest extends PaymentRequest<UnifiedOrderResponse> {
 
     /**
      *
@@ -34,7 +34,7 @@ public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderRe
     /**
      * 系统订单号，必填
      */
-    private String orderId;
+    private String outTradeNo;
 
     /**
      * 总金额，必填
@@ -97,7 +97,7 @@ public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderRe
      */
     private String goodsTag;
 
-    public CreatePrepayOrderRequest() {
+    public UnifiedOrderRequest() {
 
     }
 
@@ -109,12 +109,12 @@ public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderRe
         this.body = body;
     }
 
-    public String getOrderId() {
-        return orderId;
+    public String getOutTradeNo() {
+        return outTradeNo;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public void setOutTradeNo(String outTradeNo) {
+        this.outTradeNo = outTradeNo;
     }
 
     public Long getTotalFee() {
@@ -222,7 +222,7 @@ public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderRe
         if (StringUtils.isNotBlank(this.attach)) {
             params.put("attach", this.attach); // 附加数据，原样返回
         }
-        params.put("out_trade_no", this.orderId); // 商户系统内部的订单号
+        params.put("out_trade_no", this.outTradeNo); // 商户系统内部的订单号
         params.put("total_fee", String.valueOf(this.totalFee)); // 单位分
         params.put("spbill_create_ip", this.ip); // ip
         if (this.createTime != null) {
@@ -238,7 +238,7 @@ public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderRe
         }
 
         params.put("notify_url", this.notifyUrl);
-        params.put("trade_type", this.tradeType.getVal()); // JSAPI、NATIVE、APP
+        params.put("trade_type", this.tradeType.getCode()); // JSAPI、NATIVE、APP
         params.put("openid", this.openId); // 用户在商户appid下的唯一标识，trade_type为JSAPI时，此参数必传
 
         if (StringUtils.isNotBlank(this.productId)) {
@@ -249,8 +249,8 @@ public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderRe
     }
 
     @Override
-    public Class<CreatePrepayOrderResponse> getResponseClass() {
-        return CreatePrepayOrderResponse.class;
+    public Class<UnifiedOrderResponse> getResponseClass() {
+        return UnifiedOrderResponse.class;
     }
 
     @Override
@@ -259,7 +259,7 @@ public class CreatePrepayOrderRequest extends PaymentRequest<CreatePrepayOrderRe
 
         notNull(this.body, "body is required");
 
-        notNull(this.orderId, "orderId is required");
+        notNull(this.outTradeNo, "outTradeNo is required");
         notNull(this.totalFee, "totalFee is required");
 
         notNull(this.ip, "ip is required");

@@ -5,9 +5,11 @@ import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.constants.Constants;
 import com.runssnail.weixin.api.exception.PaymentApiException;
 import com.runssnail.weixin.api.exception.WeiXinApiException;
+import com.runssnail.weixin.api.internal.http.DefaultHttpClient;
+import com.runssnail.weixin.api.internal.http.DefaultHttpsClient;
+import com.runssnail.weixin.api.internal.http.HttpClient;
 import com.runssnail.weixin.api.internal.support.WeixinApiRuleValidate;
 import com.runssnail.weixin.api.internal.support.WeixinPayResponseHelper;
-import com.runssnail.weixin.api.internal.utils.HttpsClient;
 import com.runssnail.weixin.api.internal.utils.XmlTool;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
@@ -49,10 +51,21 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
      */
     private String paySignKey;
 
+    private HttpClient httpClient;
+
     /**
-     * https client
+     * 创建DefaultWeiXinPaymentClient
+     *
+     * @param appId        微信公众号id
+     * @param mchId        商户号
+     * @param paySignKey   支付秘钥
      */
-    private HttpsClient httpsClient;
+    public DefaultWeiXinPaymentClient(String appId, String mchId, String paySignKey) {
+        this.appId = appId;
+        this.mchId = mchId;
+        this.paySignKey = paySignKey;
+        this.httpClient = new DefaultHttpClient(connectTimeout, readTimeout);
+    }
 
     /**
      * 创建DefaultWeiXinPaymentClient
@@ -68,7 +81,7 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
         this.mchId = mchId;
         this.paySignKey = paySignKey;
 
-        this.httpsClient = new HttpsClient(certPath, certPassword);
+        this.httpClient = new DefaultHttpsClient(certPath, certPassword); //new HttpsClient(certPath, certPassword);
     }
 
     public String getMchId() {
@@ -178,7 +191,7 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
 
         req.check();
 
-        String result = httpsClient.doPost(apiUrl, buildPostParams(req));
+        String result = this.httpClient.doPost(apiUrl, buildPostParams(req));
 
         if (log.isDebugEnabled()) {
             log.debug("execute request finished, used total " + (System.currentTimeMillis() - start) + " ms, apiUrl=" + apiUrl + ", request=" + req + ", result=" + result);
@@ -248,8 +261,8 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
 
     @Override
     public void close() {
-        if (httpsClient != null) {
-            httpsClient.close();
+        if (httpClient != null) {
+            httpClient.close();
         }
     }
 }

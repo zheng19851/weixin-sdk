@@ -4,15 +4,15 @@ import com.alibaba.fastjson.JSON;
 import com.runssnail.weixin.api.common.RequestMethod;
 import com.runssnail.weixin.api.constants.Constants;
 import com.runssnail.weixin.api.exception.WeiXinApiException;
+import com.runssnail.weixin.api.internal.http.DefaultHttpClient;
+import com.runssnail.weixin.api.internal.http.HttpClient;
 import com.runssnail.weixin.api.internal.support.WeixinApiRuleValidate;
-import com.runssnail.weixin.api.internal.utils.HttpUtils;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -46,6 +46,8 @@ public class DefaultWeiXinClient implements WeiXinClient {
      * 微信appSecret
      */
     private String appSecret;
+
+    private HttpClient httpClient = new DefaultHttpClient(connectTimeout, readTimeout);
 
     /**
      * 创建DefaultWeiXinApiClient
@@ -97,16 +99,16 @@ public class DefaultWeiXinClient implements WeiXinClient {
 
         try {
             if (method.isGet()) {
-                result = HttpUtils.doGet(apiUrl, req.getParams());
+                result = httpClient.doGet(apiUrl, req.getParams());
             } else {
-                result = HttpUtils.doPost(apiUrl, buildPostParams(req.getParams()), this.connectTimeout, this.readTimeout);
+                result = httpClient.doPost(apiUrl, buildPostParams(req.getParams()), this.connectTimeout, this.readTimeout);
             }
 
             if (log.isDebugEnabled()) {
                 log.debug("execute request finished, used total " + (System.currentTimeMillis() - start) + " ms, apiUrl=" + apiUrl + ", request=" + req + ", result=" + result);
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new WeiXinApiException("execute request error, apiUrl=" + apiUrl + ", request=" + req + ", result=" + result, e);
         }
 
