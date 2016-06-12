@@ -7,13 +7,15 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
+ * 微信支付http client
+ *
  * Created by zhengwei on 16/6/8.
  */
-public class DefaultHttpsClient implements HttpClient {
+public class PaymentHttpClient implements HttpClient {
 
     private HttpsClient httpsClient;
 
-    public DefaultHttpsClient(String certPath, String certPassword) {
+    public PaymentHttpClient(String certPath, String certPassword) {
         this.httpsClient = new HttpsClient(certPath, certPassword);
     }
 

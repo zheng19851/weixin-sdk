@@ -6,7 +6,7 @@ import com.runssnail.weixin.api.constants.Constants;
 import com.runssnail.weixin.api.exception.PaymentApiException;
 import com.runssnail.weixin.api.exception.WeiXinApiException;
 import com.runssnail.weixin.api.internal.http.DefaultHttpClient;
-import com.runssnail.weixin.api.internal.http.DefaultHttpsClient;
+import com.runssnail.weixin.api.internal.http.PaymentHttpClient;
 import com.runssnail.weixin.api.internal.http.HttpClient;
 import com.runssnail.weixin.api.internal.support.WeixinApiRuleValidate;
 import com.runssnail.weixin.api.internal.support.WeixinPayResponseHelper;
@@ -81,7 +81,7 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
         this.mchId = mchId;
         this.paySignKey = paySignKey;
 
-        this.httpClient = new DefaultHttpsClient(certPath, certPassword); //new HttpsClient(certPath, certPassword);
+        this.httpClient = new PaymentHttpClient(certPath, certPassword); //new HttpsClient(certPath, certPassword);
     }
 
     public String getMchId() {
