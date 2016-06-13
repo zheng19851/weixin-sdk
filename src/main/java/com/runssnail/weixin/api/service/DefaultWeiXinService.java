@@ -3,10 +3,13 @@ package com.runssnail.weixin.api.service;
 import com.runssnail.weixin.api.WeiXinPaymentClient;
 import com.runssnail.weixin.api.WeiXinClient;
 import com.runssnail.weixin.api.common.utils.JsSdkUtils;
+import com.runssnail.weixin.api.common.utils.PaymentUtils;
 import com.runssnail.weixin.api.domain.jssdk.Config;
+import com.runssnail.weixin.api.domain.payment.JsApiPayReq;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.request.payment.PaymentRequest;
 import com.runssnail.weixin.api.response.Response;
+import org.apache.commons.lang.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -91,6 +94,13 @@ public class DefaultWeiXinService implements WeiXinService {
     @Override
     public String getTicket() {
         return this.ticketService.getTicket();
+    }
+
+    @Override
+    public JsApiPayReq buildJsApiPayReq(String prepayId) {
+        Validate.notEmpty(prepayId, "prepayId is required");
+
+        return PaymentUtils.buildJsApiPayReq(this.weiXinPaymentClient.getAppId(), prepayId, this.weiXinPaymentClient.getPaySignKey());
     }
 
     public WeiXinClient getWeiXinClient() {

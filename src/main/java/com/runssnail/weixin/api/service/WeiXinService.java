@@ -1,6 +1,7 @@
 package com.runssnail.weixin.api.service;
 
 import com.runssnail.weixin.api.domain.jssdk.Config;
+import com.runssnail.weixin.api.domain.payment.JsApiPayReq;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
 
@@ -67,4 +68,12 @@ public interface WeiXinService {
      * @return
      */
     String getTicket();
+
+    /**
+     * 创建JsApiPayReq
+     *
+     * @param prepayId 预支付订单ID
+     * @return
+     */
+    JsApiPayReq buildJsApiPayReq(String prepayId);
 }
