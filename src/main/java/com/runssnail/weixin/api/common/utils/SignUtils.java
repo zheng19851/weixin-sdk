@@ -2,8 +2,10 @@ package com.runssnail.weixin.api.common.utils;
 
 import com.runssnail.weixin.api.common.SignType;
 import com.runssnail.weixin.api.internal.utils.MD5Util;
+import com.runssnail.weixin.api.internal.utils.XmlTool;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -152,5 +154,27 @@ public class SignUtils {
         }
         return str;
 
+    }
+
+    public static boolean validateSign(String responseBody, String paySignKey) {
+        Validate.notEmpty(responseBody);
+        Validate.notEmpty(paySignKey);
+
+        Map paramsMap = XmlTool.toMapStringValue(responseBody);
+        if (!paramsMap.containsKey("sign")) {
+            return true;
+        }
+
+        String sign = paramsMap.get("sign").toString();
+        paramsMap.remove("sign");
+        SortedMap<String, Object> sortedMap = new TreeMap<String, Object>(paramsMap);
+
+        String signFromParams = SignUtils.buildSign(sortedMap, paySignKey);
+
+        if (log.isDebugEnabled()) {
+            log.debug("validateSign, signFromParams=" + signFromParams + ", sign=" + sign);
+        }
+
+        return signFromParams.equals(sign);
     }
 }

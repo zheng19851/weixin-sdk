@@ -4,12 +4,7 @@ import com.runssnail.weixin.api.common.DataType;
 import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.exception.SignatureException;
 import com.runssnail.weixin.api.exception.WeiXinApiException;
-import com.runssnail.weixin.api.internal.utils.XmlTool;
 import com.runssnail.weixin.api.response.Response;
-
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 /**
  * 微信支付响应对象
@@ -222,13 +217,9 @@ public abstract class PaymentResponse extends Response {
             return;
         }
 
-        Map paramsMap = XmlTool.toMapStringValue(this.getResponseBody());
-        paramsMap.remove("sign");
-        SortedMap<String, Object> sortedMap = new TreeMap<String, Object>(paramsMap);
-
-        String signFromParams = SignUtils.buildSign(sortedMap, paySignKey);
-        if (!signFromParams.equals(this.sign)) {
-            throw new SignatureException("validate sign error, signFromParams=" + signFromParams + ", sign=" + sign);
+        if (!SignUtils.validateSign(this.getResponseBody(), paySignKey)) {
+            throw new SignatureException("validate sign error, responseBoy=" + this.getResponseBody() + ", sign=" + this.sign);
         }
+
     }
 }
