@@ -129,6 +129,10 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
             }
         }
 
+        if(!params.containsKey("nonce_str")) {
+            params.put("nonce_str", SignUtils.buildNonce());
+        }
+
         // 创建sign
         String sign = SignUtils.buildSign(params, this.paySignKey, SignType.MD5);
         params.put("sign", sign);

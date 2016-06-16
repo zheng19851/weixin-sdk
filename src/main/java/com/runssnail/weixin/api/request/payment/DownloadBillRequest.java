@@ -34,6 +34,7 @@ public class DownloadBillRequest extends PaymentRequest<DownloadBillResponse> {
 
     public DownloadBillRequest(String billDate) {
         this.billDate = billDate;
+        billType = BillType.ALL;
     }
 
     /**

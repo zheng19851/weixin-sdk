@@ -13,7 +13,12 @@ import java.util.Map;
  */
 public enum BillType {
 
-    ALL("ALL", "所有订单信息"), SUCCESS("SUCCESS", "成功支付的订单"), REFUND("REFUND", "退款订单");
+    ALL("ALL", "所有订单"),
+    SUCCESS("SUCCESS", "成功支付的订单"),
+    REFUND("REFUND", "退款订单"),
+    REVOKED("REVOKED", "撤销的订单"),
+
+    ;
 
     private String code;
     private String desc;
