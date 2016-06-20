@@ -41,12 +41,43 @@ public class Config extends BaseDomain implements Serializable {
      */
     private String ticket;
 
-    public Config(String appId, String timestamp, String noncestr, String signature, String ticket) {
+    /**
+     * 签名方式 md5/sha1
+     */
+    private String signType;
+
+    /**
+     *
+     * @param appId 微信ID
+     * @param timestamp 时间戳
+     * @param nonceStr 随机字符串
+     * @param signature 签名
+     * @param ticket ticket
+     * @param signType 签名方式
+     */
+    public Config(String appId, String timestamp, String nonceStr, String signature, String ticket, String signType) {
         this.appId = appId;
         this.timestamp = timestamp;
-        this.nonceStr = noncestr;
+        this.nonceStr = nonceStr;
         this.signature = signature;
         this.ticket = ticket;
+        this.signType = signType;
+    }
+
+    public String getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
+    }
+
+    public String getSignType() {
+        return signType;
+    }
+
+    public void setSignType(String signType) {
+        this.signType = signType;
     }
 
     public String getAppId() {

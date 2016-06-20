@@ -1,5 +1,6 @@
 package com.runssnail.weixin.api.service;
 
+import com.runssnail.weixin.api.common.SignType;
 import com.runssnail.weixin.api.domain.jssdk.Config;
 import com.runssnail.weixin.api.domain.payment.JsApiPayReq;
 import com.runssnail.weixin.api.request.Request;
@@ -48,12 +49,22 @@ public interface WeiXinService {
     <R extends Response> R execute(Request<R> request);
 
     /**
-     * 获取微信js sdk配置信息
+     * 获取微信js sdk配置信息, 默认SHA1
      *
      * @param url 网页url
      * @return
      */
     Config getJsSdkConfig(String url);
+
+    /**
+     * 获取微信js sdk配置信息
+     *
+     * @param url 网页url
+     * @param signType 签名方式
+     *
+     * @return
+     */
+    Config getJsSdkConfig(String url, SignType signType);
 
     /**
      * 刷新js sdk用到的ticket

@@ -233,11 +233,11 @@ public class DefaultWeiXinClient implements WeiXinClient {
 
     @Override
     public void init() {
-
+        this.httpClient.init();
     }
 
     @Override
     public void close() {
-
+        this.httpClient.close();
     }
 }

@@ -1,5 +1,6 @@
 package com.runssnail.weixin.api.common.utils;
 
+import com.runssnail.weixin.api.common.SignType;
 import com.runssnail.weixin.api.domain.jssdk.Config;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.Validate;
@@ -25,6 +26,20 @@ public class JsSdkUtils {
      * @return
      */
     public static Config getConfig(String appId, String ticket, String url) {
+
+        return getConfig(appId, ticket, url, SignType.SHA1);
+    }
+
+    /**
+     * 获取js-sdk用的参数
+     *
+     * @param appId appid
+     * @param ticket 调用微信卡券JS API的临时票据
+     * @param url 当前网页的URL
+     * @param signType 签名类型
+     * @return
+     */
+    public static Config getConfig(String appId, String ticket, String url, SignType signType) {
         Validate.notNull(appId, "appId is required");
         Validate.notNull(ticket, "ticket is required");
         Validate.notNull(url, "url is required");
@@ -39,14 +54,14 @@ public class JsSdkUtils {
         params.put("timestamp", timestamp);
         params.put("url", url);
 
-        String signature = buildSign(params);
+        String signature = buildSign(params, signType);
 
-        Config config = new Config(appId, timestamp, nonceStr, signature, ticket);
+        Config config = new Config(appId, timestamp, nonceStr, signature, ticket, signType.getCode());
 
         return config;
     }
 
-    private static String buildSign(SortedMap<String, String> params) {
+    private static String buildSign(SortedMap<String, String> params, SignType signType) {
 
         StringBuilder sb = new StringBuilder();
         Set<Map.Entry<String, String>> es = params.entrySet();
@@ -59,7 +74,11 @@ public class JsSdkUtils {
 
         String sign = sb.substring(0, sb.lastIndexOf("&"));
 
-        sign = DigestUtils.sha1Hex(sign);
+        if (signType.isMd5()) {
+            sign = DigestUtils.md5Hex(sign);
+        } else {
+            sign = DigestUtils.sha1Hex(sign);
+        }
 
         return sign;
 

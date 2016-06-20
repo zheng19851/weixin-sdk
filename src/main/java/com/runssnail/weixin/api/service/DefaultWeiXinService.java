@@ -2,6 +2,7 @@ package com.runssnail.weixin.api.service;
 
 import com.runssnail.weixin.api.WeiXinPaymentClient;
 import com.runssnail.weixin.api.WeiXinClient;
+import com.runssnail.weixin.api.common.SignType;
 import com.runssnail.weixin.api.common.utils.JsSdkUtils;
 import com.runssnail.weixin.api.common.utils.PaymentUtils;
 import com.runssnail.weixin.api.domain.jssdk.Config;
@@ -84,6 +85,14 @@ public class DefaultWeiXinService implements WeiXinService {
         assert url != null;
 
         return JsSdkUtils.getConfig(this.getAppId(), ticketService.getTicket(), url);
+    }
+
+    @Override
+    public Config getJsSdkConfig(String url, SignType signType) {
+        assert url != null;
+        assert signType != null;
+
+        return JsSdkUtils.getConfig(this.getAppId(), ticketService.getTicket(), url, signType);
     }
 
     @Override

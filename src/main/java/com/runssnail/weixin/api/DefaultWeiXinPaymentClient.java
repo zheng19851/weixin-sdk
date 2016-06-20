@@ -260,7 +260,7 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
 
     @Override
     public void init() {
-
+        this.httpClient.init();
     }
 
     @Override
