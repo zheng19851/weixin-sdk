@@ -31,6 +31,10 @@ public class OrderQueryRequest extends PaymentRequest<OrderQueryResponse> {
      */
     private String outTradeNo;
 
+    public OrderQueryRequest() {
+
+    }
+
     /**
      *
      * @param transactionId 微信订单号

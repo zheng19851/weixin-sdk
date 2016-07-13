@@ -40,12 +40,18 @@ public class CreateMenuRequestTest2 {
 //
 //            Menu notFunc = new Menu("一级菜单", subMenus);
 
+            Menu viewMenu = new Menu("view", "游戏");
+            viewMenu.setUrl("http://m.juboyi.com:81/game/index.htm");
+            menus.add(viewMenu);
+
             Menu viewMenu1 = new Menu("view", "挖铜板");
             viewMenu1.setUrl("http://m.juboyi.com:81/");
+//            viewMenu1.setUrl("http://bm.watongban.cn/");
             menus.add(viewMenu1);
 
             Menu viewMenu2 = new Menu("view", "我的");
             viewMenu2.setUrl("http://m.juboyi.com:81/member/index.htm");
+//            viewMenu2.setUrl("http://bm.watongban.cn/member/index.htm");
             menus.add(viewMenu2);
 
             CreateMenuRequest req = new CreateMenuRequest(menus);
