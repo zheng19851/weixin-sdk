@@ -86,7 +86,7 @@ public class DefaultWeiXinClient implements WeiXinClient {
     private <R extends Response> R executeInternal(String apiUrl, Request<R> req) {
 
         if (log.isDebugEnabled()) {
-            log.debug("execute start, apiUrl=" + apiUrl + ", request=" + req);
+            log.debug("execute start, appId=" + this.appId + ", apiUrl=" + apiUrl + ", request=" + req);
         }
 
         long start = System.currentTimeMillis();
@@ -105,11 +105,11 @@ public class DefaultWeiXinClient implements WeiXinClient {
             }
 
             if (log.isDebugEnabled()) {
-                log.debug("execute request finished, used total " + (System.currentTimeMillis() - start) + " ms, apiUrl=" + apiUrl + ", request=" + req + ", result=" + result);
+                log.debug("execute request finished, appId=" + this.appId + ", used total " + (System.currentTimeMillis() - start) + " ms, apiUrl=" + apiUrl + ", request=" + req + ", result=" + result);
             }
 
         } catch (Exception e) {
-            throw new WeiXinApiException("execute request error, apiUrl=" + apiUrl + ", request=" + req + ", result=" + result, e);
+            throw new WeiXinApiException("execute request error, appId=" + this.appId + ", apiUrl=" + apiUrl + ", request=" + req + ", result=" + result, e);
         }
 
         R res = buildResponse(result, req);
@@ -119,11 +119,11 @@ public class DefaultWeiXinClient implements WeiXinClient {
         checkResponse(res);
 
         if (!res.isSuccess()) {
-            log.error("execute request error, apiUrl=" + apiUrl + ", request=" + req + ", response=" + res);
+            log.error("execute request error, appId=" + this.appId + ", apiUrl=" + apiUrl + ", request=" + req + ", response=" + res);
         }
 
         if (log.isDebugEnabled()) {
-            log.debug("execute end, used total " + (System.currentTimeMillis() - start) + " ms, response=" + res);
+            log.debug("execute end, appId=" + this.appId + ", used total " + (System.currentTimeMillis() - start) + " ms, response=" + res);
         }
         return res;
     }
