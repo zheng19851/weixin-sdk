@@ -4,7 +4,6 @@ import com.runssnail.weixin.api.RetryWeiXinClient;
 import com.runssnail.weixin.api.domain.template.KeyNoteValue;
 import com.runssnail.weixin.api.request.template.TemplateMessageRequest;
 import com.runssnail.weixin.api.response.template.TemplateMessageResponse;
-import com.runssnail.weixin.api.service.MemoryAccessTokenService;
 import com.runssnail.weixin.api.support.WeiXinClients;
 import org.apache.commons.lang.StringUtils;
 
@@ -32,12 +31,13 @@ public class TemplateMessageRequestTest {
         try {
             weixinApiClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);
 
-            MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
-            accessTokenService.setWeiXinClient(weixinApiClient);
+//            MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
+//            accessTokenService.setWeiXinClient(weixinApiClient);
 
             TemplateMessageRequest req = createAward();
 
-            TemplateMessageResponse res = weixinApiClient.execute(req, accessTokenService.getAccessToken());
+            String token = "wvBDD_dxGnetdZVnayCJADbOZ5q8YPDTBiO_XIFA-C8EPnec6zmWsqfZYgqaQmMgqGK3aT39va0Dk-OpU8EsfL7hiGOeLzJ5xFHG5At17jl_bWZU4AsyGhLxZJ598nVuCKKdAJALTT";
+            TemplateMessageResponse res = weixinApiClient.execute(req, token);
             System.out.println(res);
         } finally {
             if (weixinApiClient != null) {

@@ -20,7 +20,7 @@ public class SignUtils {
 
     private static final Log log = LogFactory.getLog(SignUtils.class);
 
-    public static final String  DEFAULT_CHARSET = "UTF-8";
+    public static final String DEFAULT_CHARSET = "UTF-8";
 
     /**
      * 生成支付签名
@@ -133,10 +133,14 @@ public class SignUtils {
         for (Map.Entry<String, Object> entry : es) {
             String k = entry.getKey();
             Object v = entry.getValue();
-            if (StringUtils.isNotBlank(charset) && v != null) {
-                v = urlEncode(v.toString(), charset);
+            if (StringUtils.isNotBlank(k) && v != null && StringUtils.isNotBlank(v.toString())) {
+
+                if (StringUtils.isNotBlank(charset) && v != null) {
+                    v = urlEncode(v.toString(), charset);
+                }
+                sb.append(k + "=" + v + "&");
             }
-            sb.append(k + "=" + v + "&");
+
         }
 
         String params = sb.substring(0, sb.lastIndexOf("&"));
