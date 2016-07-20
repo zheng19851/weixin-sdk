@@ -14,14 +14,15 @@ public class OrderQueryRequestTest {
 
     public static void main(String[] args) {
 
-        String appId = "";
-        String merchantId = "";
-        String paySignKey = "";
+        String appId = "wxada6b9ac122390ff";
+        String mchId = "1334006201";
+        String paySignKey = "MgxJjILkONRsd85H5bUqTib02RFhRnS4";
 
 
-        WeiXinPaymentClient client = new DefaultWeiXinPaymentClient(appId, merchantId, paySignKey);
+        WeiXinPaymentClient client = new DefaultWeiXinPaymentClient(appId, mchId, paySignKey);
 
-        OrderQueryRequest request = new OrderQueryRequest("1217752501201407033233368018");
+        OrderQueryRequest request = new OrderQueryRequest();
+        request.setOutTradeNo("2016071900174386040118");
 
         OrderQueryResponse response = client.execute(request);
 

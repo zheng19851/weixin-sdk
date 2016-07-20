@@ -1,6 +1,7 @@
 package com.runssnail.weixin.api.response.payment;
 
 
+import com.runssnail.weixin.api.constants.payment.TradeState;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
@@ -122,6 +123,15 @@ public class OrderQueryResponse extends PaymentResponse {
      */
     @XStreamAlias("trade_state_desc")
     private String tradeStateDesc;
+
+    /**
+     * 交易是否成功
+     *
+     * @return
+     */
+    public boolean isTradeSuccess() {
+        return TradeState.isSuccess(this.tradeState);
+    }
 
     public String getOpenId() {
         return openId;

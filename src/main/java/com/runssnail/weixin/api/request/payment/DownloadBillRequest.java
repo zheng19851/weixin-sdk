@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.request.payment;
 
-import com.runssnail.weixin.api.domain.payment.BillType;
+import com.runssnail.weixin.api.constants.payment.BillType;
 import com.runssnail.weixin.api.response.payment.DownloadBillResponse;
 
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.runssnail.weixin.api.domain.payment;
+package com.runssnail.weixin.api.constants.payment;
 
 import java.util.HashMap;
 import java.util.Map;

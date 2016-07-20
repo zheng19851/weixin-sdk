@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.response.payment;
 
-import com.runssnail.weixin.api.domain.payment.TradeType;
+import com.runssnail.weixin.api.constants.payment.TradeType;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
