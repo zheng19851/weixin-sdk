@@ -1,33 +1,34 @@
 #weixin-sdk
 
-WeiXinClient是对微信api的具体实现
+1、微信api接口WeiXinClient
 
-// =====下面是获取access token的列子=====
-String appId = "";
-String appSecret = "";
+    DefaultWeiXinClient是对微信api的具体实现
 
-WeiXinClient weiXinClient = new DefaultWeiXinClient(appId, appSecret);
-try {
-    GetAccessTokenRequest req = new GetAccessTokenRequest(appId, appSecret);
+    使用方式:
 
-    Response res = weiXinClient.execute(req);
+    // =====下面是获取access token的列子=====
+    String appId = "";
+    String appSecret = "";
 
-    System.out.println(res);
-} finally {
-    if (weiXinClient != null) {
-        weiXinClient.close();
+    WeiXinClient weiXinClient = new DefaultWeiXinClient(appId, appSecret);
+    try {
+        GetAccessTokenRequest req = new GetAccessTokenRequest(appId, appSecret);
+
+        Response res = weiXinClient.execute(req);
+
+        System.out.println(res);
+    } finally {
+        if (weiXinClient != null) {
+            weiXinClient.close();
+        }
     }
-}
 
-// ===========
-
-实际开发过程中,调用微信接口,可以使用WeiXinService,此接口封装了access token的获取和存储,支持本地内存和redis
+    实际开发过程中,调用微信接口,可以使用WeiXinService,此接口封装了access token的获取和存储,支持本地内存和redis
 
 
-微信支付接口
-WeiXinPaymentClient
+2、微信支付api接口WeiXinPaymentClient
 
-使用方式:
+    使用方式:
         String appId = ""; // appid
         String mchId = ""; // 商户号
         String paySignKey = ""; // 支付密钥
@@ -39,7 +40,7 @@ WeiXinPaymentClient
 
         // 查询企业付款订单
         String orderNo = "32739393939338332739393939338335";
-        GetTransferInfoRequest request = new GetTransferInfoRequest(appId, mchId, orderNo);
+        GetTransferInfoRequest request = new GetTransferInfoRequest(orderNo);
 
         GetTransferInfoResponse response = paymentClient.execute(request);
 
