@@ -21,9 +21,9 @@ public class GetUserInfoRequestTest {
         accessTokenService.setWeiXinClient(weiXinClient);
 
         try {
-            GetUserInfoRequest req = new GetUserInfoRequest(accessTokenService.getAccessToken(), "oeumFjrOrsYmEV-MAElyRnscFwoo");
+            GetUserInfoRequest req = new GetUserInfoRequest("oeumFjrOrsYmEV-MAElyRnscFwoo");
 
-            GetUserInfoResponse res = weiXinClient.execute(req);
+            GetUserInfoResponse res = weiXinClient.execute(req, accessTokenService.getAccessToken());
 
             System.out.println(res);
         } finally {

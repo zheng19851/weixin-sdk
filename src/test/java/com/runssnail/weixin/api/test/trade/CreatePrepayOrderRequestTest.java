@@ -2,9 +2,9 @@ package com.runssnail.weixin.api.test.trade;
 
 import com.runssnail.weixin.api.DefaultWeiXinPaymentClient;
 import com.runssnail.weixin.api.WeiXinPaymentClient;
-import com.runssnail.weixin.api.domain.payment.TradeType;
-import com.runssnail.weixin.api.request.payment.CreatePrepayOrderRequest;
-import com.runssnail.weixin.api.response.payment.CreatePrepayOrderResponse;
+import com.runssnail.weixin.api.constants.payment.TradeType;
+import com.runssnail.weixin.api.request.payment.UnifiedOrderRequest;
+import com.runssnail.weixin.api.response.payment.UnifiedOrderResponse;
 
 /**
  * 创建预支付订单
@@ -29,12 +29,12 @@ public class CreatePrepayOrderRequestTest {
 
         try {
 
-            CreatePrepayOrderRequest req = new CreatePrepayOrderRequest();
+            UnifiedOrderRequest req = new UnifiedOrderRequest();
 //            req.setAppId(appId);
 //            req.setMerchantId(merchantId);
 //            req.setPaySignKey(paySignKey);
             req.setBody("耳机");
-            req.setOrderId("1229282");
+            req.setOutTradeNo("1229282");
 
             req.setTotalFee(1L);
             req.setIp("127.0.0.1");
@@ -42,7 +42,7 @@ public class CreatePrepayOrderRequestTest {
             req.setTradeType(TradeType.JSAPI);
             req.setOpenId("230fu0aifaofa09f9fi");
 
-            CreatePrepayOrderResponse res = client.execute(req);
+            UnifiedOrderResponse res = client.execute(req);
 
             System.out.println(res);
 
