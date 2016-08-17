@@ -23,7 +23,7 @@ public class DefaultWeiXinService implements WeiXinService {
 
     private static final Log log = LogFactory.getLog(DefaultWeiXinService.class);
 
-    private WeixinClient weiXinClient;
+    private WeixinClient weixinClient;
 
     private AccessTokenService accessTokenService;
 
@@ -32,16 +32,16 @@ public class DefaultWeiXinService implements WeiXinService {
     /**
      * 微信支付api client
      */
-    private WeixinPayClient weiXinPaymentClient;
+    private WeixinPayClient weixinPayClient;
 
     @Override
     public String getAppId() {
-        return weiXinClient.getAppId();
+        return weixinClient.getAppId();
     }
 
     @Override
     public String getAppSecret() {
-        return weiXinClient.getAppSecret();
+        return weixinClient.getAppSecret();
     }
 
     @Override
@@ -72,11 +72,11 @@ public class DefaultWeiXinService implements WeiXinService {
         assert request != null;
 
         if (request instanceof PaymentRequest) {
-            return weiXinPaymentClient.execute(request);
+            return weixinPayClient.execute(request);
         }
 
         String accessToken = this.accessTokenService.getAccessToken();
-        return weiXinClient.execute(request, accessToken);
+        return weixinClient.execute(request, accessToken);
     }
 
     @Override
@@ -109,15 +109,7 @@ public class DefaultWeiXinService implements WeiXinService {
     public JsApiPayReq buildJsApiPayReq(String prepayId) {
         Validate.notEmpty(prepayId, "prepayId is required");
 
-        return PaymentUtils.buildJsApiPayReq(this.weiXinPaymentClient.getAppId(), prepayId, this.weiXinPaymentClient.getPaySignKey());
-    }
-
-    public WeixinClient getWeiXinClient() {
-        return weiXinClient;
-    }
-
-    public void setWeiXinClient(WeixinClient weiXinClient) {
-        this.weiXinClient = weiXinClient;
+        return PaymentUtils.buildJsApiPayReq(this.weixinPayClient.getAppId(), prepayId, this.weixinPayClient.getPaySignKey());
     }
 
     public AccessTokenService getAccessTokenService() {
@@ -128,19 +120,27 @@ public class DefaultWeiXinService implements WeiXinService {
         this.accessTokenService = accessTokenService;
     }
 
-    public WeixinPayClient getWeiXinPaymentClient() {
-        return weiXinPaymentClient;
-    }
-
-    public void setWeiXinPaymentClient(WeixinPayClient weiXinPaymentClient) {
-        this.weiXinPaymentClient = weiXinPaymentClient;
-    }
-
     public TicketService getTicketService() {
         return ticketService;
     }
 
     public void setTicketService(TicketService ticketService) {
         this.ticketService = ticketService;
+    }
+
+    public WeixinClient getWeixinClient() {
+        return weixinClient;
+    }
+
+    public void setWeixinClient(WeixinClient weixinClient) {
+        this.weixinClient = weixinClient;
+    }
+
+    public WeixinPayClient getWeixinPayClient() {
+        return weixinPayClient;
+    }
+
+    public void setWeixinPayClient(WeixinPayClient weixinPayClient) {
+        this.weixinPayClient = weixinPayClient;
     }
 }

@@ -25,7 +25,7 @@ public class WeiXinServiceTest {
 
         // WeiXinService默认实现
         DefaultWeiXinService weiXinService = new DefaultWeiXinService();
-        weiXinService.setWeiXinClient(weiXinClient);
+        weiXinService.setWeixinClient(weiXinClient);
 
         weiXinService.setAccessTokenService(accessTokenService);
 
