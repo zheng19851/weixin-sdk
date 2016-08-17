@@ -14,7 +14,7 @@ import java.util.Set;
  *
  * Created by zhengwei on 2016/3/18.
  */
-public class RetryWeixinClient implements WeixinClient {
+public class RetryWeiXinClient implements WeixinClient {
 
     protected final Log log = LogFactory.getLog(getClass());
 
@@ -44,10 +44,10 @@ public class RetryWeixinClient implements WeixinClient {
      */
     private WeixinClient weiXinClient;
 
-    public RetryWeixinClient() {
+    public RetryWeiXinClient() {
     }
 
-    public RetryWeixinClient(WeixinClient weiXinClient) {
+    public RetryWeiXinClient(WeixinClient weiXinClient) {
         this.weiXinClient = weiXinClient;
     }
 
