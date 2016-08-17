@@ -4,7 +4,7 @@ import com.runssnail.weixin.api.common.SignType;
 import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.constants.Constants;
 import com.runssnail.weixin.api.exception.PaymentApiException;
-import com.runssnail.weixin.api.exception.WeiXinApiException;
+import com.runssnail.weixin.api.exception.ApiException;
 import com.runssnail.weixin.api.internal.http.DefaultHttpClient;
 import com.runssnail.weixin.api.internal.http.PaymentHttpClient;
 import com.runssnail.weixin.api.internal.http.HttpClient;
@@ -25,9 +25,9 @@ import java.util.Map;
  * <p>
  * Created by zhengwei on 2015/11/6.
  */
-public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
+public class DefaultWeixinPaymentClient implements WeixinPaymentClient {
 
-    private static final Log log = LogFactory.getLog(DefaultWeiXinPaymentClient.class);
+    private static final Log log = LogFactory.getLog(DefaultWeixinPaymentClient.class);
 
     /**
      * 连接超时时间，单位毫秒，默认3秒
@@ -60,7 +60,7 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
      * @param mchId        商户号
      * @param paySignKey   支付秘钥
      */
-    public DefaultWeiXinPaymentClient(String appId, String mchId, String paySignKey) {
+    public DefaultWeixinPaymentClient(String appId, String mchId, String paySignKey) {
         this.appId = appId;
         this.mchId = mchId;
         this.paySignKey = paySignKey;
@@ -76,7 +76,7 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
      * @param certPath     证书路径
      * @param certPassword 证书密码
      */
-    public DefaultWeiXinPaymentClient(String appId, String mchId, String paySignKey, String certPath, String certPassword) {
+    public DefaultWeixinPaymentClient(String appId, String mchId, String paySignKey, String certPath, String certPassword) {
         this.appId = appId;
         this.mchId = mchId;
         this.paySignKey = paySignKey;
@@ -171,7 +171,7 @@ public class DefaultWeiXinPaymentClient implements WeiXinPaymentClient {
 
 
     @Override
-    public <R extends Response> R execute(Request<R> req) throws WeiXinApiException {
+    public <R extends Response> R execute(Request<R> req) throws ApiException {
         WeixinApiRuleValidate.notNull(req, "request is required");
 
         return executeInternal(req);

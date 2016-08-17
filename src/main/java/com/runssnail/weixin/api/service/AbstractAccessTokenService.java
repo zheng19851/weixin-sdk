@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.service;
 
-import com.runssnail.weixin.api.WeiXinClient;
+import com.runssnail.weixin.api.WeixinClient;
 import com.runssnail.weixin.api.request.credential.GetAccessTokenRequest;
 import com.runssnail.weixin.api.response.credential.GetAccessTokenResponse;
 import org.apache.commons.logging.Log;
@@ -13,7 +13,7 @@ public abstract class AbstractAccessTokenService implements AccessTokenService {
 
     protected final Log log = LogFactory.getLog(getClass());
 
-    private WeiXinClient weiXinClient;
+    private WeixinClient weiXinClient;
 
     @Override
     public String refresh() {
@@ -43,11 +43,11 @@ public abstract class AbstractAccessTokenService implements AccessTokenService {
      */
     protected abstract void saveAccessToken(String accessToken);
 
-    public void setWeiXinClient(WeiXinClient weiXinClient) {
+    public void setWeiXinClient(WeixinClient weiXinClient) {
         this.weiXinClient = weiXinClient;
     }
 
-    public WeiXinClient getWeiXinClient() {
+    public WeixinClient getWeiXinClient() {
         return weiXinClient;
     }
 }

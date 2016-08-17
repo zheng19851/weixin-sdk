@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api;
 
-import com.runssnail.weixin.api.exception.WeiXinApiException;
+import com.runssnail.weixin.api.exception.ApiException;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
 import org.apache.commons.logging.Log;
@@ -14,11 +14,11 @@ import java.util.Set;
  *
  * Created by zhengwei on 2016/3/18.
  */
-public class RetryWeiXinClient implements WeiXinClient {
+public class RetryWeixinClient implements WeixinClient {
 
     protected final Log log = LogFactory.getLog(getClass());
 
-    private static final WeiXinApiException RETRY_FAIL = new WeiXinApiException("sdk.retry-call-fail:API调用重试失败");
+    private static final ApiException RETRY_FAIL = new ApiException("sdk.retry-call-fail:API调用重试失败");
 
     /**
      * 单次请求的最大重试次数，默认值为3次。
@@ -42,20 +42,20 @@ public class RetryWeiXinClient implements WeiXinClient {
     /**
      * 实际的委托服务对象
      */
-    private WeiXinClient weiXinClient;
+    private WeixinClient weiXinClient;
 
-    public RetryWeiXinClient() {
+    public RetryWeixinClient() {
     }
 
-    public RetryWeiXinClient(WeiXinClient weiXinClient) {
+    public RetryWeixinClient(WeixinClient weiXinClient) {
         this.weiXinClient = weiXinClient;
     }
 
-    public WeiXinClient getWeiXinClient() {
+    public WeixinClient getWeiXinClient() {
         return weiXinClient;
     }
 
-    public void setWeiXinClient(WeiXinClient weiXinClient) {
+    public void setWeiXinClient(WeixinClient weiXinClient) {
         this.weiXinClient = weiXinClient;
     }
 
@@ -69,13 +69,13 @@ public class RetryWeiXinClient implements WeiXinClient {
         return weiXinClient.getAppSecret();
     }
 
-    public <T extends Response> T execute(Request<T> request) throws WeiXinApiException {
+    public <T extends Response> T execute(Request<T> request) throws ApiException {
         return this.execute(request, null);
     }
 
-    public <T extends Response> T execute(Request<T> request, String session) throws WeiXinApiException {
+    public <T extends Response> T execute(Request<T> request, String session) throws ApiException {
         T rsp = null;
-        WeiXinApiException exp = null;
+        ApiException exp = null;
 
         for (int i = 0; i <= maxRetryCount; i++) {
             if (i > 0) {
@@ -96,7 +96,7 @@ public class RetryWeiXinClient implements WeiXinClient {
                         throw RETRY_FAIL;
                     }
                 }
-            } catch (WeiXinApiException e) {
+            } catch (ApiException e) {
                 if (exp == null) {
                     exp = e;
                 }

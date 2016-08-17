@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.service;
 
-import com.runssnail.weixin.api.WeiXinPaymentClient;
-import com.runssnail.weixin.api.WeiXinClient;
+import com.runssnail.weixin.api.WeixinPaymentClient;
+import com.runssnail.weixin.api.WeixinClient;
 import com.runssnail.weixin.api.common.SignType;
 import com.runssnail.weixin.api.common.utils.JsSdkUtils;
 import com.runssnail.weixin.api.common.utils.PaymentUtils;
@@ -23,7 +23,7 @@ public class DefaultWeiXinService implements WeiXinService {
 
     private static final Log log = LogFactory.getLog(DefaultWeiXinService.class);
 
-    private WeiXinClient weiXinClient;
+    private WeixinClient weiXinClient;
 
     private AccessTokenService accessTokenService;
 
@@ -32,7 +32,7 @@ public class DefaultWeiXinService implements WeiXinService {
     /**
      * 微信支付api client
      */
-    private WeiXinPaymentClient weiXinPaymentClient;
+    private WeixinPaymentClient weiXinPaymentClient;
 
     @Override
     public String getAppId() {
@@ -112,11 +112,11 @@ public class DefaultWeiXinService implements WeiXinService {
         return PaymentUtils.buildJsApiPayReq(this.weiXinPaymentClient.getAppId(), prepayId, this.weiXinPaymentClient.getPaySignKey());
     }
 
-    public WeiXinClient getWeiXinClient() {
+    public WeixinClient getWeiXinClient() {
         return weiXinClient;
     }
 
-    public void setWeiXinClient(WeiXinClient weiXinClient) {
+    public void setWeiXinClient(WeixinClient weiXinClient) {
         this.weiXinClient = weiXinClient;
     }
 
@@ -128,11 +128,11 @@ public class DefaultWeiXinService implements WeiXinService {
         this.accessTokenService = accessTokenService;
     }
 
-    public WeiXinPaymentClient getWeiXinPaymentClient() {
+    public WeixinPaymentClient getWeiXinPaymentClient() {
         return weiXinPaymentClient;
     }
 
-    public void setWeiXinPaymentClient(WeiXinPaymentClient weiXinPaymentClient) {
+    public void setWeiXinPaymentClient(WeixinPaymentClient weiXinPaymentClient) {
         this.weiXinPaymentClient = weiXinPaymentClient;
     }
 

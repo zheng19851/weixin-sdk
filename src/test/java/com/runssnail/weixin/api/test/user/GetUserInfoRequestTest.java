@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.test.user;
 
-import com.runssnail.weixin.api.DefaultWeiXinClient;
-import com.runssnail.weixin.api.WeiXinClient;
+import com.runssnail.weixin.api.DefaultWeixinClient;
+import com.runssnail.weixin.api.WeixinClient;
 import com.runssnail.weixin.api.request.user.GetUserInfoRequest;
 import com.runssnail.weixin.api.response.user.GetUserInfoResponse;
 import com.runssnail.weixin.api.service.MemoryAccessTokenService;
@@ -15,7 +15,7 @@ public class GetUserInfoRequestTest {
         String appId = "wxe58afcd99f7a997e";
         String appSecret = "5dcf8eac1e99e983fc58e42376ab0267";
 
-        WeiXinClient weiXinClient = new DefaultWeiXinClient(appId, appSecret);
+        WeixinClient weiXinClient = new DefaultWeixinClient(appId, appSecret);
 
         MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
         accessTokenService.setWeiXinClient(weiXinClient);

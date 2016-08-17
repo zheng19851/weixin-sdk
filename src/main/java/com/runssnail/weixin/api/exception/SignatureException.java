@@ -5,7 +5,7 @@ package com.runssnail.weixin.api.exception;
  * 
  * @author zhengwei
  */
-public class SignatureException extends WeiXinApiException {
+public class SignatureException extends ApiException {
 
     /**
      * 

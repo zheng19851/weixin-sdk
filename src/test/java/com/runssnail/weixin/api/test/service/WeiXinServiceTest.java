@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.test.service;
 
-import com.runssnail.weixin.api.DefaultWeiXinClient;
-import com.runssnail.weixin.api.WeiXinClient;
+import com.runssnail.weixin.api.DefaultWeixinClient;
+import com.runssnail.weixin.api.WeixinClient;
 import com.runssnail.weixin.api.request.menu.GetMenuRequest;
 import com.runssnail.weixin.api.response.menu.GetMenuResponse;
 import com.runssnail.weixin.api.service.DefaultWeiXinService;
@@ -17,7 +17,7 @@ public class WeiXinServiceTest {
         String appId = "";
         String appSecret = "";
 
-        WeiXinClient weiXinClient = new DefaultWeiXinClient(appId, appSecret);
+        WeixinClient weiXinClient = new DefaultWeixinClient(appId, appSecret);
 
         // 内存保存access token
         MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();

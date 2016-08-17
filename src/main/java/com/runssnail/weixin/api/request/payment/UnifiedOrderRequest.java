@@ -2,7 +2,7 @@ package com.runssnail.weixin.api.request.payment;
 
 import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.constants.payment.TradeType;
-import com.runssnail.weixin.api.exception.WeiXinApiRuleException;
+import com.runssnail.weixin.api.exception.ApiRuleException;
 import com.runssnail.weixin.api.internal.utils.DateUtil;
 import com.runssnail.weixin.api.response.payment.UnifiedOrderResponse;
 import org.apache.commons.lang.StringUtils;
@@ -254,7 +254,7 @@ public class UnifiedOrderRequest extends PaymentRequest<UnifiedOrderResponse> {
     }
 
     @Override
-    public void doCheck() throws WeiXinApiRuleException {
+    public void doCheck() throws ApiRuleException {
         // 校验参数
 
         notNull(this.body, "body is required");

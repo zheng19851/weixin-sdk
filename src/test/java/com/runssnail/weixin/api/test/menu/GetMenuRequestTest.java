@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.test.menu;
 
-import com.runssnail.weixin.api.RetryWeiXinClient;
+import com.runssnail.weixin.api.RetryWeixinClient;
 import com.runssnail.weixin.api.request.menu.GetMenuRequest;
 import com.runssnail.weixin.api.response.Response;
 import com.runssnail.weixin.api.service.MemoryAccessTokenService;
@@ -12,7 +12,7 @@ public class GetMenuRequestTest {
         String appId = "wxe58afcd99f7a997e";
         String appSecret = "5dcf8eac1e99e983fc58e42376ab0267";
 
-        RetryWeiXinClient weixinApiClient = null;
+        RetryWeixinClient weixinApiClient = null;
         try {
             weixinApiClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);
 

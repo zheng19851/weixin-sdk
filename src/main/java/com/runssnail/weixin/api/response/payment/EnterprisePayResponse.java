@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.response.payment;
 
-import com.runssnail.weixin.api.exception.WeiXinApiException;
+import com.runssnail.weixin.api.exception.ApiException;
 
 /**
  * 企业付款响应对象
@@ -50,7 +50,7 @@ public class EnterprisePayResponse extends PaymentResponse {
     }
 
     @Override
-    public void check(String paySignKey) throws WeiXinApiException {
+    public void check(String paySignKey) throws ApiException {
         // ignore
     }
 }

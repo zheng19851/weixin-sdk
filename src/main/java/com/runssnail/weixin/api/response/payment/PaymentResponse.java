@@ -3,7 +3,7 @@ package com.runssnail.weixin.api.response.payment;
 import com.runssnail.weixin.api.common.DataType;
 import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.exception.SignatureException;
-import com.runssnail.weixin.api.exception.WeiXinApiException;
+import com.runssnail.weixin.api.exception.ApiException;
 import com.runssnail.weixin.api.response.Response;
 
 /**
@@ -212,7 +212,7 @@ public abstract class PaymentResponse extends Response {
         return DataType.XML;
     }
 
-    public void check(String paySignKey) throws WeiXinApiException {
+    public void check(String paySignKey) throws ApiException {
         if (!isReturnCodeSuccess()) {
             return;
         }

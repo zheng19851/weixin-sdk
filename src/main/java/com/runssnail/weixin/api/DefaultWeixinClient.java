@@ -3,7 +3,7 @@ package com.runssnail.weixin.api;
 import com.alibaba.fastjson.JSON;
 import com.runssnail.weixin.api.common.RequestMethod;
 import com.runssnail.weixin.api.constants.Constants;
-import com.runssnail.weixin.api.exception.WeiXinApiException;
+import com.runssnail.weixin.api.exception.ApiException;
 import com.runssnail.weixin.api.internal.http.DefaultHttpClient;
 import com.runssnail.weixin.api.internal.http.HttpClient;
 import com.runssnail.weixin.api.internal.support.WeixinApiRuleValidate;
@@ -19,9 +19,9 @@ import java.util.Map;
  * 默认的WeiXinApiClient服务实现
  *
  * @author zhengwei
- * @see WeiXinClient
+ * @see WeixinClient
  */
-public class DefaultWeiXinClient implements WeiXinClient {
+public class DefaultWeixinClient implements WeixinClient {
 
     protected final Log log = LogFactory.getLog(getClass());
 
@@ -55,18 +55,18 @@ public class DefaultWeiXinClient implements WeiXinClient {
      * @param appId     appId
      * @param appSecret appSecret
      */
-    public DefaultWeiXinClient(String appId, String appSecret) {
+    public DefaultWeixinClient(String appId, String appSecret) {
         this.appId = appId;
         this.appSecret = appSecret;
     }
 
     @Override
-    public <R extends Response> R execute(Request<R> req) throws WeiXinApiException {
+    public <R extends Response> R execute(Request<R> req) throws ApiException {
         return this.execute(req, null);
     }
 
     @Override
-    public <R extends Response> R execute(Request<R> req, String accessToken) throws WeiXinApiException {
+    public <R extends Response> R execute(Request<R> req, String accessToken) throws ApiException {
 
         WeixinApiRuleValidate.notNull(req, "request is required");
 
@@ -109,7 +109,7 @@ public class DefaultWeiXinClient implements WeiXinClient {
             }
 
         } catch (Exception e) {
-            throw new WeiXinApiException("execute request error, appId=" + this.appId + ", apiUrl=" + apiUrl + ", request=" + req + ", result=" + result, e);
+            throw new ApiException("execute request error, appId=" + this.appId + ", apiUrl=" + apiUrl + ", request=" + req + ", result=" + result, e);
         }
 
         R res = buildResponse(result, req);

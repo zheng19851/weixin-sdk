@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.request.payment;
 
 import com.runssnail.weixin.api.common.utils.SignUtils;
-import com.runssnail.weixin.api.exception.WeiXinApiRuleException;
+import com.runssnail.weixin.api.exception.ApiRuleException;
 import com.runssnail.weixin.api.response.payment.OrderQueryResponse;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
@@ -71,7 +71,7 @@ public class OrderQueryRequest extends PaymentRequest<OrderQueryResponse> {
     }
 
     @Override
-    protected void doCheck() throws WeiXinApiRuleException {
+    protected void doCheck() throws ApiRuleException {
         Validate.isTrue(StringUtils.isNotBlank(this.transactionId) || StringUtils.isNotBlank(this.outTradeNo), "transaction_id or out_trade_no is required");
     }
 

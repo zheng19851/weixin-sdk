@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api;
 
 import com.runssnail.weixin.api.common.Lifecycle;
-import com.runssnail.weixin.api.exception.WeiXinApiException;
+import com.runssnail.weixin.api.exception.ApiException;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
 
@@ -10,7 +10,7 @@ import com.runssnail.weixin.api.response.Response;
  *
  * @author zhengwei
  */
-public interface WeiXinClient extends Lifecycle {
+public interface WeixinClient extends Lifecycle {
 
     /**
      * appId appId
@@ -32,9 +32,9 @@ public interface WeiXinClient extends Lifecycle {
      * @param req 请求对象
      * @param <R>
      * @return
-     * @throws WeiXinApiException
+     * @throws ApiException
      */
-    <R extends Response> R execute(Request<R> req) throws WeiXinApiException;
+    <R extends Response> R execute(Request<R> req) throws ApiException;
 
     /**
      * 执行请求，accessToken必传
@@ -42,8 +42,8 @@ public interface WeiXinClient extends Lifecycle {
      * @param req         请求
      * @param accessToken 接口凭证
      * @return 响应数据
-     * @throws WeiXinApiException
+     * @throws ApiException
      */
-    <R extends Response> R execute(Request<R> req, String accessToken) throws WeiXinApiException;
+    <R extends Response> R execute(Request<R> req, String accessToken) throws ApiException;
 
 }

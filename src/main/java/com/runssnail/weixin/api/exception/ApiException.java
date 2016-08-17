@@ -6,22 +6,22 @@ package com.runssnail.weixin.api.exception;
  * @author zhengwei
  *
  */
-public class WeiXinApiException extends RuntimeException {
+public class ApiException extends RuntimeException {
 
     /**
      * 
      */
     private static final long serialVersionUID = 3696635528453296696L;
 
-    public WeiXinApiException(Throwable e) {
+    public ApiException(Throwable e) {
         super(e);
     }
 
-    public WeiXinApiException(String msg) {
+    public ApiException(String msg) {
         super(msg);
     }
 
-    public WeiXinApiException(String msg, Exception e) {
+    public ApiException(String msg, Exception e) {
         super(msg, e);
     }
 }

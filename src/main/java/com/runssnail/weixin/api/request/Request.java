@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.request;
 
 import com.runssnail.weixin.api.common.RequestMethod;
-import com.runssnail.weixin.api.exception.WeiXinApiRuleException;
+import com.runssnail.weixin.api.exception.ApiRuleException;
 import com.runssnail.weixin.api.response.Response;
 
 import java.util.Map;
@@ -38,9 +38,9 @@ public interface Request<R extends Response> {
     /**
      * 检查参数
      *
-     * @throws WeiXinApiRuleException
+     * @throws ApiRuleException
      */
-    void check() throws WeiXinApiRuleException;
+    void check() throws ApiRuleException;
 
     /**
      * Response class

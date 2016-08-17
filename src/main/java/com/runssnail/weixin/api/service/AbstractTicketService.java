@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.service;
 
-import com.runssnail.weixin.api.WeiXinClient;
+import com.runssnail.weixin.api.WeixinClient;
 import com.runssnail.weixin.api.request.ticket.GetTicketRequest;
 import com.runssnail.weixin.api.response.ticket.GetTicketResponse;
 import org.apache.commons.logging.Log;
@@ -13,7 +13,7 @@ public abstract class AbstractTicketService implements TicketService {
 
     protected final Log log = LogFactory.getLog(getClass());
 
-    private WeiXinClient weiXinClient;
+    private WeixinClient weiXinClient;
 
     private AccessTokenService accessTokenService;
 
@@ -45,11 +45,11 @@ public abstract class AbstractTicketService implements TicketService {
      */
     protected abstract void saveTicket(String ticket);
 
-    public WeiXinClient getWeiXinClient() {
+    public WeixinClient getWeiXinClient() {
         return weiXinClient;
     }
 
-    public void setWeiXinClient(WeiXinClient weiXinClient) {
+    public void setWeiXinClient(WeixinClient weiXinClient) {
         this.weiXinClient = weiXinClient;
     }
 

@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.test.template;
 
-import com.runssnail.weixin.api.RetryWeiXinClient;
+import com.runssnail.weixin.api.RetryWeixinClient;
 import com.runssnail.weixin.api.domain.template.KeyNoteValue;
 import com.runssnail.weixin.api.request.template.TemplateMessageRequest;
 import com.runssnail.weixin.api.response.template.TemplateMessageResponse;
@@ -26,7 +26,7 @@ public class TemplateMessageRequestTest {
         String appId = "wxe58afcd99f7a997e";
         String appSecret = "5dcf8eac1e99e983fc58e42376ab0267";
 
-        RetryWeiXinClient weixinApiClient = null;
+        RetryWeixinClient weixinApiClient = null;
 
         try {
             weixinApiClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);

@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.test.payment;
 
-import com.runssnail.weixin.api.DefaultWeiXinPaymentClient;
+import com.runssnail.weixin.api.DefaultWeixinPaymentClient;
 import com.runssnail.weixin.api.request.payment.DownloadBillRequest;
 import com.runssnail.weixin.api.response.payment.DownloadBillResponse;
 
@@ -15,7 +15,7 @@ public class DownloadBillRequestTest {
         String mchId = "1334006201";
         String paySignKey = "MgxJjILkONRsd85H5bUqTib02RFhRnS4";
 
-        DefaultWeiXinPaymentClient paymentClient = new DefaultWeiXinPaymentClient(appId, mchId, paySignKey);
+        DefaultWeixinPaymentClient paymentClient = new DefaultWeixinPaymentClient(appId, mchId, paySignKey);
 
 
         DownloadBillRequest request = new DownloadBillRequest("20140603");
