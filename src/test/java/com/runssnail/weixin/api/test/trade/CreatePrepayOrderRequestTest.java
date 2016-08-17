@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.test.trade;
 
-import com.runssnail.weixin.api.DefaultWeixinPaymentClient;
-import com.runssnail.weixin.api.WeixinPaymentClient;
+import com.runssnail.weixin.api.DefaultWeixinPayClient;
+import com.runssnail.weixin.api.WeixinPayClient;
 import com.runssnail.weixin.api.constants.payment.TradeType;
 import com.runssnail.weixin.api.request.payment.UnifiedOrderRequest;
 import com.runssnail.weixin.api.response.payment.UnifiedOrderResponse;
@@ -25,7 +25,7 @@ public class CreatePrepayOrderRequestTest {
 //        config.setMerchantId("10065789");
 //        config.setPaySignKey("hfhaf97fj32kj32jk98f98a833fajfa9");
 
-        WeixinPaymentClient client = new DefaultWeixinPaymentClient(appId, merchantId, paySignKey,"","");
+        WeixinPayClient client = new DefaultWeixinPayClient(appId, merchantId, paySignKey,"","");
 
         try {
 

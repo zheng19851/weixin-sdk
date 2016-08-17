@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.service;
 
-import com.runssnail.weixin.api.WeixinPaymentClient;
+import com.runssnail.weixin.api.WeixinPayClient;
 import com.runssnail.weixin.api.WeixinClient;
 import com.runssnail.weixin.api.common.SignType;
 import com.runssnail.weixin.api.common.utils.JsSdkUtils;
@@ -32,7 +32,7 @@ public class DefaultWeiXinService implements WeiXinService {
     /**
      * 微信支付api client
      */
-    private WeixinPaymentClient weiXinPaymentClient;
+    private WeixinPayClient weiXinPaymentClient;
 
     @Override
     public String getAppId() {
@@ -128,11 +128,11 @@ public class DefaultWeiXinService implements WeiXinService {
         this.accessTokenService = accessTokenService;
     }
 
-    public WeixinPaymentClient getWeiXinPaymentClient() {
+    public WeixinPayClient getWeiXinPaymentClient() {
         return weiXinPaymentClient;
     }
 
-    public void setWeiXinPaymentClient(WeixinPaymentClient weiXinPaymentClient) {
+    public void setWeiXinPaymentClient(WeixinPayClient weiXinPaymentClient) {
         this.weiXinPaymentClient = weiXinPaymentClient;
     }
 

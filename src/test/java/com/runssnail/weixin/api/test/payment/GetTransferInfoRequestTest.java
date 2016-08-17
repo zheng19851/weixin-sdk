@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.test.payment;
 
-import com.runssnail.weixin.api.DefaultWeixinPaymentClient;
+import com.runssnail.weixin.api.DefaultWeixinPayClient;
 import com.runssnail.weixin.api.request.payment.GetTransferInfoRequest;
 import com.runssnail.weixin.api.response.payment.GetTransferInfoResponse;
 
@@ -17,7 +17,7 @@ public class GetTransferInfoRequestTest {
         String certPath = "/Users/zhengwei/apiclient_cert.p12";
         String certPassword = mchId;
 
-        DefaultWeixinPaymentClient paymentClient = new DefaultWeixinPaymentClient(appId, mchId, paySignKey, certPath, certPassword);
+        DefaultWeixinPayClient paymentClient = new DefaultWeixinPayClient(appId, mchId, paySignKey, certPath, certPassword);
 
 
         String orderNo = "32739393939338332739393939338337";

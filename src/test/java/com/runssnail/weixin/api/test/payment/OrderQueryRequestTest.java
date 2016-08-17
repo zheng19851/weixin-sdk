@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.test.payment;
 
-import com.runssnail.weixin.api.DefaultWeixinPaymentClient;
-import com.runssnail.weixin.api.WeixinPaymentClient;
+import com.runssnail.weixin.api.DefaultWeixinPayClient;
+import com.runssnail.weixin.api.WeixinPayClient;
 import com.runssnail.weixin.api.request.payment.OrderQueryRequest;
 import com.runssnail.weixin.api.response.payment.OrderQueryResponse;
 
@@ -19,7 +19,7 @@ public class OrderQueryRequestTest {
         String paySignKey = "MgxJjILkONRsd85H5bUqTib02RFhRnS4";
 
 
-        WeixinPaymentClient client = new DefaultWeixinPaymentClient(appId, mchId, paySignKey);
+        WeixinPayClient client = new DefaultWeixinPayClient(appId, mchId, paySignKey);
 
         OrderQueryRequest request = new OrderQueryRequest();
         request.setOutTradeNo("2016071900174386040118");

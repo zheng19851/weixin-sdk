@@ -25,9 +25,9 @@ import java.util.Map;
  * <p>
  * Created by zhengwei on 2015/11/6.
  */
-public class DefaultWeixinPaymentClient implements WeixinPaymentClient {
+public class DefaultWeixinPayClient implements WeixinPayClient {
 
-    private static final Log log = LogFactory.getLog(DefaultWeixinPaymentClient.class);
+    private static final Log log = LogFactory.getLog(DefaultWeixinPayClient.class);
 
     /**
      * 连接超时时间，单位毫秒，默认3秒
@@ -60,7 +60,7 @@ public class DefaultWeixinPaymentClient implements WeixinPaymentClient {
      * @param mchId        商户号
      * @param paySignKey   支付秘钥
      */
-    public DefaultWeixinPaymentClient(String appId, String mchId, String paySignKey) {
+    public DefaultWeixinPayClient(String appId, String mchId, String paySignKey) {
         this.appId = appId;
         this.mchId = mchId;
         this.paySignKey = paySignKey;
@@ -76,7 +76,7 @@ public class DefaultWeixinPaymentClient implements WeixinPaymentClient {
      * @param certPath     证书路径
      * @param certPassword 证书密码
      */
-    public DefaultWeixinPaymentClient(String appId, String mchId, String paySignKey, String certPath, String certPassword) {
+    public DefaultWeixinPayClient(String appId, String mchId, String paySignKey, String certPath, String certPassword) {
         this.appId = appId;
         this.mchId = mchId;
         this.paySignKey = paySignKey;
