@@ -3,11 +3,11 @@ package com.runssnail.weixin.api.service;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * 用redis来存储ticket
+ * 用redis来存储js api ticket
  *
  * Created by zhengwei on 2016/3/31.
  */
-public class RedisTicketService extends AbstractTicketService {
+public class RedisJsApiTicketService extends AbstractJsApiTicketService {
 
     /**
      * 保存在redis里key的前缀, prefix + appid

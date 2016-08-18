@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.request.credential;
 
-import com.runssnail.weixin.api.AppIdAware;
-import com.runssnail.weixin.api.AppSecretAware;
+import com.runssnail.weixin.api.support.AppIdAware;
+import com.runssnail.weixin.api.support.AppSecretAware;
 import com.runssnail.weixin.api.request.GetRequest;
 import com.runssnail.weixin.api.response.credential.GetAccessTokenResponse;
 

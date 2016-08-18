@@ -14,6 +14,8 @@ import com.runssnail.weixin.api.internal.utils.XmlTool;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
 import com.runssnail.weixin.api.response.payment.PaymentResponse;
+import com.runssnail.weixin.api.support.AppIdKeyAware;
+import com.runssnail.weixin.api.support.MerchantIdAware;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils;
  *
  * Created by zhengwei on 2016/3/31.
  */
-public class MemoryTicketService extends AbstractTicketService {
+public class MemoryJsApiTicketService extends AbstractJsApiTicketService {
 
     private volatile String ticket;
 

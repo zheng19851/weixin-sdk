@@ -1,13 +1,15 @@
-package com.runssnail.weixin.api.request.user;
+package com.runssnail.weixin.api.request.web;
 
 import com.runssnail.weixin.api.request.GetRequest;
-import com.runssnail.weixin.api.response.user.GetUserResponse;
+import com.runssnail.weixin.api.response.web.GetUserResponse;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 获取用户请求
+ * 网页开发-获取用户请求
+ *
+ * https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842&token=&lang=zh_CN
  *
  * @author zhengwei
  */

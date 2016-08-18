@@ -1,9 +1,9 @@
-package com.runssnail.weixin.api.request.template;
+package com.runssnail.weixin.api.request.message;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.runssnail.weixin.api.domain.template.KeyNoteValue;
 import com.runssnail.weixin.api.request.PostRequest;
-import com.runssnail.weixin.api.response.template.TemplateMessageResponse;
+import com.runssnail.weixin.api.response.message.TemplateMessageResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ public class TemplateMessageRequest extends PostRequest<TemplateMessageResponse>
      */
     private static final long serialVersionUID = 675917578862661462L;
 
-    private static final String API_URL = "https://api.weixin.qq.com/cgi-bin/message/template/send";
+    private static final String API_URL = "https://api.weixin.qq.com/cgi-bin/message/message/send";
 
     /**
      * 接收方

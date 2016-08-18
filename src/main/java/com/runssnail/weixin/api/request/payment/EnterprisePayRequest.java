@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.request.payment;
 
-import com.runssnail.weixin.api.AppIdKeyAware;
-import com.runssnail.weixin.api.MerchantIdAware;
+import com.runssnail.weixin.api.support.AppIdKeyAware;
+import com.runssnail.weixin.api.support.MerchantIdAware;
 import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.response.payment.EnterprisePayResponse;
 import org.apache.commons.lang.StringUtils;

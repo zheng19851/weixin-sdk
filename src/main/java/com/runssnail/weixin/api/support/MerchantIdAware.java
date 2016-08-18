@@ -1,4 +1,4 @@
-package com.runssnail.weixin.api;
+package com.runssnail.weixin.api.support;
 
 /**
  * 自动注入商户ID

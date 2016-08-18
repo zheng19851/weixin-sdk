@@ -1,4 +1,4 @@
-package com.runssnail.weixin.api.response.ticket;
+package com.runssnail.weixin.api.response.web;
 
 import com.runssnail.weixin.api.response.JSONResponse;
 
@@ -8,13 +8,16 @@ import com.runssnail.weixin.api.response.JSONResponse;
  * @author zhengwei
  *
  */
-public class GetTicketResponse extends JSONResponse {
+public class GetJsApiTicketResponse extends JSONResponse {
 
     /**
      * 
      */
     private static final long serialVersionUID = 3602255493120477549L;
 
+    /**
+     * jsapi_ticket
+     */
     private String            ticket;
 
     public String getTicket() {

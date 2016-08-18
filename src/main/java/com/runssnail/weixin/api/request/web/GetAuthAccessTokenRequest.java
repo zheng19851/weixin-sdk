@@ -1,15 +1,17 @@
-package com.runssnail.weixin.api.request.user;
+package com.runssnail.weixin.api.request.web;
 
-import com.runssnail.weixin.api.AppIdAware;
-import com.runssnail.weixin.api.AppSecretAware;
+import com.runssnail.weixin.api.support.AppIdAware;
+import com.runssnail.weixin.api.support.AppSecretAware;
 import com.runssnail.weixin.api.request.GetRequest;
-import com.runssnail.weixin.api.response.user.GetAuthAccessTokenResponse;
+import com.runssnail.weixin.api.response.web.GetAuthAccessTokenResponse;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 获取网页授权用的access token
+ *
+ * https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842&token=&lang=zh_CN
  *
  * @author zhengwei
  */

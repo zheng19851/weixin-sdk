@@ -1,15 +1,17 @@
 package com.runssnail.weixin.api.service;
 
 import com.runssnail.weixin.api.WeixinClient;
-import com.runssnail.weixin.api.request.ticket.GetTicketRequest;
-import com.runssnail.weixin.api.response.ticket.GetTicketResponse;
+import com.runssnail.weixin.api.request.web.GetJsApiTicketRequest;
+import com.runssnail.weixin.api.response.web.GetJsApiTicketResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
+ * js api ticket service
+ *
  * Created by zhengwei on 2016/3/31.
  */
-public abstract class AbstractTicketService implements TicketService {
+public abstract class AbstractJsApiTicketService implements JsApiTicketService {
 
     protected final Log log = LogFactory.getLog(getClass());
 
@@ -23,7 +25,7 @@ public abstract class AbstractTicketService implements TicketService {
             log.info("refreshAccessToken start");
         }
 
-        GetTicketResponse response = weiXinClient.execute(new GetTicketRequest(), accessTokenService.getAccessToken());
+        GetJsApiTicketResponse response = weiXinClient.execute(new GetJsApiTicketRequest(), accessTokenService.getAccessToken());
         if (response.isSuccess()) {
             saveTicket(response.getTicket());
             if (log.isInfoEnabled()) {

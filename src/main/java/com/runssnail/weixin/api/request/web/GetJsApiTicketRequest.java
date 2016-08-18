@@ -1,7 +1,7 @@
-package com.runssnail.weixin.api.request.ticket;
+package com.runssnail.weixin.api.request.web;
 
 import com.runssnail.weixin.api.request.GetRequest;
-import com.runssnail.weixin.api.response.ticket.GetTicketResponse;
+import com.runssnail.weixin.api.response.web.GetJsApiTicketResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author zhengwei
  */
-public class GetTicketRequest extends GetRequest<GetTicketResponse> {
+public class GetJsApiTicketRequest extends GetRequest<GetJsApiTicketResponse> {
 
     /**
      *
@@ -26,8 +26,8 @@ public class GetTicketRequest extends GetRequest<GetTicketResponse> {
     }
 
     @Override
-    public Class<GetTicketResponse> getResponseClass() {
-        return GetTicketResponse.class;
+    public Class<GetJsApiTicketResponse> getResponseClass() {
+        return GetJsApiTicketResponse.class;
     }
 
     @Override

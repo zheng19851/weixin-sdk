@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.test.user;
 
 import com.runssnail.weixin.api.WeixinClient;
-import com.runssnail.weixin.api.request.user.GetUserRequest;
+import com.runssnail.weixin.api.request.web.GetUserRequest;
 import com.runssnail.weixin.api.response.Response;
 import com.runssnail.weixin.api.service.MemoryAccessTokenService;
 import com.runssnail.weixin.api.support.WeiXinClients;

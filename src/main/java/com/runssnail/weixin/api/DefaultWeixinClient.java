@@ -9,6 +9,8 @@ import com.runssnail.weixin.api.internal.http.HttpClient;
 import com.runssnail.weixin.api.internal.support.WeixinApiRuleValidate;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
+import com.runssnail.weixin.api.support.AppIdAware;
+import com.runssnail.weixin.api.support.AppSecretAware;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

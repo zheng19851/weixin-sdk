@@ -27,7 +27,7 @@ public class DefaultWeiXinService implements WeiXinService {
 
     private AccessTokenService accessTokenService;
 
-    private TicketService ticketService;
+    private JsApiTicketService ticketService;
 
     /**
      * 微信支付api client
@@ -120,11 +120,11 @@ public class DefaultWeiXinService implements WeiXinService {
         this.accessTokenService = accessTokenService;
     }
 
-    public TicketService getTicketService() {
+    public JsApiTicketService getTicketService() {
         return ticketService;
     }
 
-    public void setTicketService(TicketService ticketService) {
+    public void setTicketService(JsApiTicketService ticketService) {
         this.ticketService = ticketService;
     }
 

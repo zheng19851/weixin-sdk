@@ -5,7 +5,7 @@ package com.runssnail.weixin.api.service;
  *
  * Created by zhengwei on 2016/3/31.
  */
-public interface TicketService {
+public interface JsApiTicketService {
 
     /**
      * 获取
