@@ -1,4 +1,4 @@
-package com.runssnail.weixin.api.test.trade;
+package com.runssnail.weixin.api.test.payment;
 
 import com.runssnail.weixin.api.DefaultWeixinPayClient;
 import com.runssnail.weixin.api.WeixinPayClient;

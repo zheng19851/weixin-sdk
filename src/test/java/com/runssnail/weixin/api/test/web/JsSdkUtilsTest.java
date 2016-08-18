@@ -1,4 +1,4 @@
-package com.runssnail.weixin.api.test.jssdk;
+package com.runssnail.weixin.api.test.web;
 
 import com.runssnail.weixin.api.common.utils.PaymentUtils;
 import com.runssnail.weixin.api.domain.payment.JsApiPayReq;

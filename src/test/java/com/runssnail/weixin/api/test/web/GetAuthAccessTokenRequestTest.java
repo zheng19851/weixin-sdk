@@ -1,15 +1,15 @@
-package com.runssnail.weixin.api.test.user;
+package com.runssnail.weixin.api.test.web;
 
 import com.runssnail.weixin.api.WeixinClient;
-import com.runssnail.weixin.api.request.web.GetUserRequest;
-import com.runssnail.weixin.api.response.Response;
+import com.runssnail.weixin.api.request.web.GetAuthAccessTokenRequest;
+import com.runssnail.weixin.api.response.web.GetAuthAccessTokenResponse;
 import com.runssnail.weixin.api.service.MemoryAccessTokenService;
 import com.runssnail.weixin.api.support.WeiXinClients;
 
-
-public class GetUserRequestTest {
+public class GetAuthAccessTokenRequestTest {
 
     public static void main(String[] args) {
+
         String appId = "";
         String appSecret = "";
 
@@ -17,24 +17,21 @@ public class GetUserRequestTest {
         try {
             weiXinClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);
 
+            String code = "";
+            GetAuthAccessTokenRequest req = new GetAuthAccessTokenRequest(code);
+
             MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
             accessTokenService.setWeiXinClient(weiXinClient);
 
-            String token = "OezXcEiiBSKSxW0eoylIeJzncPOWyDcs4M0mnDjDyefojf46BkBFzjVLcygaNmtT_QZyAZezyaSMcKYQWnfpbjfb30oC4OoUlrbT-wDz87S5rXxM896PBjZogxXo1hXbp1hOByWHSUeg_ND7ohPjAg";
-
-            GetUserRequest req = new GetUserRequest(token, "oeumFjrOrsYmEV-MAElyRnscFwoo");
-
-            Response res = weiXinClient.execute(req);
+            GetAuthAccessTokenResponse res = weiXinClient.execute(req, accessTokenService.getAccessToken());
 
             System.out.println(res);
-
         } finally {
+
             if (weiXinClient != null) {
                 weiXinClient.close();
             }
-
         }
 
     }
-
 }

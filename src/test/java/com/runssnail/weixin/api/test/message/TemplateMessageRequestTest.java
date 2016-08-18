@@ -1,4 +1,4 @@
-package com.runssnail.weixin.api.test.template;
+package com.runssnail.weixin.api.test.message;
 
 import com.runssnail.weixin.api.RetryWeiXinClient;
 import com.runssnail.weixin.api.domain.message.KeyNoteValue;

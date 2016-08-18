@@ -1,4 +1,4 @@
-package com.runssnail.weixin.api.test.ticket;
+package com.runssnail.weixin.api.test.web;
 
 import com.runssnail.weixin.api.RetryWeiXinClient;
 import com.runssnail.weixin.api.request.web.GetJsApiTicketRequest;
@@ -7,6 +7,8 @@ import com.runssnail.weixin.api.service.MemoryAccessTokenService;
 import com.runssnail.weixin.api.support.WeiXinClients;
 
 /**
+ * 获取jsapi ticket
+ *
  * GetTicketRequestTest
  * 
  * @author zhengwei
