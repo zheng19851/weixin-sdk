@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.request.message;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.runssnail.weixin.api.domain.template.KeyNoteValue;
+import com.runssnail.weixin.api.domain.message.KeyNoteValue;
 import com.runssnail.weixin.api.request.PostRequest;
 import com.runssnail.weixin.api.response.message.TemplateMessageResponse;
 

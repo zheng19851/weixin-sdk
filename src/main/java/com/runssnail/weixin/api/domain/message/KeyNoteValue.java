@@ -1,4 +1,4 @@
-package com.runssnail.weixin.api.domain.template;
+package com.runssnail.weixin.api.domain.message;
 
 import java.io.Serializable;
 

@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.test.template;
 
 import com.runssnail.weixin.api.RetryWeiXinClient;
-import com.runssnail.weixin.api.domain.template.KeyNoteValue;
+import com.runssnail.weixin.api.domain.message.KeyNoteValue;
 import com.runssnail.weixin.api.request.message.TemplateMessageRequest;
 import com.runssnail.weixin.api.response.message.TemplateMessageResponse;
 import com.runssnail.weixin.api.support.WeiXinClients;
