@@ -11,9 +11,9 @@ public class DownloadBillRequestTest {
 
     public static void main(String[] args) {
 
-        String appId = "wxada6b9ac122390ff";
-        String mchId = "1334006201";
-        String paySignKey = "MgxJjILkONRsd85H5bUqTib02RFhRnS4";
+        String appId = "";
+        String mchId = "";
+        String paySignKey = "";
 
         DefaultWeixinPayClient paymentClient = new DefaultWeixinPayClient(appId, mchId, paySignKey);
 

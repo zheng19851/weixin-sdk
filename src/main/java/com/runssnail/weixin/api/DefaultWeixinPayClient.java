@@ -109,8 +109,8 @@ public class DefaultWeixinPayClient implements WeixinPayClient {
     protected <R extends Response> String buildPostParams(Request<R> request) {
 
         Map<String, Object> params = request.getParams();
-        if (request instanceof AppIdAware) {
-            String appIdKey = ((AppIdAware) request).getAppIdKey();
+        if (request instanceof AppIdKeyAware) {
+            String appIdKey = ((AppIdKeyAware) request).getAppIdKey();
             Validate.notEmpty(appIdKey, "appIdKey is required");
             params.put(appIdKey, this.appId);
         } else {

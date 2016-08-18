@@ -1,5 +1,7 @@
 package com.runssnail.weixin.api.request.credential;
 
+import com.runssnail.weixin.api.AppIdAware;
+import com.runssnail.weixin.api.AppSecretAware;
 import com.runssnail.weixin.api.request.GetRequest;
 import com.runssnail.weixin.api.response.credential.GetAccessTokenResponse;
 
@@ -11,22 +13,22 @@ import java.util.Map;
  *
  * @author zhengwei
  */
-public class GetAccessTokenRequest extends GetRequest<GetAccessTokenResponse> {
+public class GetAccessTokenRequest extends GetRequest<GetAccessTokenResponse> implements AppIdAware, AppSecretAware {
 
     /**
-     * 
+     *
      */
-    private static final long   serialVersionUID = 8446816964474020056L;
+    private static final long serialVersionUID = 8446816964474020056L;
 
-    private static final String API_URL          = "https://api.weixin.qq.com/cgi-bin/token";
+    private static final String API_URL = "https://api.weixin.qq.com/cgi-bin/token";
 
-    private String              appId;
+//    private String              appId;
+//
+//    private String              appSecret;
 
-    private String              appSecret;
-
-    public GetAccessTokenRequest(String appId, String appSecret) {
-        this.appId = appId;
-        this.appSecret = appSecret;
+    public GetAccessTokenRequest() {
+//        this.appId = appId;
+//        this.appSecret = appSecret;
     }
 
     @Override
@@ -38,8 +40,8 @@ public class GetAccessTokenRequest extends GetRequest<GetAccessTokenResponse> {
     public Map<String, Object> getParams() {
         Map<String, Object> params = new HashMap<>();
         params.put("grant_type", "client_credential");
-        params.put("appid", appId);
-        params.put("secret", this.appSecret);
+//        params.put("appid", appId);
+//        params.put("secret", this.appSecret);
 
         return params;
     }

@@ -28,7 +28,8 @@ public class SignUtilsTest {
                 "<cash_fee>10</cash_fee>\n" +
                 "</xml>";
 
-        boolean validate = SignUtils.validateSign(body, "MgxJjILkONRsd85H5bUqTib02RFhRnS4");
+        String paySignKey = "";
+        boolean validate = SignUtils.validateSign(body, paySignKey);
 
         System.out.println(validate);
     }

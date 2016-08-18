@@ -19,7 +19,7 @@ public class GetAccessTokenRequestTest {
 
         WeixinClient weiXinClient = new DefaultWeixinClient(appId, appSecret);
         try {
-            GetAccessTokenRequest req = new GetAccessTokenRequest(appId, appSecret);
+            GetAccessTokenRequest req = new GetAccessTokenRequest();
 
             Response res = weiXinClient.execute(req);
             

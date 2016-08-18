@@ -8,7 +8,7 @@ import com.runssnail.weixin.api.domain.payment.JsApiPayReq;
  */
 public class JsSdkUtilsTest {
     public static void main(String[] args) {
-        String appId = "wxada6b9ac122390ff";
+        String appId = "";
 //
 //        String url = "http://m.watongban.cn/test/pay/order_pay.htm";
 //        Config config = JsSdkUtils.getConfig(appId, "kgt8ON7yVITDhtdwci0qedJM_UH0zvQUbpVD3INoLUTKxxZG_RRX9O-kV4QDkjjizgLRpHYGtn65DbBDf0Rppw", url, SignType.MD5);

@@ -97,11 +97,13 @@ public class DefaultWeixinClient implements WeixinClient {
 
         String result = StringUtils.EMPTY;
 
+        Map<String, Object> params = prepareParams(req);
+
         try {
             if (method.isGet()) {
-                result = httpClient.doGet(apiUrl, req.getParams());
+                result = httpClient.doGet(apiUrl, params);
             } else {
-                result = httpClient.doPost(apiUrl, buildPostParams(req.getParams()), this.connectTimeout, this.readTimeout);
+                result = httpClient.doPost(apiUrl, buildPostParams(params), this.connectTimeout, this.readTimeout);
             }
 
             if (log.isDebugEnabled()) {
@@ -126,6 +128,30 @@ public class DefaultWeixinClient implements WeixinClient {
             log.debug("execute end, appId=" + this.appId + ", used total " + (System.currentTimeMillis() - start) + " ms, response=" + res);
         }
         return res;
+    }
+
+    /**
+     * 预处理下请求参数
+     *
+     * 注入appid和appSecret
+     *
+     * @param req 请求
+     * @param <R>
+     * @return
+     */
+    private <R extends Response> Map<String, Object> prepareParams(Request<R> req) {
+
+        Map<String, Object> params = req.getParams();
+
+        if (req instanceof AppIdAware) {
+            params.put("appid", this.appId);
+        }
+
+        if (req instanceof AppSecretAware) {
+            params.put("secret", this.appSecret);
+        }
+
+        return params;
     }
 
     /**

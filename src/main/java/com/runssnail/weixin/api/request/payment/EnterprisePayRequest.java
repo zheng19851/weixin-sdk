@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.request.payment;
 
-import com.runssnail.weixin.api.AppIdAware;
+import com.runssnail.weixin.api.AppIdKeyAware;
 import com.runssnail.weixin.api.MerchantIdAware;
 import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.response.payment.EnterprisePayResponse;
@@ -30,7 +30,7 @@ import java.util.TreeMap;
  * <p>
  * Created by zhengwei on 2016/3/23.
  */
-public class EnterprisePayRequest extends PaymentRequest<EnterprisePayResponse> implements AppIdAware, MerchantIdAware {
+public class EnterprisePayRequest extends PaymentRequest<EnterprisePayResponse> implements AppIdKeyAware, MerchantIdAware {
 
     /**
      * 设备号 device_info

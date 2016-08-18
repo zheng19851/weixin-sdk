@@ -13,8 +13,8 @@ import java.util.List;
 public class CreateMenuRequestTest2 {
 
     public static void main(String[] args) {
-        String appId = "wxe58afcd99f7a997e";
-        String appSecret = "5dcf8eac1e99e983fc58e42376ab0267";
+        String appId = "";
+        String appSecret = "";
 
         RetryWeiXinClient weixinApiClient = null;
         try {
