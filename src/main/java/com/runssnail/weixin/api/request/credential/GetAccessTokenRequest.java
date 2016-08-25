@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ΢微信api接口调用凭证请求
+ * 微信api接口调用凭证请求
  *
  * @author zhengwei
  */
@@ -22,13 +22,8 @@ public class GetAccessTokenRequest extends GetRequest<GetAccessTokenResponse> im
 
     private static final String API_URL = "https://api.weixin.qq.com/cgi-bin/token";
 
-//    private String              appId;
-//
-//    private String              appSecret;
 
     public GetAccessTokenRequest() {
-//        this.appId = appId;
-//        this.appSecret = appSecret;
     }
 
     @Override
@@ -40,8 +35,6 @@ public class GetAccessTokenRequest extends GetRequest<GetAccessTokenResponse> im
     public Map<String, Object> getParams() {
         Map<String, Object> params = new HashMap<>();
         params.put("grant_type", "client_credential");
-//        params.put("appid", appId);
-//        params.put("secret", this.appSecret);
 
         return params;
     }

@@ -25,7 +25,7 @@ public class CreatePrepayOrderRequestTest {
 //        config.setMerchantId("10065789");
 //        config.setPaySignKey("hfhaf97fj32kj32jk98f98a833fajfa9");
 
-        WeixinPayClient client = new DefaultWeixinPayClient(appId, merchantId, paySignKey,"","");
+        WeixinPayClient client = new DefaultWeixinPayClient(appId, merchantId, paySignKey);
 
         try {
 
@@ -44,7 +44,7 @@ public class CreatePrepayOrderRequestTest {
 
             UnifiedOrderResponse res = client.execute(req);
 
-            System.out.println(res);
+            System.out.println(res.getPrepayId());
 
         } finally {
             if (client != null) {

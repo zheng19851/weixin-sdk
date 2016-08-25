@@ -3,7 +3,7 @@ package com.runssnail.weixin.api.test.credential;
 import com.runssnail.weixin.api.DefaultWeixinClient;
 import com.runssnail.weixin.api.WeixinClient;
 import com.runssnail.weixin.api.request.credential.GetAccessTokenRequest;
-import com.runssnail.weixin.api.response.Response;
+import com.runssnail.weixin.api.response.credential.GetAccessTokenResponse;
 
 /**
  * 获取api的access token
@@ -14,16 +14,16 @@ import com.runssnail.weixin.api.response.Response;
 public class GetAccessTokenRequestTest {
 
     public static void main(String[] args) {
-        String appId = "wxe58afcd99f7a997e";
-        String appSecret = "5dcf8eac1e99e983fc58e42376ab0267";
+        String appId = "";
+        String appSecret = "";
 
         WeixinClient weiXinClient = new DefaultWeixinClient(appId, appSecret);
         try {
             GetAccessTokenRequest req = new GetAccessTokenRequest();
 
-            Response res = weiXinClient.execute(req);
+            GetAccessTokenResponse res = weiXinClient.execute(req);
             
-            System.out.println(res);
+            System.out.println(res.getAccessToken());
         } finally {
             if (weiXinClient != null) {
                 weiXinClient.close();

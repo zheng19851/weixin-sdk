@@ -1,5 +1,5 @@
 /**
- * 模板消息
+ * 消息
  * 
  * @author zhengwei
  */

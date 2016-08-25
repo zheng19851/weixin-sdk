@@ -4,50 +4,52 @@
 
     1.1 DefaultWeixinClient是对微信api的具体实现
 
-    使用方式:
+        使用方式:
 
-    // =====下面是获取access token的列子=====
-    String appId = "";
-    String appSecret = "";
+        // =====下面是获取access token的列子=====
+        String appId = "";
+        String appSecret = "";
 
-    WeixinClient weiXinClient = new DefaultWeixinClient(appId, appSecret);
-    try {
-        GetAccessTokenRequest req = new GetAccessTokenRequest(appId, appSecret);
+        WeixinClient weiXinClient = new DefaultWeixinClient(appId, appSecret);
+        try {
+            GetAccessTokenRequest req = new GetAccessTokenRequest(appId, appSecret);
 
-        GetAccessTokenResponse res = weiXinClient.execute(req);
+            GetAccessTokenResponse res = weiXinClient.execute(req);
 
-        System.out.println(res.getAccessToken());
-    } finally {
-        if (weiXinClient != null) {
-            weiXinClient.close();
+            System.out.println(res.getAccessToken());
+        } finally {
+            // 应用停止后,建议关闭client
+            if (weiXinClient != null) {
+                weiXinClient.close();
+            }
         }
-    }
 
     1.2 WeiXinService, 封装了access token
 
-    // 下面是获取菜单demo
+        // 下面是获取菜单demo
 
-    WeixinClient weiXinClient = new DefaultWeixinClient(appId, appSecret);
+        String appId = ""; // 微信appId
+        String appSecret = ""; // 微信appSecret
+        WeixinClient weiXinClient = new DefaultWeixinClient(appId, appSecret);
 
-    // 使用内存保存access token, 不建议在生产环境使用, 多台机器时, access token会有问题
-    // 生产环境建议使用RedisAccessTokenService
-    MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
+        // 使用内存保存access token, 不建议在生产环境使用, 多台机器时, access token会有问题
+        // 生产环境建议使用RedisAccessTokenService
+        MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
+        accessTokenService.setWeiXinClient(weiXinClient);
 
-    accessTokenService.setWeiXinClient(weiXinClient);
+        // WeiXinService默认实现
+        DefaultWeiXinService weiXinService = new DefaultWeiXinService();
+        weiXinService.setWeixinClient(weiXinClient);
+        // 设置accessTokenService
+        weiXinService.setAccessTokenService(accessTokenService);
 
-    // WeiXinService默认实现
-    DefaultWeiXinService weiXinService = new DefaultWeiXinService();
-    weiXinService.setWeixinClient(weiXinClient);
-    // 设置accessTokenService
-    weiXinService.setAccessTokenService(accessTokenService);
+        // 获取菜单
+        GetMenuResponse getMenuResponse = weiXinService.execute(new GetMenuRequest());
+        if (getMenuResponse.isSuccess()) {
+            // 获取菜单信息
+        }
 
-    // 获取菜单
-    GetMenuResponse getMenuResponse = weiXinService.execute(new GetMenuRequest());
-    if (getMenuResponse.isSuccess()) {
-        // 获取菜单信息
-    }
-
-    注意: 实际开发过程中, 调用微信接口, 建议使用WeiXinService, 此接口封装了access token的获取和存储, 支持本地内存和redis
+        注意: 实际开发过程中, 调用微信接口, 建议使用WeiXinService, 此接口封装了access token的获取和存储, 支持本地内存和redis
 
 2、微信支付api接口WeixinPayClient
 
