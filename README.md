@@ -14,21 +14,25 @@
     try {
         GetAccessTokenRequest req = new GetAccessTokenRequest(appId, appSecret);
 
-        Response res = weiXinClient.execute(req);
+        GetAccessTokenResponse res = weiXinClient.execute(req);
 
-        System.out.println(res);
+        System.out.println(res.getAccessToken());
     } finally {
         if (weiXinClient != null) {
             weiXinClient.close();
         }
     }
 
-    1.2 WeiXinService
+    1.2 WeiXinService, 封装了access token
 
     // 下面是获取菜单demo
 
+    WeixinClient weiXinClient = new DefaultWeixinClient(appId, appSecret);
+
     // 使用内存保存access token, 不建议在生产环境使用, 多台机器时, access token会有问题
+    // 生产环境建议使用RedisAccessTokenService
     MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
+
     accessTokenService.setWeiXinClient(weiXinClient);
 
     // WeiXinService默认实现
@@ -40,7 +44,7 @@
     // 获取菜单
     GetMenuResponse getMenuResponse = weiXinService.execute(new GetMenuRequest());
     if (getMenuResponse.isSuccess()) {
-        //
+        // 获取菜单信息
     }
 
     注意: 实际开发过程中, 调用微信接口, 建议使用WeiXinService, 此接口封装了access token的获取和存储, 支持本地内存和redis
@@ -57,10 +61,13 @@
 
         DefaultWeixinPayClient payClient = new DefaultWeixinPayClient(appId, mchId, paySignKey, certPath, certPassword);
 
+        // 不需要证书
+        // DefaultWeixinPayClient payClient = new DefaultWeixinPayClient(appId, mchId, paySignKey);
+
         // 查询企业付款订单
         String orderNo = "32739393939338332739393939338335";
         GetTransferInfoRequest request = new GetTransferInfoRequest(orderNo);
 
         GetTransferInfoResponse response = payClient.execute(request);
 
-        paymentClient.close();
+        payClient.close();
