@@ -1,5 +1,7 @@
 package com.runssnail.weixin.api.service;
 
+import java.io.Serializable;
+
 /**
  *  redis client
  *
@@ -22,5 +24,5 @@ public interface RedisClient {
      * @param value 值
      * @param liveTime 存活时间,单位秒
      */
-    void set(String key, Object value, long liveTime);
+    void set(String key, Serializable value, long liveTime);
 }
