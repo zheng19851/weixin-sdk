@@ -1,10 +1,9 @@
 package com.runssnail.weixin.api.test.message;
 
-import com.runssnail.weixin.api.RetryWeiXinClient;
+import com.runssnail.weixin.api.DefaultWeixinClient;
 import com.runssnail.weixin.api.domain.message.KeyNoteValue;
 import com.runssnail.weixin.api.request.message.TemplateMessageRequest;
 import com.runssnail.weixin.api.response.message.TemplateMessageResponse;
-import com.runssnail.weixin.api.support.WeiXinClients;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -23,28 +22,46 @@ public class TemplateMessageRequestTest {
 
 
     public static void main(String[] args) {
-        String appId = "";
-        String appSecret = "";
+        // 潘老板测试帐号
+        String appId = "wx7cbc0121c2093f64";
+        String appSecret = "5380b2231935166e7d0f02cdce8e7209";
 
-        RetryWeiXinClient weixinApiClient = null;
+        DefaultWeixinClient weixinClient = new DefaultWeixinClient(appId, appSecret);
+
+//        MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
+//        accessTokenService.setWeiXinClient(weixinClient);
+
 
         try {
-            weixinApiClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);
 
-//            MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
-//            accessTokenService.setWeiXinClient(weixinApiClient);
-
-            TemplateMessageRequest req = createAward();
-
-            String token = "wvBDD_dxGnetdZVnayCJADbOZ5q8YPDTBiO_XIFA-C8EPnec6zmWsqfZYgqaQmMgqGK3aT39va0Dk-OpU8EsfL7hiGOeLzJ5xFHG5At17jl_bWZU4AsyGhLxZJ598nVuCKKdAJALTT";
-            TemplateMessageResponse res = weixinApiClient.execute(req, token);
+//            String token = accessTokenService.getAccessToken();
+            String token = "uIFtGIuQ98tys_Z3iztlols2hBWiJUMj65JGUskWZ8QV1xDevzrwd46zmlcBlRRTW2_-AfmCs9pMc7IJe_7TUL_nqHy8JbQqaWG6nXUzq_Nqhizc9z0akWLNJ416Py2aIOEgACAQWM";
+//            String token = "rCwnax5u6rpgdaiK-s90NpHv0S7kXjRsZmrL3ygA4yicsN5lkLarQCg7a8KfAXWrtOd7j8zL1TXQBzotkPuwaD7mwFfzVHSx5e7jXiW8S6HdLIxl2u_VshJX4M_u8iMnEBIgAAAXUB";
+            TemplateMessageRequest req = createNotice();
+            TemplateMessageResponse res = weixinClient.execute(req, token);
             System.out.println(res);
         } finally {
-            if (weixinApiClient != null) {
-                weixinApiClient.close();
+            if (weixinClient != null) {
+                weixinClient.close();
             }
         }
 
+
+    }
+
+    private static TemplateMessageRequest createNotice() {
+        Map<String, KeyNoteValue> data = new HashMap<String, KeyNoteValue>();
+        data.put("first", new KeyNoteValue("先生您好", DEFAULT_TITLE_COLOR));
+        data.put("keyword1", new KeyNoteValue("13888888888", DEFAULT_CONTENT_COLOR));
+        data.put("keyword2", new KeyNoteValue("20元", DEFAULT_CONTENT_COLOR));
+        data.put("keyword3", new KeyNoteValue("20元", DEFAULT_MONEY_COLOR));
+        data.put("keyword4", new KeyNoteValue("2016-10-14", DEFAULT_MONEY_COLOR));
+        data.put("remark", new KeyNoteValue("欢迎再次光临", DEFAULT_REMARK_COLOR));
+
+        TemplateMessageRequest req = new TemplateMessageRequest("ROiM1nLeVIifQHMD07P1tjgXyNjyFDv17yxMm1ofehM",
+                "oz1nRwi6wnQP9QVHEzNwpC1OnGuU", data);
+
+        return req;
 
     }
 
@@ -95,9 +112,7 @@ public class TemplateMessageRequestTest {
         return StringUtils.leftPad(content, content.length() + appendCount, " ");
 
 
-
     }
-
 
 
 }

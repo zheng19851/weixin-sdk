@@ -20,7 +20,7 @@ public class TemplateMessageRequest extends PostRequest<TemplateMessageResponse>
      */
     private static final long serialVersionUID = 675917578862661462L;
 
-    private static final String API_URL = "https://api.weixin.qq.com/cgi-bin/message/message/send";
+    private static final String API_URL = "https://api.weixin.qq.com/cgi-bin/message/template/send";
 
     /**
      * 接收方
