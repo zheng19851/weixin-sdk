@@ -3,7 +3,11 @@ package com.runssnail.weixin.api.test.service;
 import com.runssnail.weixin.api.DefaultWeixinClient;
 import com.runssnail.weixin.api.WeixinClient;
 import com.runssnail.weixin.api.request.menu.GetMenuRequest;
+import com.runssnail.weixin.api.request.user.GetUserInfoRequest;
+import com.runssnail.weixin.api.request.web.GetAuthAccessTokenRequest;
 import com.runssnail.weixin.api.response.menu.GetMenuResponse;
+import com.runssnail.weixin.api.response.user.GetUserInfoResponse;
+import com.runssnail.weixin.api.response.web.GetAuthAccessTokenResponse;
 import com.runssnail.weixin.api.service.DefaultWeiXinService;
 import com.runssnail.weixin.api.service.MemoryAccessTokenService;
 
@@ -38,5 +42,20 @@ public class WeiXinServiceTest {
         System.out.println(getMenuResponse);
 
         weiXinClient.close();
+
+        String code = "";
+        GetAuthAccessTokenRequest getAuthAccessTokenRequest = new GetAuthAccessTokenRequest(code);
+
+        GetAuthAccessTokenResponse getAuthAccessTokenResponse = weiXinClient.execute(getAuthAccessTokenRequest);
+
+        String openId = getAuthAccessTokenResponse.getOpenId();
+
+        GetUserInfoRequest getUserInfoRequest = new GetUserInfoRequest(openId);
+
+
+        GetUserInfoResponse getUserInfoResponse = weiXinService.execute(getUserInfoRequest);
+
+        getUserInfoResponse.isSubscribed();
+
     }
 }

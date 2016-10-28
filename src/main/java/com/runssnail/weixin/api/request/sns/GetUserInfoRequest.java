@@ -1,7 +1,7 @@
-package com.runssnail.weixin.api.request.web;
+package com.runssnail.weixin.api.request.sns;
 
 import com.runssnail.weixin.api.request.GetRequest;
-import com.runssnail.weixin.api.response.web.GetUserResponse;
+import com.runssnail.weixin.api.response.sns.GetUserInfoResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,10 +12,8 @@ import java.util.Map;
  * https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842&token=&lang=zh_CN
  *
  * @author zhengwei
- * @see com.runssnail.weixin.api.request.sns.GetUserInfoRequest
  */
-@Deprecated
-public class GetUserRequest extends GetRequest<GetUserResponse> {
+public class GetUserInfoRequest extends GetRequest<GetUserInfoResponse> {
 
     /**
      *
@@ -34,7 +32,7 @@ public class GetUserRequest extends GetRequest<GetUserResponse> {
      */
     private String              openId;
 
-    public GetUserRequest(String accessToken, String openId) {
+    public GetUserInfoRequest(String accessToken, String openId) {
         this.accessToken = accessToken;
         this.openId = openId;
     }
@@ -45,8 +43,8 @@ public class GetUserRequest extends GetRequest<GetUserResponse> {
     }
 
     @Override
-    public Class<GetUserResponse> getResponseClass() {
-        return GetUserResponse.class;
+    public Class<GetUserInfoResponse> getResponseClass() {
+        return GetUserInfoResponse.class;
     }
 
     @Override
@@ -57,5 +55,4 @@ public class GetUserRequest extends GetRequest<GetUserResponse> {
         params.put("lang", "zh_CN");
         return params;
     }
-
 }

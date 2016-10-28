@@ -9,6 +9,8 @@ import java.util.Map;
 /**
  * 获取用户基本信息
  *
+ * http://mp.weixin.qq.com/wiki/1/8a5ce6257f1d3b2afb20f83e72b72ce9.html
+ *
  * Created by zhengwei on 16/5/30.
  */
 public class GetUserInfoRequest extends GetRequest<GetUserInfoResponse> {

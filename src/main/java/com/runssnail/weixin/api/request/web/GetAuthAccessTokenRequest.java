@@ -14,7 +14,9 @@ import java.util.Map;
  * https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842&token=&lang=zh_CN
  *
  * @author zhengwei
+ * @see com.runssnail.weixin.api.request.sns.oauth2.GetAccessTokenRequest
  */
+@Deprecated
 public class GetAuthAccessTokenRequest extends GetRequest<GetAuthAccessTokenResponse> implements AppIdAware, AppSecretAware {
 
     /**
