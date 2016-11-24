@@ -1,11 +1,9 @@
 package com.runssnail.weixin.api.request.payment;
 
-import com.runssnail.weixin.api.internal.annotations.AppIdWired;
-import com.runssnail.weixin.api.internal.support.AppIdKeyAware;
-import com.runssnail.weixin.api.internal.support.MerchantIdAware;
 import com.runssnail.weixin.api.common.utils.SignUtils;
-import com.runssnail.weixin.api.response.payment.EnterprisePayResponse;
+import com.runssnail.weixin.api.internal.annotations.AppIdWired;
 import com.runssnail.weixin.api.internal.annotations.MerchantIdWired;
+import com.runssnail.weixin.api.response.payment.EnterprisePayResponse;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Map;
@@ -34,7 +32,7 @@ import java.util.TreeMap;
  */
 @MerchantIdWired
 @AppIdWired("mch_appid")
-public class EnterprisePayRequest extends PaymentRequest<EnterprisePayResponse> implements AppIdKeyAware, MerchantIdAware {
+public class EnterprisePayRequest extends PaymentRequest<EnterprisePayResponse> {
 
     /**
      * 设备号 device_info
@@ -73,16 +71,6 @@ public class EnterprisePayRequest extends PaymentRequest<EnterprisePayResponse> 
 
     public EnterprisePayRequest() {
 
-    }
-
-    @Override
-    public String getAppIdKey() {
-        return "mch_appid";
-    }
-
-    @Override
-    public String getMerchantIdKey() {
-        return "mchid";
     }
 
     public String getDeviceInfo() {

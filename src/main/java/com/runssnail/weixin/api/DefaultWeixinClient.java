@@ -11,8 +11,6 @@ import com.runssnail.weixin.api.internal.http.HttpClient;
 import com.runssnail.weixin.api.internal.support.WeixinApiRuleValidate;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
-import com.runssnail.weixin.api.internal.support.AppIdAware;
-import com.runssnail.weixin.api.internal.support.AppSecretAware;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -146,14 +144,6 @@ public class DefaultWeixinClient implements WeixinClient {
     private <R extends Response> Map<String, Object> prepareParams(Request<R> req) {
 
         Map<String, Object> params = req.getParams();
-
-        if (req instanceof AppIdAware) {
-            params.put("appid", this.appId);
-        }
-
-        if (req instanceof AppSecretAware) {
-            params.put("secret", this.appSecret);
-        }
 
         if (req.getClass().isAnnotationPresent(AppIdWired.class)) {
             AppIdWired appIdWired = req.getClass().getAnnotation(AppIdWired.class);
