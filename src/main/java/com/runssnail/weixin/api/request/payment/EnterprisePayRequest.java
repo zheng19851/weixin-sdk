@@ -1,9 +1,11 @@
 package com.runssnail.weixin.api.request.payment;
 
-import com.runssnail.weixin.api.support.AppIdKeyAware;
-import com.runssnail.weixin.api.support.MerchantIdAware;
+import com.runssnail.weixin.api.internal.annotations.AppIdWired;
+import com.runssnail.weixin.api.internal.support.AppIdKeyAware;
+import com.runssnail.weixin.api.internal.support.MerchantIdAware;
 import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.response.payment.EnterprisePayResponse;
+import com.runssnail.weixin.api.internal.annotations.MerchantIdWired;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Map;
@@ -30,6 +32,8 @@ import java.util.TreeMap;
  * <p>
  * Created by zhengwei on 2016/3/23.
  */
+@MerchantIdWired
+@AppIdWired("mch_appid")
 public class EnterprisePayRequest extends PaymentRequest<EnterprisePayResponse> implements AppIdKeyAware, MerchantIdAware {
 
     /**

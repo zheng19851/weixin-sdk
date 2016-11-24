@@ -1,4 +1,4 @@
-package com.runssnail.weixin.api.test.credential;
+package com.runssnail.weixin.api.test;
 
 import com.runssnail.weixin.api.DefaultWeixinClient;
 import com.runssnail.weixin.api.WeixinClient;
@@ -6,30 +6,29 @@ import com.runssnail.weixin.api.request.credential.GetAccessTokenRequest;
 import com.runssnail.weixin.api.response.credential.GetAccessTokenResponse;
 
 /**
- * 获取api的access token
- * 
- * @author zhengwei
- *
+ * Created by zhengwei on 2016/11/24.
  */
-public class GetAccessTokenRequestTest {
+public class DefaultWeixinClientTest {
 
     public static void main(String[] args) {
-        String appId = "wx7cbc0121c2093f64";
-        String appSecret = "5380b2231935166e7d0f02cdce8e7209";
+        String appId = "";
+        String appSecret = "";
 
+        // 创建DefaultWeixinClient
         WeixinClient weiXinClient = new DefaultWeixinClient(appId, appSecret);
         try {
+
+            // 创建GetAccessTokenRequest
             GetAccessTokenRequest req = new GetAccessTokenRequest();
 
+            // 获取access token
             GetAccessTokenResponse res = weiXinClient.execute(req);
-            
+
             System.out.println(res.getAccessToken());
         } finally {
             if (weiXinClient != null) {
                 weiXinClient.close();
             }
         }
-
     }
-
 }

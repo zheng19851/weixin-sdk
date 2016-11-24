@@ -3,19 +3,21 @@ package com.runssnail.weixin.api;
 import com.runssnail.weixin.api.common.SignType;
 import com.runssnail.weixin.api.common.utils.SignUtils;
 import com.runssnail.weixin.api.constants.Constants;
-import com.runssnail.weixin.api.exception.PaymentApiException;
 import com.runssnail.weixin.api.exception.ApiException;
+import com.runssnail.weixin.api.exception.PaymentApiException;
+import com.runssnail.weixin.api.internal.annotations.AppIdWired;
+import com.runssnail.weixin.api.internal.annotations.MerchantIdWired;
 import com.runssnail.weixin.api.internal.http.DefaultHttpClient;
-import com.runssnail.weixin.api.internal.http.PaymentHttpClient;
 import com.runssnail.weixin.api.internal.http.HttpClient;
+import com.runssnail.weixin.api.internal.http.PaymentHttpClient;
+import com.runssnail.weixin.api.internal.support.AppIdKeyAware;
+import com.runssnail.weixin.api.internal.support.MerchantIdAware;
 import com.runssnail.weixin.api.internal.support.WeixinApiRuleValidate;
 import com.runssnail.weixin.api.internal.support.WeixinPayResponseHelper;
 import com.runssnail.weixin.api.internal.utils.XmlTool;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
 import com.runssnail.weixin.api.response.payment.PaymentResponse;
-import com.runssnail.weixin.api.support.AppIdKeyAware;
-import com.runssnail.weixin.api.support.MerchantIdAware;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -58,9 +60,9 @@ public class DefaultWeixinPayClient implements WeixinPayClient {
     /**
      * 创建DefaultWeiXinPaymentClient
      *
-     * @param appId        微信公众号id
-     * @param mchId        商户号
-     * @param paySignKey   支付秘钥
+     * @param appId      微信公众号id
+     * @param mchId      商户号
+     * @param paySignKey 支付秘钥
      */
     public DefaultWeixinPayClient(String appId, String mchId, String paySignKey) {
         this.appId = appId;
@@ -111,27 +113,43 @@ public class DefaultWeixinPayClient implements WeixinPayClient {
     protected <R extends Response> String buildPostParams(Request<R> request) {
 
         Map<String, Object> params = request.getParams();
-        if (request instanceof AppIdKeyAware) {
-            String appIdKey = ((AppIdKeyAware) request).getAppIdKey();
-            Validate.notEmpty(appIdKey, "appIdKey is required");
-            params.put(appIdKey, this.appId);
+
+
+        if ((request instanceof AppIdKeyAware) || request.getClass().isAnnotationPresent(AppIdWired.class)) {
+            if (request instanceof AppIdKeyAware) {
+                String appIdKey = ((AppIdKeyAware) request).getAppIdKey();
+                Validate.notEmpty(appIdKey, "appIdKey is required");
+                params.put(appIdKey, this.appId);
+            } else {
+                AppIdWired appIdWired = request.getClass().getAnnotation(AppIdWired.class);
+                Validate.notEmpty(appIdWired.value(), "appIdKey is required");
+                params.put(appIdWired.value(), this.appId);
+            }
+
         } else {
             if (!params.containsKey("appid")) {
                 params.put("appid", this.appId);
             }
         }
 
-        if (request instanceof MerchantIdAware) {
-            String mchIdKey = ((MerchantIdAware) request).getMerchantIdKey();
-            Validate.notEmpty(mchIdKey, "mchIdKey is required");
-            params.put(mchIdKey, this.mchId); // 商户号
+        if ((request instanceof MerchantIdAware) || request.getClass().isAnnotationPresent(MerchantIdWired.class)) {
+            if (request instanceof MerchantIdAware) {
+                String mchIdKey = ((MerchantIdAware) request).getMerchantIdKey();
+                Validate.notEmpty(mchIdKey, "mchIdKey is required");
+                params.put(mchIdKey, this.mchId); // 商户号
+            } else {
+                MerchantIdWired merchantIdWired = request.getClass().getAnnotation(MerchantIdWired.class);
+                params.put(merchantIdWired.value(), this.mchId);
+            }
         } else {
+
             if (!params.containsKey("mch_id")) {
                 params.put("mch_id", this.mchId);
             }
+
         }
 
-        if(!params.containsKey("nonce_str")) {
+        if (!params.containsKey("nonce_str")) {
             params.put("nonce_str", SignUtils.buildNonce());
         }
 
@@ -153,7 +171,7 @@ public class DefaultWeixinPayClient implements WeixinPayClient {
             throw new PaymentApiException(e);
         }
         if (res.getDataType().isXml()) {
-            return (R)WeixinPayResponseHelper.getObjectFromXml(result, res);
+            return (R) WeixinPayResponseHelper.getObjectFromXml(result, res);
         } else {
             return res;
         }

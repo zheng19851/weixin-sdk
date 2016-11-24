@@ -1,7 +1,9 @@
 package com.runssnail.weixin.api.request.credential;
 
-import com.runssnail.weixin.api.support.AppIdAware;
-import com.runssnail.weixin.api.support.AppSecretAware;
+import com.runssnail.weixin.api.internal.annotations.AppIdWired;
+import com.runssnail.weixin.api.internal.annotations.AppSecretWired;
+import com.runssnail.weixin.api.internal.support.AppIdAware;
+import com.runssnail.weixin.api.internal.support.AppSecretAware;
 import com.runssnail.weixin.api.request.GetRequest;
 import com.runssnail.weixin.api.response.credential.GetAccessTokenResponse;
 
@@ -13,6 +15,8 @@ import java.util.Map;
  *
  * @author zhengwei
  */
+@AppIdWired
+@AppSecretWired
 public class GetAccessTokenRequest extends GetRequest<GetAccessTokenResponse> implements AppIdAware, AppSecretAware {
 
     /**

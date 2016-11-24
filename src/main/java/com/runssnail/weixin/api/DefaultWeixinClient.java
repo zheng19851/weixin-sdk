@@ -4,13 +4,15 @@ import com.alibaba.fastjson.JSON;
 import com.runssnail.weixin.api.common.RequestMethod;
 import com.runssnail.weixin.api.constants.Constants;
 import com.runssnail.weixin.api.exception.ApiException;
+import com.runssnail.weixin.api.internal.annotations.AppIdWired;
+import com.runssnail.weixin.api.internal.annotations.AppSecretWired;
 import com.runssnail.weixin.api.internal.http.DefaultHttpClient;
 import com.runssnail.weixin.api.internal.http.HttpClient;
 import com.runssnail.weixin.api.internal.support.WeixinApiRuleValidate;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
-import com.runssnail.weixin.api.support.AppIdAware;
-import com.runssnail.weixin.api.support.AppSecretAware;
+import com.runssnail.weixin.api.internal.support.AppIdAware;
+import com.runssnail.weixin.api.internal.support.AppSecretAware;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -134,7 +136,7 @@ public class DefaultWeixinClient implements WeixinClient {
 
     /**
      * 预处理下请求参数
-     *
+     * <p>
      * 注入appid和appSecret
      *
      * @param req 请求
@@ -152,6 +154,17 @@ public class DefaultWeixinClient implements WeixinClient {
         if (req instanceof AppSecretAware) {
             params.put("secret", this.appSecret);
         }
+
+        if (req.getClass().isAnnotationPresent(AppIdWired.class)) {
+            AppIdWired appIdWired = req.getClass().getAnnotation(AppIdWired.class);
+            params.put(appIdWired.value(), this.appId);
+        }
+
+        if (req.getClass().isAnnotationPresent(AppSecretWired.class)) {
+            AppSecretWired appSecretWired = req.getClass().getAnnotation(AppSecretWired.class);
+            params.put(appSecretWired.value(), this.appSecret);
+        }
+
 
         return params;
     }

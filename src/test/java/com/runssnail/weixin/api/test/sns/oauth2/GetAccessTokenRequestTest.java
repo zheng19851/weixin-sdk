@@ -1,10 +1,9 @@
 package com.runssnail.weixin.api.test.sns.oauth2;
 
+import com.runssnail.weixin.api.DefaultWeixinClient;
 import com.runssnail.weixin.api.WeixinClient;
 import com.runssnail.weixin.api.request.sns.oauth2.GetAccessTokenRequest;
 import com.runssnail.weixin.api.response.sns.oauth2.GetAccessTokenResponse;
-import com.runssnail.weixin.api.service.MemoryAccessTokenService;
-import com.runssnail.weixin.api.support.WeiXinClients;
 
 /**
  * Created by zhengwei on 2016/10/28.
@@ -13,20 +12,17 @@ public class GetAccessTokenRequestTest {
 
     public static void main(String[] args) {
 
-        String appId = "";
-        String appSecret = "";
+        // 潘老板
+        String appId = "wx7cbc0121c2093f64";
+        String appSecret = "5380b2231935166e7d0f02cdce8e7209";
 
-        WeixinClient weiXinClient = null;
+        WeixinClient weiXinClient = new DefaultWeixinClient(appId, appSecret);
         try {
-            weiXinClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);
 
-            String code = "";
+            String code = "021gYL9c0j5RRv12mD8c0ZEM9c0gYL9e";
             GetAccessTokenRequest req = new GetAccessTokenRequest(code);
 
-            MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
-            accessTokenService.setWeiXinClient(weiXinClient);
-
-            GetAccessTokenResponse res = weiXinClient.execute(req, accessTokenService.getAccessToken());
+            GetAccessTokenResponse res = weiXinClient.execute(req);
 
             System.out.println(res);
         } finally {
