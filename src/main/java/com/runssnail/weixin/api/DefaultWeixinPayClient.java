@@ -10,7 +10,6 @@ import com.runssnail.weixin.api.internal.annotations.MerchantIdWired;
 import com.runssnail.weixin.api.internal.http.DefaultHttpClient;
 import com.runssnail.weixin.api.internal.http.HttpClient;
 import com.runssnail.weixin.api.internal.http.PaymentHttpClient;
-import com.runssnail.weixin.api.internal.support.WeixinApiRuleValidate;
 import com.runssnail.weixin.api.internal.support.WeixinPayResponseHelper;
 import com.runssnail.weixin.api.internal.utils.XmlTool;
 import com.runssnail.weixin.api.request.Request;
@@ -178,7 +177,7 @@ public class DefaultWeixinPayClient implements WeixinPayClient {
 
     @Override
     public <R extends Response> R execute(Request<R> req) throws ApiException {
-        WeixinApiRuleValidate.notNull(req, "request is required");
+        Validate.notNull(req, "request is required");
 
         return executeInternal(req);
     }

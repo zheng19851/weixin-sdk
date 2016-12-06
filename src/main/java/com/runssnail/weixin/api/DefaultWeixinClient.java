@@ -8,10 +8,10 @@ import com.runssnail.weixin.api.internal.annotations.AppIdWired;
 import com.runssnail.weixin.api.internal.annotations.AppSecretWired;
 import com.runssnail.weixin.api.internal.http.DefaultHttpClient;
 import com.runssnail.weixin.api.internal.http.HttpClient;
-import com.runssnail.weixin.api.internal.support.WeixinApiRuleValidate;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -64,13 +64,17 @@ public class DefaultWeixinClient implements WeixinClient {
 
     @Override
     public <R extends Response> R execute(Request<R> req) throws ApiException {
-        return this.execute(req, null);
+        Validate.notNull(req, "request is required");
+
+        String apiUrl = buildApiUrl(req, null);
+        return executeInternal(apiUrl, req);
     }
 
     @Override
     public <R extends Response> R execute(Request<R> req, String accessToken) throws ApiException {
 
-        WeixinApiRuleValidate.notNull(req, "request is required");
+        Validate.notNull(req, "request is required");
+        Validate.notEmpty(accessToken, "accessToken is required");
 
         String apiUrl = buildApiUrl(req, accessToken);
 
