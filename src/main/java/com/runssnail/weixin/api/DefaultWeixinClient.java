@@ -66,8 +66,7 @@ public class DefaultWeixinClient implements WeixinClient {
     public <R extends Response> R execute(Request<R> req) throws ApiException {
         Validate.notNull(req, "request is required");
 
-        String apiUrl = buildApiUrl(req, null);
-        return executeInternal(apiUrl, req);
+        return executeInternal(req.getApiUrl(), req);
     }
 
     @Override
