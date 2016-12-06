@@ -27,7 +27,9 @@ public class MemoryAccessTokenService extends AbstractAccessTokenService {
     }
 
     @Override
-    protected void saveAccessToken(String accessToken) {
+    protected String saveAccessToken(String accessToken) {
+        String old = this.accessToken;
         this.accessToken = accessToken;
+        return old;
     }
 }

@@ -17,8 +17,15 @@ public interface AccessTokenService {
     /**
      * 刷新AccessToken
      *
-     * @return
+     * @return 老的AccessToken
      */
     String refresh();
+
+    /**
+     * 刷新AccessToken，并且返回新的AccessToken
+     *
+     * @return 新的AccessToken
+     */
+    String refreshAndGet();
 
 }

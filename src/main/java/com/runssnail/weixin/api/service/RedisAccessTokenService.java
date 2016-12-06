@@ -29,8 +29,15 @@ public class RedisAccessTokenService extends AbstractAccessTokenService {
     }
 
     @Override
-    protected void saveAccessToken(String accessToken) {
+    protected String saveAccessToken(String accessToken) {
+        String old = redisClient.getString(ACCESS_TOKEN_KEY_PREFIX + getAppId());
 
+        save(accessToken);
+
+        return old;
+    }
+
+    private void save(String accessToken) {
         // 默认保存7200秒，也就是2个小时
         this.redisClient.set(ACCESS_TOKEN_KEY_PREFIX + getAppId(), accessToken, 7200);
     }

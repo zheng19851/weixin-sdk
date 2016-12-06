@@ -12,8 +12,10 @@ public class MemoryJsApiTicketService extends AbstractJsApiTicketService {
     private volatile String ticket;
 
     @Override
-    protected void saveTicket(String ticket) {
+    protected String saveTicket(String ticket) {
+        String old = this.ticket;
         this.ticket = ticket;
+        return old;
     }
 
     @Override

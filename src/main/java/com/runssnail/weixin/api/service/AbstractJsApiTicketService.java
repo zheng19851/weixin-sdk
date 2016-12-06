@@ -22,19 +22,40 @@ public abstract class AbstractJsApiTicketService implements JsApiTicketService {
     @Override
     public String refresh() {
         if (log.isInfoEnabled()) {
-            log.info("refreshAccessToken start");
+            log.info("refresh ticket start");
         }
 
         GetJsApiTicketResponse response = weiXinClient.execute(new GetJsApiTicketRequest(), accessTokenService.getAccessToken());
         if (response.isSuccess()) {
-            saveTicket(response.getTicket());
+            String old = saveTicket(response.getTicket());
             if (log.isInfoEnabled()) {
-                log.info("refresh ticket success, new ticket->" + response.getTicket());
+                log.info("refresh ticket success, new ticket->" + response.getTicket() + ", old->" + old);
+            }
+
+            return old;
+        } else {
+            log.error("refresh ticket error, errorCode=" + response.getErrcode() + ", errorInfo=" + response.getErrmsg());
+        }
+
+        return null;
+    }
+
+    @Override
+    public String refreshAndGet() {
+        if (log.isInfoEnabled()) {
+            log.info("refreshAndGet ticket start");
+        }
+
+        GetJsApiTicketResponse response = weiXinClient.execute(new GetJsApiTicketRequest(), accessTokenService.getAccessToken());
+        if (response.isSuccess()) {
+            String old = saveTicket(response.getTicket());
+            if (log.isInfoEnabled()) {
+                log.info("refreshAndGet ticket success, new ticket->" + response.getTicket() + ", old->" + old);
             }
 
             return response.getTicket();
         } else {
-            log.error("refresh ticket error, errorCode=" + response.getErrcode() + ", errorInfo=" + response.getErrmsg());
+            log.error("refreshAndGet ticket error, errorCode=" + response.getErrcode() + ", errorInfo=" + response.getErrmsg());
         }
 
         return null;
@@ -45,7 +66,7 @@ public abstract class AbstractJsApiTicketService implements JsApiTicketService {
      *
      * @param ticket
      */
-    protected abstract void saveTicket(String ticket);
+    protected abstract String saveTicket(String ticket);
 
     public WeixinClient getWeiXinClient() {
         return weiXinClient;

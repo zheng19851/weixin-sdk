@@ -17,7 +17,14 @@ public interface JsApiTicketService {
     /**
      * 刷新
      *
-     * @return
+     * @return 老的ticket
      */
     String refresh();
+
+    /**
+     * 刷新ticket，并且返回新的ticket
+     *
+     * @return 新的ticket
+     */
+    String refreshAndGet();
 }

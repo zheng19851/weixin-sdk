@@ -17,10 +17,13 @@ public class RedisJsApiTicketService extends AbstractJsApiTicketService {
     private RedisClient redisClient;
 
     @Override
-    protected void saveTicket(String ticket) {
+    protected String saveTicket(String ticket) {
+        String old = redisClient.getString(TICKET_KEY_PREFIX + getAppId());
 
         // 默认保存7200秒，也就是2个小时
         this.redisClient.set(TICKET_KEY_PREFIX + getAppId(), ticket, 7200);
+
+        return old;
     }
 
     private String getAppId() {

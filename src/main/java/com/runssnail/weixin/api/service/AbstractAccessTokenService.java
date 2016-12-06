@@ -23,12 +23,12 @@ public abstract class AbstractAccessTokenService implements AccessTokenService {
 
         GetAccessTokenResponse response = weiXinClient.execute(new GetAccessTokenRequest());
         if (response.isSuccess()) {
-            saveAccessToken(response.getAccessToken());
+            String old = saveAccessToken(response.getAccessToken());
             if (log.isInfoEnabled()) {
-                log.info("refreshAccessToken success, new Access Token->" + response.getAccessToken());
+                log.info("refreshAccessToken success, new Access Token->" + response.getAccessToken() + ", old->" + old);
             }
 
-            return response.getAccessToken();
+            return old;
         } else {
             log.error("refreshAccessToken error, errorCode=" + response.getErrcode() + ", errorInfo=" + response.getErrmsg());
         }
@@ -36,12 +36,35 @@ public abstract class AbstractAccessTokenService implements AccessTokenService {
         return null;
     }
 
+    @Override
+    public String refreshAndGet() {
+        if (log.isInfoEnabled()) {
+            log.info("refreshAndGet start");
+        }
+
+        GetAccessTokenResponse response = weiXinClient.execute(new GetAccessTokenRequest());
+        if (response.isSuccess()) {
+            String old = saveAccessToken(response.getAccessToken());
+            if (log.isInfoEnabled()) {
+                log.info("refreshAccessToken success, new Access Token->" + response.getAccessToken() + ", old->" + old);
+            }
+
+            return response.getAccessToken();
+        } else {
+            log.error("refreshAndGet error, errorCode=" + response.getErrcode() + ", errorInfo=" + response.getErrmsg());
+        }
+
+        return null;
+    }
+
+
     /**
      * 保存accessToken，由自子类自己实现
      *
      * @param accessToken
+     * @return 老的accessToken
      */
-    protected abstract void saveAccessToken(String accessToken);
+    protected abstract String saveAccessToken(String accessToken);
 
     public void setWeiXinClient(WeixinClient weiXinClient) {
         this.weiXinClient = weiXinClient;

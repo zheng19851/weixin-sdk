@@ -1,10 +1,5 @@
 package com.runssnail.weixin.api.test.credential;
 
-import com.runssnail.weixin.api.DefaultWeixinClient;
-import com.runssnail.weixin.api.WeixinClient;
-import com.runssnail.weixin.api.request.credential.GetAccessTokenRequest;
-import com.runssnail.weixin.api.response.credential.GetAccessTokenResponse;
-
 /**
  * 获取api的access token
  * 
@@ -14,22 +9,27 @@ import com.runssnail.weixin.api.response.credential.GetAccessTokenResponse;
 public class GetAccessTokenRequestTest {
 
     public static void main(String[] args) {
-        String appId = "wx7cbc0121c2093f64";
-        String appSecret = "5380b2231935166e7d0f02cdce8e7209";
+//        String appId = "wx7cbc0121c2093f64";
+//        String appSecret = "5380b2231935166e7d0f02cdce8e7209";
+//
+//        WeixinClient defaultWeixinClient = new DefaultWeixinClient(appId, appSecret);
+//
+//        RetryWeiXinClient weiXinClient = new RetryWeiXinClient(defaultWeixinClient);
+//
+//        try {
+//            GetAccessTokenRequest req = new GetAccessTokenRequest();
+//
+//            GetAccessTokenResponse res = weiXinClient.execute(req);
+//
+//            System.out.println(res.getAccessToken());
+//        } finally {
+//            if (weiXinClient != null) {
+//                weiXinClient.close();
+//            }
+//        }
 
-        WeixinClient weiXinClient = new DefaultWeixinClient(appId, appSecret);
-        try {
-            GetAccessTokenRequest req = new GetAccessTokenRequest();
 
-            GetAccessTokenResponse res = weiXinClient.execute(req);
-            
-            System.out.println(res.getAccessToken());
-        } finally {
-            if (weiXinClient != null) {
-                weiXinClient.close();
-            }
-        }
-
+        System.out.println(1480578107685L > 1467120470000L);
     }
 
 }
