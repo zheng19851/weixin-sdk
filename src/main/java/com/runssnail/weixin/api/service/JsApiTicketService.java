@@ -1,5 +1,8 @@
 package com.runssnail.weixin.api.service;
 
+import com.runssnail.weixin.api.common.Result;
+import com.runssnail.weixin.api.domain.ticket.RefreshTicketDO;
+
 /**
  * jsapi ticket 服务
  *
@@ -17,7 +20,7 @@ public interface JsApiTicketService {
     /**
      * 刷新
      *
-     * @return 老的ticket
+     * @return 新的ticket
      */
     String refresh();
 
@@ -26,5 +29,5 @@ public interface JsApiTicketService {
      *
      * @return 新的ticket
      */
-    String refreshAndGet();
+    Result<RefreshTicketDO> refreshAndGet();
 }

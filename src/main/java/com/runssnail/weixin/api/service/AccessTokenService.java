@@ -1,5 +1,8 @@
 package com.runssnail.weixin.api.service;
 
+import com.runssnail.weixin.api.common.Result;
+import com.runssnail.weixin.api.domain.token.RefreshTokenDO;
+
 /**
  * 微信Access Token服务
  *
@@ -17,7 +20,7 @@ public interface AccessTokenService {
     /**
      * 刷新AccessToken
      *
-     * @return 老的AccessToken
+     * @return 新的AccessToken
      */
     String refresh();
 
@@ -26,6 +29,6 @@ public interface AccessTokenService {
      *
      * @return 新的AccessToken
      */
-    String refreshAndGet();
+    Result<RefreshTokenDO> refreshAndGet();
 
 }

@@ -1,6 +1,8 @@
 package com.runssnail.weixin.api.service;
 
 import com.runssnail.weixin.api.WeixinClient;
+import com.runssnail.weixin.api.common.Result;
+import com.runssnail.weixin.api.domain.ticket.RefreshTicketDO;
 import com.runssnail.weixin.api.request.web.GetJsApiTicketRequest;
 import com.runssnail.weixin.api.response.web.GetJsApiTicketResponse;
 import org.apache.commons.logging.Log;
@@ -8,7 +10,7 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * js api ticket service
- *
+ * <p>
  * Created by zhengwei on 2016/3/31.
  */
 public abstract class AbstractJsApiTicketService implements JsApiTicketService {
@@ -32,7 +34,7 @@ public abstract class AbstractJsApiTicketService implements JsApiTicketService {
                 log.info("refresh ticket success, new ticket->" + response.getTicket() + ", old->" + old);
             }
 
-            return old;
+            return response.getTicket();
         } else {
             log.error("refresh ticket error, errorCode=" + response.getErrcode() + ", errorInfo=" + response.getErrmsg());
         }
@@ -41,24 +43,31 @@ public abstract class AbstractJsApiTicketService implements JsApiTicketService {
     }
 
     @Override
-    public String refreshAndGet() {
+    public Result<RefreshTicketDO> refreshAndGet() {
         if (log.isInfoEnabled()) {
             log.info("refreshAndGet ticket start");
         }
 
+        Result<RefreshTicketDO> result = new Result<>();
+
         GetJsApiTicketResponse response = weiXinClient.execute(new GetJsApiTicketRequest(), accessTokenService.getAccessToken());
         if (response.isSuccess()) {
+
+            RefreshTicketDO refreshTicket = new RefreshTicketDO();
+
             String old = saveTicket(response.getTicket());
             if (log.isInfoEnabled()) {
                 log.info("refreshAndGet ticket success, new ticket->" + response.getTicket() + ", old->" + old);
             }
 
-            return response.getTicket();
+            refreshTicket.setTicket(response.getTicket());
+            refreshTicket.setOldTicket(old);
+            return result.setSuccess(true).setResult(refreshTicket);
         } else {
             log.error("refreshAndGet ticket error, errorCode=" + response.getErrcode() + ", errorInfo=" + response.getErrmsg());
+            return result.setError(response.getErrcode(), response.getErrmsg());
         }
 
-        return null;
     }
 
     /**
