@@ -1,4 +1,4 @@
-package com.runssnail.weixin.api.test.credential;
+package com.runssnail.weixin.api.test.token;
 
 import com.runssnail.weixin.api.service.AccessTokenService;
 import com.runssnail.weixin.api.support.WeiXinClients;

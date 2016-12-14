@@ -47,7 +47,7 @@ public class DefaultWeiXinService implements WeiXinService {
     @Override
     public String refreshAccessToken() {
 
-        return this.accessTokenService.refreshAndGet();
+        return this.accessTokenService.refresh();
     }
 
     @Override
@@ -86,7 +86,7 @@ public class DefaultWeiXinService implements WeiXinService {
 
     @Override
     public String refreshTicket() {
-        return this.ticketService.refreshAndGet();
+        return this.ticketService.refresh();
     }
 
     @Override

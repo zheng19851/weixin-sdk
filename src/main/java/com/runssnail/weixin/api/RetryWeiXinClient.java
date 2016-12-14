@@ -11,7 +11,7 @@ import java.util.Set;
 
 /**
  * 调用出错时自动重试
- *
+ * <p>
  * Created by zhengwei on 2016/3/18.
  */
 public class RetryWeiXinClient implements WeixinClient {
@@ -69,11 +69,25 @@ public class RetryWeiXinClient implements WeixinClient {
         return weiXinClient.getAppSecret();
     }
 
-    public <T extends Response> T execute(Request<T> request) throws ApiException {
-        return this.execute(request, null);
+    public <T extends Response> T execute(final Request<T> request) throws ApiException {
+        return this.executeInternal(request, new Callback<T>() {
+            @Override
+            public T callback() {
+                return weiXinClient.execute(request);
+            }
+        });
     }
 
-    public <T extends Response> T execute(Request<T> request, String session) throws ApiException {
+    public <T extends Response> T execute(final Request<T> request, final String token) throws ApiException {
+        return executeInternal(request, new Callback<T>() {
+            @Override
+            public T callback() {
+                return weiXinClient.execute(request, token);
+            }
+        });
+    }
+
+    private <T extends Response> T executeInternal(Request<T> request, Callback<T> callback) {
         T rsp = null;
         ApiException exp = null;
 
@@ -88,7 +102,7 @@ public class RetryWeiXinClient implements WeixinClient {
             }
 
             try {
-                rsp = weiXinClient.execute(request, session);
+                rsp = callback.callback();
                 if (rsp.isSuccess()) {
                     return rsp;
                 } else {
@@ -108,6 +122,10 @@ public class RetryWeiXinClient implements WeixinClient {
         } else {
             return rsp;
         }
+    }
+
+    private interface Callback<T> {
+        T callback();
     }
 
     private String buildRetryLog(String apiUrl, Map<String, Object> params, int retryCount) {
