@@ -2,8 +2,8 @@ package com.runssnail.weixin.api.test;
 
 import com.runssnail.weixin.api.DefaultWeixinClient;
 import com.runssnail.weixin.api.WeixinClient;
-import com.runssnail.weixin.api.request.credential.GetAccessTokenRequest;
-import com.runssnail.weixin.api.response.credential.GetAccessTokenResponse;
+import com.runssnail.weixin.api.request.token.GetAccessTokenRequest;
+import com.runssnail.weixin.api.response.token.GetAccessTokenResponse;
 
 /**
  * Created by zhengwei on 2016/11/24.

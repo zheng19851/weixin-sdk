@@ -1,9 +1,9 @@
-package com.runssnail.weixin.api.request.credential;
+package com.runssnail.weixin.api.request.token;
 
 import com.runssnail.weixin.api.internal.annotations.AppIdWired;
 import com.runssnail.weixin.api.internal.annotations.AppSecretWired;
 import com.runssnail.weixin.api.request.GetRequest;
-import com.runssnail.weixin.api.response.credential.GetAccessTokenResponse;
+import com.runssnail.weixin.api.response.token.GetAccessTokenResponse;
 
 import java.util.HashMap;
 import java.util.Map;

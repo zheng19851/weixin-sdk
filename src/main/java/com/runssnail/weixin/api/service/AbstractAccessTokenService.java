@@ -3,8 +3,8 @@ package com.runssnail.weixin.api.service;
 import com.runssnail.weixin.api.WeixinClient;
 import com.runssnail.weixin.api.common.Result;
 import com.runssnail.weixin.api.domain.token.RefreshTokenDO;
-import com.runssnail.weixin.api.request.credential.GetAccessTokenRequest;
-import com.runssnail.weixin.api.response.credential.GetAccessTokenResponse;
+import com.runssnail.weixin.api.request.token.GetAccessTokenRequest;
+import com.runssnail.weixin.api.response.token.GetAccessTokenResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

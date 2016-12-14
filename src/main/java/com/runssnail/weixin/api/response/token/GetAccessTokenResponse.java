@@ -1,4 +1,4 @@
-package com.runssnail.weixin.api.response.credential;
+package com.runssnail.weixin.api.response.token;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.runssnail.weixin.api.response.JSONResponse;
