@@ -1,6 +1,7 @@
 package com.runssnail.weixin.api.request.payment;
 
 import com.runssnail.weixin.api.common.utils.SignUtils;
+import com.runssnail.weixin.api.internal.support.ApiRuleValidate;
 import com.runssnail.weixin.api.response.payment.GetTransferInfoResponse;
 
 import java.util.Map;
@@ -20,6 +21,7 @@ public class GetTransferInfoRequest extends PaymentRequest<GetTransferInfoRespon
     private String orderNo;
 
     public GetTransferInfoRequest(String orderNo) {
+        ApiRuleValidate.notEmpty(orderNo, "orderNo is required");
         this.orderNo = orderNo;
     }
 

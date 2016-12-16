@@ -1,7 +1,8 @@
 package com.runssnail.weixin.api.request.message;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.runssnail.weixin.api.domain.message.KeyNoteValue;
+import com.runssnail.weixin.api.exception.ApiRuleException;
+import com.runssnail.weixin.api.internal.support.ApiRuleValidate;
 import com.runssnail.weixin.api.request.PostRequest;
 import com.runssnail.weixin.api.response.message.TemplateMessageResponse;
 
@@ -72,7 +73,6 @@ public class TemplateMessageRequest extends PostRequest<TemplateMessageResponse>
     }
 
     @Override
-    @JSONField(serialize = false)
     public String getApiUrl() {
         return API_URL;
     }
@@ -89,9 +89,15 @@ public class TemplateMessageRequest extends PostRequest<TemplateMessageResponse>
     }
 
     @Override
-    @JSONField(serialize = false)
     public Class<TemplateMessageResponse> getResponseClass() {
         return TemplateMessageResponse.class;
+    }
+
+    @Override
+    protected void doCheck() throws ApiRuleException {
+        ApiRuleValidate.notEmpty(this.toUser, "toUser is required");
+        ApiRuleValidate.notEmpty(this.templateId, "templateId is required");
+        ApiRuleValidate.notEmpty(this.data, "data is required");
     }
 
     public void setToUser(String toUser) {

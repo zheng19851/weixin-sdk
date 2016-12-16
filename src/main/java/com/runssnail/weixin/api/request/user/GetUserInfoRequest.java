@@ -1,5 +1,7 @@
 package com.runssnail.weixin.api.request.user;
 
+import com.runssnail.weixin.api.exception.ApiRuleException;
+import com.runssnail.weixin.api.internal.support.ApiRuleValidate;
 import com.runssnail.weixin.api.request.GetRequest;
 import com.runssnail.weixin.api.response.user.GetUserInfoResponse;
 
@@ -44,5 +46,10 @@ public class GetUserInfoRequest extends GetRequest<GetUserInfoResponse> {
     @Override
     public Class<GetUserInfoResponse> getResponseClass() {
         return GetUserInfoResponse.class;
+    }
+
+    @Override
+    protected void doCheck() throws ApiRuleException {
+        ApiRuleValidate.notEmpty(this.openId, "openId is required");
     }
 }

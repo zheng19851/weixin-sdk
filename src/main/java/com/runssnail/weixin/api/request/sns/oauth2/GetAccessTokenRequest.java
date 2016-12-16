@@ -1,7 +1,9 @@
 package com.runssnail.weixin.api.request.sns.oauth2;
 
+import com.runssnail.weixin.api.exception.ApiRuleException;
 import com.runssnail.weixin.api.internal.annotations.AppIdWired;
 import com.runssnail.weixin.api.internal.annotations.AppSecretWired;
+import com.runssnail.weixin.api.internal.support.ApiRuleValidate;
 import com.runssnail.weixin.api.request.GetRequest;
 import com.runssnail.weixin.api.response.sns.oauth2.GetAccessTokenResponse;
 
@@ -53,5 +55,10 @@ public class GetAccessTokenRequest extends GetRequest<GetAccessTokenResponse> {
         params.put("code", this.code);
         params.put("grant_type", "authorization_code");
         return params;
+    }
+
+    @Override
+    protected void doCheck() throws ApiRuleException {
+        ApiRuleValidate.notEmpty(this.code, "code is required");
     }
 }

@@ -1,5 +1,7 @@
 package com.runssnail.weixin.api.request.ticket;
 
+import com.runssnail.weixin.api.exception.ApiRuleException;
+import com.runssnail.weixin.api.internal.support.ApiRuleValidate;
 import com.runssnail.weixin.api.request.GetRequest;
 import com.runssnail.weixin.api.response.ticket.GetTicketResponse;
 
@@ -46,6 +48,10 @@ public class GetTicketRequest extends GetRequest<GetTicketResponse> {
         return params;
     }
 
+    @Override
+    protected void doCheck() throws ApiRuleException {
+        ApiRuleValidate.notEmpty(type, "the ticket type is required");
+    }
 
     public String getType() {
         return type;

@@ -1,5 +1,7 @@
 package com.runssnail.weixin.api.request.sns;
 
+import com.runssnail.weixin.api.exception.ApiRuleException;
+import com.runssnail.weixin.api.internal.support.ApiRuleValidate;
 import com.runssnail.weixin.api.request.GetRequest;
 import com.runssnail.weixin.api.response.sns.GetUserInfoResponse;
 
@@ -54,5 +56,11 @@ public class GetUserInfoRequest extends GetRequest<GetUserInfoResponse> {
         params.put("openid", this.openId);
         params.put("lang", "zh_CN");
         return params;
+    }
+
+    @Override
+    protected void doCheck() throws ApiRuleException {
+        ApiRuleValidate.notEmpty(this.accessToken, "accessToken is required");
+        ApiRuleValidate.notEmpty(this.openId, "openId is required");
     }
 }

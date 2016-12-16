@@ -2,9 +2,9 @@ package com.runssnail.weixin.api.request;
 
 import com.runssnail.weixin.api.domain.BaseDomain;
 import com.runssnail.weixin.api.exception.ApiRuleException;
+import com.runssnail.weixin.api.internal.support.ApiRuleValidate;
 import com.runssnail.weixin.api.response.Response;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
 
 
 /**
@@ -22,9 +22,9 @@ public abstract class AbstractRequest<R extends Response> extends BaseDomain imp
 
     @Override
     public final void check() throws ApiRuleException {
-        Validate.isTrue(StringUtils.isNotBlank(getApiUrl()), "api url is required");
-        Validate.notNull(getResponseClass(), "Response class is required");
-        Validate.notNull(getMethod(), "RequestMethod is required");
+        ApiRuleValidate.isTrue(StringUtils.isNotBlank(getApiUrl()), "api url is required");
+        ApiRuleValidate.notNull(getResponseClass(), "Response class is required");
+        ApiRuleValidate.notNull(getMethod(), "RequestMethod is required");
         doCheck();
     }
 

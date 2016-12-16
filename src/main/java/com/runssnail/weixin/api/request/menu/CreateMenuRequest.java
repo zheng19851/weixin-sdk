@@ -1,6 +1,5 @@
 package com.runssnail.weixin.api.request.menu;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.runssnail.weixin.api.domain.menu.Menu;
 import com.runssnail.weixin.api.request.PostRequest;
 import com.runssnail.weixin.api.response.menu.CreateMenuResponse;
@@ -11,6 +10,8 @@ import java.util.Map;
 
 /**
  * 创建菜单请求
+ *
+ * https://mp.weixin.qq.com/wiki
  *
  * @author zhengwei
  */
@@ -33,7 +34,6 @@ public class CreateMenuRequest extends PostRequest<CreateMenuResponse> {
     }
 
     @Override
-    @JSONField(serialize = false)
     public String getApiUrl() {
         return API_URL;
     }
@@ -45,7 +45,6 @@ public class CreateMenuRequest extends PostRequest<CreateMenuResponse> {
         return params;
     }
 
-    @JSONField(serialize = false)
     public List<Menu> getMenus() {
         return menus;
     }
@@ -55,7 +54,6 @@ public class CreateMenuRequest extends PostRequest<CreateMenuResponse> {
     }
 
     @Override
-    @JSONField(serialize = false)
     public Class<CreateMenuResponse> getResponseClass() {
         return CreateMenuResponse.class;
     }

@@ -12,8 +12,9 @@ import com.runssnail.weixin.api.service.MemoryAccessTokenService;
 public class GetUserInfoRequestTest {
 
     public static void main(String[] args) {
-        String appId = "";
-        String appSecret = "";
+        // zw test
+        String appId = "wxe58afcd99f7a997e";
+        String appSecret = "5dcf8eac1e99e983fc58e42376ab0267";
 
         WeixinClient weiXinClient = new DefaultWeixinClient(appId, appSecret);
 

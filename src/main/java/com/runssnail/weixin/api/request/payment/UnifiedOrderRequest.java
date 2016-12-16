@@ -12,10 +12,12 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import static org.apache.commons.lang.Validate.notNull;
+import static com.runssnail.weixin.api.internal.support.ApiRuleValidate.notNull;
 
 /**
  * 统一下单请求
+ *
+ * https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_1
  *
  * @author zhengwei
  */
