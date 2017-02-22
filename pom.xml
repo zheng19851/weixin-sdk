@@ -6,7 +6,7 @@
 
 	<groupId>com.runssnail.weixin</groupId>
 	<artifactId>weixin-sdk</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>weixin-sdk</name>
 	<url>http://maven.apache.org</url>
 
@@ -15,28 +15,6 @@
 		<httpclient.version>4.3.5</httpclient.version>
 	</properties>
 
-	<build>
-		<finalName>${project.name}-${project.version}</finalName>
-		<plugins>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-					<encoding>${file.encoding}</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>2.7</version>
-			</plugin>
-
-		</plugins>
-
-	</build>
 
 	<dependencies>
 		<dependency>
@@ -104,4 +82,38 @@
 		</dependency>
 
 	</dependencies>
+
+	<build>
+		<finalName>${project.name}-${project.version}</finalName>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>${file.encoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.7</version>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<url>http://115.236.45.10:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<url>http://115.236.45.10:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
