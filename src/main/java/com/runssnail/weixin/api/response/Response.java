@@ -16,24 +16,22 @@ public abstract class Response extends BaseDomain {
     private static final long serialVersionUID = -5684236406783615047L;
 
     /**
+     * 响应body
+     */
+    private Object responseBody;
+
+    /**
      * 响应数据格式
      *
      * @return
      */
-    public DataType getDataType() {
-        return DataType.JSON;
-    }
+    public abstract DataType getDataType();
 
-    /**
-     * 响应body
-     */
-    private String responseBody;
-
-    public String getResponseBody() {
+    public Object getResponseBody() {
         return responseBody;
     }
 
-    public void setResponseBody(String responseBody) {
+    public void setResponseBody(Object responseBody) {
         this.responseBody = responseBody;
     }
 

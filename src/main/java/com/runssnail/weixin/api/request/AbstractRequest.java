@@ -1,5 +1,6 @@
 package com.runssnail.weixin.api.request;
 
+import com.alibaba.fastjson.JSON;
 import com.runssnail.weixin.api.domain.BaseDomain;
 import com.runssnail.weixin.api.exception.ApiRuleException;
 import com.runssnail.weixin.api.internal.support.ApiRuleValidate;
@@ -10,8 +11,8 @@ import org.apache.commons.lang.StringUtils;
 /**
  * {@link Request} 抽象实现
  *
- * @author zhengwei
  * @param <R>
+ * @author zhengwei
  */
 public abstract class AbstractRequest<R extends Response> extends BaseDomain implements Request<R> {
 
@@ -35,4 +36,11 @@ public abstract class AbstractRequest<R extends Response> extends BaseDomain imp
         // ignore
     }
 
+    @Override
+    public R buildResponse(Object responseBody) {
+        // 默认当作字符串处理
+        R res = JSON.parseObject(responseBody.toString(), getResponseClass());
+
+        return res;
+    }
 }

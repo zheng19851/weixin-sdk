@@ -1,5 +1,6 @@
 package com.runssnail.weixin.api.internal.http;
 
+import com.runssnail.weixin.api.domain.FileItem;
 import com.runssnail.weixin.api.internal.utils.HttpUtils;
 import com.runssnail.weixin.api.internal.utils.HttpsClient;
 
@@ -36,6 +37,26 @@ public class PaymentHttpClient implements HttpClient {
         } catch (IOException e) {
             throw new HttpException(e);
         }
+    }
+
+    @Override
+    public byte[] doGetBytes(String url, Map<String, Object> params) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public byte[] doPostAndGetBytes(String url, String params, int connectTimeout, int readTimeout) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public byte[] doPostAndGetBytes(String apiUrl, Map<String, Object> params, Map<String, FileItem> fileParams, int connectTimeout, int readTimeout) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public String doPost(String apiUrl, Map<String, Object> params, Map<String, FileItem> fileParams, int connectTimeout, int readTimeout) {
+        throw new UnsupportedOperationException();
     }
 
     @Override

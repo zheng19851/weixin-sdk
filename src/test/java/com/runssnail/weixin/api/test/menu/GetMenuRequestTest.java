@@ -3,7 +3,6 @@ package com.runssnail.weixin.api.test.menu;
 import com.runssnail.weixin.api.RetryWeiXinClient;
 import com.runssnail.weixin.api.request.menu.GetMenuRequest;
 import com.runssnail.weixin.api.response.Response;
-import com.runssnail.weixin.api.service.MemoryAccessTokenService;
 import com.runssnail.weixin.api.support.WeiXinClients;
 
 public class GetMenuRequestTest {
@@ -17,12 +16,12 @@ public class GetMenuRequestTest {
         try {
             weixinApiClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);
 
-            MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
-            accessTokenService.setWeiXinClient(weixinApiClient);
+//            MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
+//            accessTokenService.setWeiXinClient(weixinApiClient);
 
             GetMenuRequest req = new GetMenuRequest();
 
-            Response res = weixinApiClient.execute(req, accessTokenService.getAccessToken());
+            Response res = weixinApiClient.execute(req, "OcJhL_GKdzEqkaB12yiwA1mgEgOf-sr1gTgWlAkv0HNyeGIHEGIRr_4PXCNXHg5ERJ77kySJwte3EFRt0yME04sEga-oI4S_SMtlkpQ0HGMQxMsAhsZ7s8ZZz4-SIdE-BYWjAIAROM");
 
             System.out.println(res);
 

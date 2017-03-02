@@ -2,11 +2,11 @@ package com.runssnail.weixin.api.common;
 
 /**
  * 数据格式类型
- * 
+ *
  * @author zhengwei
  */
 public enum DataType {
-    XML, JSON, TXT;
+    XML, JSON, TXT, BYTE;
 
     public boolean isJson() {
         return JSON == this;
@@ -16,6 +16,12 @@ public enum DataType {
         return XML == this;
     }
 
-    public boolean isTxt() {return TXT == this;}
+    public boolean isTxt() {
+        return TXT == this;
+    }
+
+    public boolean isByte() {
+        return BYTE == this;
+    }
 
 }

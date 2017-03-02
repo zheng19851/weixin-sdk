@@ -49,4 +49,11 @@ public interface Request<R extends Response> {
      */
     Class<R> getResponseClass();
 
+    /**
+     * 请求自己实现创建对于的响应对象
+     *
+     * @param responseBody 响应内容
+     * @return
+     */
+    R buildResponse(Object responseBody);
 }

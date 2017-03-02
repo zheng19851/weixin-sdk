@@ -3,12 +3,15 @@ package com.runssnail.weixin.api;
 import com.alibaba.fastjson.JSON;
 import com.runssnail.weixin.api.common.RequestMethod;
 import com.runssnail.weixin.api.constants.Constants;
+import com.runssnail.weixin.api.domain.FileItem;
 import com.runssnail.weixin.api.exception.ApiException;
 import com.runssnail.weixin.api.internal.annotations.AppIdWired;
 import com.runssnail.weixin.api.internal.annotations.AppSecretWired;
 import com.runssnail.weixin.api.internal.http.DefaultHttpClient;
 import com.runssnail.weixin.api.internal.http.HttpClient;
+import com.runssnail.weixin.api.request.DownloadRequest;
 import com.runssnail.weixin.api.request.Request;
+import com.runssnail.weixin.api.request.UploadRequest;
 import com.runssnail.weixin.api.response.Response;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
@@ -100,15 +103,30 @@ public class DefaultWeixinClient implements WeixinClient {
 
         RequestMethod method = req.getMethod();
 
-        String result = StringUtils.EMPTY;
+        // String result = StringUtils.EMPTY;
 
+        Object result = null;
         Map<String, Object> params = prepareParams(req);
 
         try {
             if (method.isGet()) {
-                result = httpClient.doGet(apiUrl, params);
+
+                if (req instanceof DownloadRequest) {
+                    result = httpClient.doGetBytes(apiUrl, params);
+                } else {
+                    result = httpClient.doGet(apiUrl, params);
+                }
+
             } else {
-                result = httpClient.doPost(apiUrl, buildPostParams(params), this.connectTimeout, this.readTimeout);
+
+                if (req instanceof UploadRequest) {
+                    UploadRequest uploadRequest = (UploadRequest) req;
+                    Map<String, FileItem> fileParams = uploadRequest.getFileParams();
+                    result = httpClient.doPost(apiUrl, params, fileParams, this.connectTimeout, this.readTimeout);
+                } else {
+                    result = httpClient.doPost(apiUrl, buildPostParams(params), this.connectTimeout, this.readTimeout);
+                }
+
             }
 
             if (log.isDebugEnabled()) {
@@ -180,8 +198,9 @@ public class DefaultWeixinClient implements WeixinClient {
      * @param <R>    响应对象
      * @return 响应对象
      */
-    protected <R extends Response> R buildResponse(String result, Request<R> req) {
-        return JSON.parseObject(result, req.getResponseClass());
+    protected <R extends Response> R buildResponse(Object result, Request<R> req) {
+        //return JSON.parseObject(result, req.getResponseClass());
+        return req.buildResponse(result);
     }
 
     /**

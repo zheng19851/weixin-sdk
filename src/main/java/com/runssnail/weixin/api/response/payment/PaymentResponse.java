@@ -217,7 +217,7 @@ public abstract class PaymentResponse extends Response {
             return;
         }
 
-        if (!SignUtils.validateSign(this.getResponseBody(), paySignKey)) {
+        if (!SignUtils.validateSign(this.getResponseBody().toString(), paySignKey)) {
             throw new SignatureException("validate sign error, responseBoy=" + this.getResponseBody() + ", sign=" + this.sign);
         }
 
