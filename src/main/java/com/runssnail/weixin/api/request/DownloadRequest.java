@@ -3,7 +3,7 @@ package com.runssnail.weixin.api.request;
 import com.runssnail.weixin.api.response.Response;
 
 /**
- * 下载文件请求
+ * 涓嬭浇鏂囦欢璇锋眰
  *
  * Created by zhengwei on 2017/3/2.
  */

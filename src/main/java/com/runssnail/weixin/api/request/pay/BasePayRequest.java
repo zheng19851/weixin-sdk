@@ -9,6 +9,8 @@ import com.runssnail.weixin.api.response.pay.PayResponse;
 import org.apache.commons.lang.StringUtils;
 
 /**
+ * å¾®ä¿¡æ”¯ä»˜è¯·æ±‚åŸºç±»
+ *
  * Created by zhengwei on 2017/3/3.
  */
 public abstract class BasePayRequest<R extends PayResponse> extends BaseDomain implements PayRequest<R> {
@@ -27,7 +29,7 @@ public abstract class BasePayRequest<R extends PayResponse> extends BaseDomain i
     }
 
     /**
-     * ¿ÉÒÔÓÉ×ÓÀàÊµÏÖ
+     * å¯ä»¥ç”±å­ç±»å®ç°
      */
     protected void doCheck() throws ApiRuleException {
         // ignore

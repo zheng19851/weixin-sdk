@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ÉÏ´«ÎÄ¼ş
+ * ä¸Šä¼ æ–‡ä»¶
  * <p>
  * Created by zhengwei on 2017/3/2.
  */
@@ -22,8 +22,8 @@ public class UploadFileRequest extends UploadRequest<UploadFileResponse> {
     private FileItem fileItem;
 
     /**
-     * @param type     Ã½ÌåÎÄ¼şÀàĞÍ£¬·Ö±ğÓĞÍ¼Æ¬£¨image£©¡¢ÓïÒô£¨voice£©¡¢ÊÓÆµ£¨video£©ºÍËõÂÔÍ¼£¨thumb£©
-     * @param fileItem ÎÄ¼ş
+     * @param type     åª’ä½“æ–‡ä»¶ç±»å‹ï¼Œåˆ†åˆ«æœ‰å›¾ç‰‡ï¼ˆimageï¼‰ã€è¯­éŸ³ï¼ˆvoiceï¼‰ã€è§†é¢‘ï¼ˆvideoï¼‰å’Œç¼©ç•¥å›¾ï¼ˆthumbï¼‰
+     * @param fileItem æ–‡ä»¶
      */
     public UploadFileRequest(String type, FileItem fileItem) {
         this.type = type;

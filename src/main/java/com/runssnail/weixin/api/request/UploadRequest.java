@@ -6,14 +6,14 @@ import com.runssnail.weixin.api.response.Response;
 import java.util.Map;
 
 /**
- * ÉÏ´«ÎÄ¼şÇëÇó
+ * ä¸Šä¼ æ–‡ä»¶è¯·æ±‚
  * <p>
  * Created by zhengwei on 2017/3/2.
  */
 public abstract class UploadRequest<R extends Response> extends PostRequest<R> {
 
     /**
-     * »ñÈ¡ĞèÒªÉÏ´«ÎÄ¼ş²ÎÊı
+     * è·å–éœ€è¦ä¸Šä¼ æ–‡ä»¶å‚æ•°
      *
      * @return
      */

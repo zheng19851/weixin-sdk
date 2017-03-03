@@ -6,7 +6,7 @@
 
 	<groupId>com.runssnail.weixin</groupId>
 	<artifactId>weixin-sdk</artifactId>
-	<version>1.1.0-SNAPCHAT</version>
+	<version>1.1.0-SNAPSHOT</version>
 	<name>weixin-sdk</name>
 	<url>http://maven.apache.org</url>
 
