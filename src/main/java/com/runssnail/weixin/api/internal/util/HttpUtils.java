@@ -667,6 +667,35 @@ public abstract class HttpUtils {
         return result;
     }
 
+    public static FileItem doGetFile(String url, Map<String, Object> params) throws IOException {
+        HttpURLConnection conn = null;
+        byte[] content = null;
+        FileItem fileItem = null;
+        try {
+            String contentType = "application/x-www-form-urlencoded;charset=" + DEFAULT_CHARSET;
+            conn = getConnection(buildGetUrl(url, buildQuery(params, DEFAULT_CHARSET)), METHOD_GET, contentType);
+
+            content = getResponseAsBytes(conn);
+            contentType = conn.getContentType();
+
+            String fileName = getFileName(conn);
+
+            fileItem = new FileItem(fileName, content, contentType);
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+        }
+
+        return fileItem;
+    }
+
+    private static String getFileName(HttpURLConnection conn) {
+        String contentDisposition = conn.getHeaderField("Content-disposition");
+        String fileName = contentDisposition.substring(contentDisposition.indexOf("filename") + 10, contentDisposition.length() - 1);
+        return fileName;
+    }
+
 
     private static class DefaultTrustManager implements X509TrustManager {
         public X509Certificate[] getAcceptedIssuers() {

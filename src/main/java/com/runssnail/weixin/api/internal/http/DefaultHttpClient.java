@@ -22,6 +22,9 @@ public class DefaultHttpClient implements HttpClient {
      */
     private int readTimeout = Constants.DEFAULT_READ_TIMEOUT;
 
+    public DefaultHttpClient() {
+    }
+
     public DefaultHttpClient(int connectTimeout, int readTimeout) {
         this.connectTimeout = connectTimeout;
         this.readTimeout = readTimeout;
@@ -82,6 +85,15 @@ public class DefaultHttpClient implements HttpClient {
     public String doPost(String apiUrl, Map<String, Object> params, Map<String, FileItem> fileParams, int connectTimeout, int readTimeout) {
         try {
             return HttpUtils.doPost(apiUrl, params, fileParams, connectTimeout, readTimeout);
+        } catch (IOException e) {
+            throw new HttpException(e);
+        }
+    }
+
+    @Override
+    public FileItem doGetFile(String url, Map<String, Object> params) {
+        try {
+            return HttpUtils.doGetFile(url, params);
         } catch (IOException e) {
             throw new HttpException(e);
         }

@@ -112,7 +112,7 @@ public class DefaultWeixinClient implements WeixinClient {
             if (method.isGet()) {
 
                 if (req instanceof DownloadRequest) {
-                    result = httpClient.doGetBytes(apiUrl, params);
+                    result = httpClient.doGetFile(apiUrl, params);
                 } else {
                     result = httpClient.doGet(apiUrl, params);
                 }

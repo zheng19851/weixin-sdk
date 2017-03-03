@@ -24,23 +24,22 @@ public class GetFileRequestTest {
 
         WeixinClient weixinClient = new DefaultWeixinClient(appId, appSecret);
 
-        String token = "90cI4iMtuxvkhzdlJvHaeOHwP6DZhUGjkKofI4C_a-cDZWsV0xIn_6YCiO4Q-dlUW1xMXjNfISBYrr5WctN2T5yavrfEJHWl3NDLiNO0laN2G-yIgLbPw1Rd52P2JsEVFWeAGAYIZ";
+        String token = "h3NWwYStA3XHpXy5SBbnK55Xp7Ic_wrj_VE1YEgrsaSk4wu6WPK2Wz5AzIe4xWXFNpnnx1YNgGmHZdow-bSPReoVIsQ4dW29iRJen1j6-oOLmbgv2F2SNZctGJ_RURlgRURfADAEHE";
 
         try {
 
 //            rVr0pUQuvTyzcV_aA0ohEjdOZnxhxNCSHRTXuSiiGWnddnrSzgcS3p_hLxzUrgT3
-            String id = "8qtfGmyz2In6oLxgtmLNox84G05G2HSjEo2x8zI-WCMMxT9LUV5ABq7VFLqMtLiA";
+//            8qtfGmyz2In6oLxgtmLNox84G05G2HSjEo2x8zI-WCMMxT9LUV5ABq7VFLqMtLiA
+            String id = "rVr0pUQuvTyzcV_aA0ohEjdOZnxhxNCSHRTXuSiiGWnddnrSzgcS3p_hLxzUrgT3";
             GetFileRequest getFileRequest = new GetFileRequest(id);
             GetFileResponse res = weixinClient.execute(getFileRequest, token);
 
             if (res.isSuccess()) {
 
-//                System.out.println(new String(res.getContent(), "utf-8"));
-
                 BufferedOutputStream out = null;
                 try {
 
-                    out = new BufferedOutputStream(new FileOutputStream("/Users/zhengwei/weixin.jpg"));
+                    out = new BufferedOutputStream(new FileOutputStream("/Users/zhengwei/weixin23.jpg"));
                     out.write(res.getContent());
 
                 } finally {

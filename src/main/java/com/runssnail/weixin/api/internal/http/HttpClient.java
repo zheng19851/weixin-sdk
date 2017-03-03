@@ -22,8 +22,9 @@ public interface HttpClient extends Lifecycle {
 
     byte[] doPostAndGetBytes(String url, String params, int connectTimeout, int readTimeout);
 
-    byte[] doPostAndGetBytes(String apiUrl, Map<String, Object> params, Map<String, FileItem> fileParams, int connectTimeout, int readTimeout);
+    byte[] doPostAndGetBytes(String url, Map<String, Object> params, Map<String, FileItem> fileParams, int connectTimeout, int readTimeout);
 
-    String doPost(String apiUrl, Map<String, Object> params, Map<String, FileItem> fileParams, int connectTimeout, int readTimeout);
+    String doPost(String url, Map<String, Object> params, Map<String, FileItem> fileParams, int connectTimeout, int readTimeout);
 
+    FileItem doGetFile(String url, Map<String, Object> params);
 }
