@@ -1,13 +1,13 @@
 package com.runssnail.weixin.api;
 
 import com.runssnail.weixin.api.common.Lifecycle;
-import com.runssnail.weixin.api.exception.ApiException;
-import com.runssnail.weixin.api.request.Request;
-import com.runssnail.weixin.api.response.Response;
+import com.runssnail.weixin.api.exception.PayApiException;
+import com.runssnail.weixin.api.request.pay.PayRequest;
+import com.runssnail.weixin.api.response.pay.PayResponse;
 
 /**
  * 微信支付api client
- *
+ * <p>
  * <p/>
  * Created by zhengwei on 2015/11/6.
  */
@@ -40,7 +40,7 @@ public interface WeixinPayClient extends Lifecycle {
      * @param req 请求对象
      * @param <R>
      * @return
-     * @throws ApiException
+     * @throws PayApiException
      */
-    <R extends Response> R execute(Request<R> req) throws ApiException;
+    <R extends PayResponse> R execute(PayRequest<R> req) throws PayApiException;
 }

@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.test.common;
 
-import com.runssnail.weixin.api.common.utils.SignUtils;
+import com.runssnail.weixin.api.util.SignUtils;
 
 /**
  * Created by zhengwei on 16/7/19.

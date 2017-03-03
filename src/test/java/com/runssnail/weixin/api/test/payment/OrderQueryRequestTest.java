@@ -2,8 +2,8 @@ package com.runssnail.weixin.api.test.payment;
 
 import com.runssnail.weixin.api.DefaultWeixinPayClient;
 import com.runssnail.weixin.api.WeixinPayClient;
-import com.runssnail.weixin.api.request.payment.OrderQueryRequest;
-import com.runssnail.weixin.api.response.payment.OrderQueryResponse;
+import com.runssnail.weixin.api.request.pay.OrderQueryRequest;
+import com.runssnail.weixin.api.response.pay.OrderQueryResponse;
 
 /**
  * 支付订单查询接口

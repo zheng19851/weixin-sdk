@@ -1,8 +1,8 @@
 package com.runssnail.weixin.api.internal.http;
 
-import com.runssnail.weixin.api.constants.Constants;
+import com.runssnail.weixin.api.constant.Constants;
 import com.runssnail.weixin.api.domain.FileItem;
-import com.runssnail.weixin.api.internal.utils.HttpUtils;
+import com.runssnail.weixin.api.internal.util.HttpUtils;
 
 import java.io.IOException;
 import java.util.Map;

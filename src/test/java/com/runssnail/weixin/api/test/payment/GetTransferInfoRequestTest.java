@@ -1,8 +1,8 @@
 package com.runssnail.weixin.api.test.payment;
 
 import com.runssnail.weixin.api.DefaultWeixinPayClient;
-import com.runssnail.weixin.api.request.payment.GetTransferInfoRequest;
-import com.runssnail.weixin.api.response.payment.GetTransferInfoResponse;
+import com.runssnail.weixin.api.request.pay.GetTransferInfoRequest;
+import com.runssnail.weixin.api.response.pay.GetTransferInfoResponse;
 
 /**
  * Created by zhengwei on 16/4/19.

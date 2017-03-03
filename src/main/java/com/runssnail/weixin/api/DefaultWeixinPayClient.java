@@ -1,20 +1,17 @@
 package com.runssnail.weixin.api;
 
-import com.runssnail.weixin.api.common.SignType;
-import com.runssnail.weixin.api.common.utils.SignUtils;
-import com.runssnail.weixin.api.constants.Constants;
-import com.runssnail.weixin.api.exception.ApiException;
-import com.runssnail.weixin.api.exception.PaymentApiException;
+import com.runssnail.weixin.api.constant.SignType;
+import com.runssnail.weixin.api.util.SignUtils;
+import com.runssnail.weixin.api.constant.Constants;
 import com.runssnail.weixin.api.internal.annotations.AppIdWired;
 import com.runssnail.weixin.api.internal.annotations.MerchantIdWired;
 import com.runssnail.weixin.api.internal.http.DefaultHttpClient;
 import com.runssnail.weixin.api.internal.http.HttpClient;
-import com.runssnail.weixin.api.internal.http.PaymentHttpClient;
-import com.runssnail.weixin.api.internal.support.WeixinPayResponseHelper;
-import com.runssnail.weixin.api.internal.utils.XmlTool;
-import com.runssnail.weixin.api.request.Request;
-import com.runssnail.weixin.api.response.Response;
-import com.runssnail.weixin.api.response.payment.PaymentResponse;
+import com.runssnail.weixin.api.internal.util.XmlTool;
+import com.runssnail.weixin.api.exception.PayApiException;
+import com.runssnail.weixin.api.internal.http.PayHttpClient;
+import com.runssnail.weixin.api.request.pay.PayRequest;
+import com.runssnail.weixin.api.response.pay.PayResponse;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -82,7 +79,7 @@ public class DefaultWeixinPayClient implements WeixinPayClient {
         this.mchId = mchId;
         this.paySignKey = paySignKey;
 
-        this.httpClient = new PaymentHttpClient(certPath, certPassword); //new HttpsClient(certPath, certPassword);
+        this.httpClient = new PayHttpClient(certPath, certPassword); //new HttpsClient(certPath, certPassword);
     }
 
     public String getMchId() {
@@ -107,7 +104,7 @@ public class DefaultWeixinPayClient implements WeixinPayClient {
      * @param request
      * @return
      */
-    protected <R extends Response> String buildPostParams(Request<R> request) {
+    protected <R extends PayResponse> String buildPostParams(PayRequest<R> request) {
 
         Map<String, Object> params = request.getParams();
 
@@ -145,23 +142,9 @@ public class DefaultWeixinPayClient implements WeixinPayClient {
         return XmlTool.toXml(params);
     }
 
-    protected <R extends Response> R buildResponse(String result, Request<R> req) {
+    protected <R extends PayResponse> R buildResponse(String result, PayRequest<R> req) {
 
-        R res = null;
-        try {
-            res = req.getResponseClass().newInstance();
-        } catch (InstantiationException e) {
-            throw new PaymentApiException(e);
-        } catch (IllegalAccessException e) {
-            throw new PaymentApiException(e);
-        }
-        if (res.getDataType().isXml()) {
-            return (R) WeixinPayResponseHelper.getObjectFromXml(result, res);
-        } else {
-            return res;
-        }
-
-
+        return req.buildResponse(result);
     }
 
     /**
@@ -170,13 +153,13 @@ public class DefaultWeixinPayClient implements WeixinPayClient {
      * @param res
      * @param <R>
      */
-    protected <R extends Response> void checkResponse(R res) {
-        ((PaymentResponse) res).check(this.paySignKey);
+    protected <R extends PayResponse> void checkResponse(R res) {
+        res.check(this.paySignKey);
     }
 
 
     @Override
-    public <R extends Response> R execute(Request<R> req) throws ApiException {
+    public <R extends PayResponse> R execute(PayRequest<R> req) throws PayApiException {
         Validate.notNull(req, "request is required");
 
         return executeInternal(req);
@@ -189,7 +172,7 @@ public class DefaultWeixinPayClient implements WeixinPayClient {
      * @param <R> 响应对象
      * @return 响应对象
      */
-    private <R extends Response> R executeInternal(Request<R> req) {
+    private <R extends PayResponse> R executeInternal(PayRequest<R> req) {
         String apiUrl = req.getApiUrl();
 
         if (log.isDebugEnabled()) {
@@ -263,12 +246,10 @@ public class DefaultWeixinPayClient implements WeixinPayClient {
         this.readTimeout = readTimeout;
     }
 
-    @Override
     public void init() {
         this.httpClient.init();
     }
 
-    @Override
     public void close() {
         if (httpClient != null) {
             httpClient.close();

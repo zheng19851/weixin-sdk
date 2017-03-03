@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.response;
 
-import com.runssnail.weixin.api.common.DataType;
+import com.runssnail.weixin.api.constant.DataType;
 
 /**
  * json response

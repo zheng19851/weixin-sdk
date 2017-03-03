@@ -2,9 +2,9 @@ package com.runssnail.weixin.api.test.payment;
 
 import com.runssnail.weixin.api.DefaultWeixinPayClient;
 import com.runssnail.weixin.api.WeixinPayClient;
-import com.runssnail.weixin.api.constants.payment.TradeType;
-import com.runssnail.weixin.api.request.payment.UnifiedOrderRequest;
-import com.runssnail.weixin.api.response.payment.UnifiedOrderResponse;
+import com.runssnail.weixin.api.constant.TradeType;
+import com.runssnail.weixin.api.request.pay.UnifiedOrderRequest;
+import com.runssnail.weixin.api.response.pay.UnifiedOrderResponse;
 
 /**
  * 创建预支付订单

@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.service;
 
 import com.runssnail.weixin.api.WeixinClient;
-import com.runssnail.weixin.api.common.Result;
+import com.runssnail.weixin.api.result.Result;
 import com.runssnail.weixin.api.domain.token.RefreshTokenDO;
 import com.runssnail.weixin.api.request.token.GetAccessTokenRequest;
 import com.runssnail.weixin.api.response.token.GetAccessTokenResponse;

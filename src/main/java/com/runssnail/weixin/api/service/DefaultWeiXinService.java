@@ -1,16 +1,11 @@
 package com.runssnail.weixin.api.service;
 
-import com.runssnail.weixin.api.WeixinPayClient;
 import com.runssnail.weixin.api.WeixinClient;
-import com.runssnail.weixin.api.common.SignType;
-import com.runssnail.weixin.api.common.utils.JsSdkUtils;
-import com.runssnail.weixin.api.common.utils.PaymentUtils;
+import com.runssnail.weixin.api.constant.SignType;
+import com.runssnail.weixin.api.util.JsSdkUtils;
 import com.runssnail.weixin.api.domain.jssdk.Config;
-import com.runssnail.weixin.api.domain.payment.JsApiPayReq;
 import com.runssnail.weixin.api.request.Request;
-import com.runssnail.weixin.api.request.payment.PaymentRequest;
 import com.runssnail.weixin.api.response.Response;
-import org.apache.commons.lang.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -28,11 +23,6 @@ public class DefaultWeiXinService implements WeiXinService {
     private AccessTokenService accessTokenService;
 
     private JsApiTicketService ticketService;
-
-    /**
-     * 微信支付api client
-     */
-    private WeixinPayClient weixinPayClient;
 
     @Override
     public String getAppId() {
@@ -59,10 +49,6 @@ public class DefaultWeiXinService implements WeiXinService {
     public <R extends Response> R execute(Request<R> request) {
 
         assert request != null;
-
-        if (request instanceof PaymentRequest) {
-            return weixinPayClient.execute(request);
-        }
 
         String accessToken = this.accessTokenService.getAccessToken();
         return weixinClient.execute(request, accessToken);
@@ -94,12 +80,12 @@ public class DefaultWeiXinService implements WeiXinService {
         return this.ticketService.getTicket();
     }
 
-    @Override
-    public JsApiPayReq buildJsApiPayReq(String prepayId) {
-        Validate.notEmpty(prepayId, "prepayId is required");
-
-        return PaymentUtils.buildJsApiPayReq(this.weixinPayClient.getAppId(), prepayId, this.weixinPayClient.getPaySignKey());
-    }
+//    @Override
+//    public JsApiPayReq buildJsApiPayReq(String prepayId) {
+//        Validate.notEmpty(prepayId, "prepayId is required");
+//
+//        return PayUtils.buildJsApiPayReq(this.weixinPayClient.getAppId(), prepayId, this.weixinPayClient.getPaySignKey());
+//    }
 
     public AccessTokenService getAccessTokenService() {
         return accessTokenService;
@@ -125,11 +111,4 @@ public class DefaultWeiXinService implements WeiXinService {
         this.weixinClient = weixinClient;
     }
 
-    public WeixinPayClient getWeixinPayClient() {
-        return weixinPayClient;
-    }
-
-    public void setWeixinPayClient(WeixinPayClient weixinPayClient) {
-        this.weixinPayClient = weixinPayClient;
-    }
 }

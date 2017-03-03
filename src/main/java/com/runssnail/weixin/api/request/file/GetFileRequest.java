@@ -1,8 +1,8 @@
 package com.runssnail.weixin.api.request.file;
 
 import com.alibaba.fastjson.JSON;
-import com.runssnail.weixin.api.constants.Constants;
-import com.runssnail.weixin.api.internal.utils.ByteUtils;
+import com.runssnail.weixin.api.constant.Constants;
+import com.runssnail.weixin.api.internal.util.ByteUtils;
 import com.runssnail.weixin.api.request.DownloadRequest;
 import com.runssnail.weixin.api.response.file.GetFileResponse;
 

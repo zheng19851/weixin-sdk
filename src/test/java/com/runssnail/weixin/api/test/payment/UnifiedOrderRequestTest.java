@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.test.payment;
 
 import com.runssnail.weixin.api.internal.support.WeixinPayResponseHelper;
-import com.runssnail.weixin.api.request.payment.UnifiedOrderRequest;
+import com.runssnail.weixin.api.request.pay.UnifiedOrderRequest;
 
 /**
  * Created by zhengwei on 16/6/8.

@@ -6,9 +6,16 @@ import com.runssnail.weixin.api.response.Response;
 import java.util.Map;
 
 /**
+ * 上传文件请求
+ * <p>
  * Created by zhengwei on 2017/3/2.
  */
 public abstract class UploadRequest<R extends Response> extends PostRequest<R> {
 
-    public abstract Map<String, FileItem> getFileParams();
+    /**
+     * 获取需要上传文件参数
+     *
+     * @return
+     */
+    public abstract Map<String/**fieldName*/, FileItem> getFileParams();
 }

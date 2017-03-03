@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.test.payment;
 
 import com.alibaba.fastjson.JSON;
-import com.runssnail.weixin.api.response.payment.GetTransferInfoResponse;
+import com.runssnail.weixin.api.response.pay.GetTransferInfoResponse;
 
 /**
  * Created by zhengwei on 16/4/14.

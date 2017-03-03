@@ -1,8 +1,8 @@
 package com.runssnail.weixin.api;
 
 import com.alibaba.fastjson.JSON;
-import com.runssnail.weixin.api.common.RequestMethod;
-import com.runssnail.weixin.api.constants.Constants;
+import com.runssnail.weixin.api.constant.RequestMethod;
+import com.runssnail.weixin.api.constant.Constants;
 import com.runssnail.weixin.api.domain.FileItem;
 import com.runssnail.weixin.api.exception.ApiException;
 import com.runssnail.weixin.api.internal.annotations.AppIdWired;

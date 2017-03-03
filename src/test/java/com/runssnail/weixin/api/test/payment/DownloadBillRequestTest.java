@@ -1,8 +1,8 @@
 package com.runssnail.weixin.api.test.payment;
 
 import com.runssnail.weixin.api.DefaultWeixinPayClient;
-import com.runssnail.weixin.api.request.payment.DownloadBillRequest;
-import com.runssnail.weixin.api.response.payment.DownloadBillResponse;
+import com.runssnail.weixin.api.request.pay.DownloadBillRequest;
+import com.runssnail.weixin.api.response.pay.DownloadBillResponse;
 
 /**
  * Created by zhengwei on 16/6/16.

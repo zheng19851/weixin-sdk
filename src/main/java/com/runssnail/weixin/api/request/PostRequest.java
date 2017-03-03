@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.request;
 
-import com.runssnail.weixin.api.common.RequestMethod;
+import com.runssnail.weixin.api.constant.RequestMethod;
 import com.runssnail.weixin.api.response.Response;
 
 /**

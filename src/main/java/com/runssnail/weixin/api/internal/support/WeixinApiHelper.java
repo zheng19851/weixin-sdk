@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.internal.support;
 
 import com.alibaba.fastjson.JSONObject;
-import com.runssnail.weixin.api.constants.WeixinApiErrorCode;
+import com.runssnail.weixin.api.constant.WeixinApiErrorCode;
 import com.runssnail.weixin.api.response.Response;
 
 /**

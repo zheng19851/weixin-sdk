@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.test;
 
-import com.runssnail.weixin.api.internal.utils.HttpUtils;
+import com.runssnail.weixin.api.internal.util.HttpUtils;
 
 /**
  * Created by zhengwei on 2015/7/23.

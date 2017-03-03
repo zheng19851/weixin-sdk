@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.test.web;
 
-import com.runssnail.weixin.api.common.utils.PaymentUtils;
-import com.runssnail.weixin.api.domain.payment.JsApiPayReq;
+import com.runssnail.weixin.api.util.PayUtils;
+import com.runssnail.weixin.api.domain.pay.JsApiPayReq;
 
 /**
  * Created by zhengwei on 16/6/28.
@@ -17,7 +17,7 @@ public class JsSdkUtilsTest {
 
         String prepayId = "wx201606280028244831f0e0500026535762";
 
-        JsApiPayReq req = PaymentUtils.buildJsApiPayReq(appId, prepayId, "MgxJjILkONRsd85H5bUqTib02RFhRnS4");
+        JsApiPayReq req = PayUtils.buildJsApiPayReq(appId, prepayId, "MgxJjILkONRsd85H5bUqTib02RFhRnS4");
         System.out.println(req);
 
     }
