@@ -3,7 +3,7 @@ package com.runssnail.weixin.api.test.web;
 import com.runssnail.weixin.api.WeixinClient;
 import com.runssnail.weixin.api.request.web.GetUserRequest;
 import com.runssnail.weixin.api.response.Response;
-import com.runssnail.weixin.api.service.MemoryAccessTokenService;
+import com.runssnail.weixin.api.manager.token.MemoryAccessTokenManager;
 import com.runssnail.weixin.api.support.WeiXinClients;
 
 /**
@@ -19,8 +19,8 @@ public class GetUserRequestTest {
         try {
             weiXinClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);
 
-            MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
-            accessTokenService.setWeiXinClient(weiXinClient);
+            MemoryAccessTokenManager accessTokenService = new MemoryAccessTokenManager();
+            accessTokenService.setWeixinClient(weiXinClient);
 
             String token = "OezXcEiiBSKSxW0eoylIeJzncPOWyDcs4M0mnDjDyefojf46BkBFzjVLcygaNmtT_QZyAZezyaSMcKYQWnfpbjfb30oC4OoUlrbT-wDz87S5rXxM896PBjZogxXo1hXbp1hOByWHSUeg_ND7ohPjAg";
 

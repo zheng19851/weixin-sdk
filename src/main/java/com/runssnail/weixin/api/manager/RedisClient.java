@@ -1,4 +1,4 @@
-package com.runssnail.weixin.api.service;
+package com.runssnail.weixin.api.manager;
 
 import java.io.Serializable;
 
@@ -15,7 +15,7 @@ public interface RedisClient {
      * @param key
      * @return
      */
-    String getString(String key);
+    Object get(String key);
 
     /**
      * 设置key-value

@@ -4,7 +4,7 @@ import com.runssnail.weixin.api.DefaultWeixinClient;
 import com.runssnail.weixin.api.WeixinClient;
 import com.runssnail.weixin.api.request.user.GetUserInfoRequest;
 import com.runssnail.weixin.api.response.user.GetUserInfoResponse;
-import com.runssnail.weixin.api.service.MemoryAccessTokenService;
+import com.runssnail.weixin.api.manager.token.MemoryAccessTokenManager;
 
 /**
  * Created by zhengwei on 16/5/30.
@@ -18,8 +18,8 @@ public class GetUserInfoRequestTest {
 
         WeixinClient weiXinClient = new DefaultWeixinClient(appId, appSecret);
 
-        MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
-        accessTokenService.setWeiXinClient(weiXinClient);
+        MemoryAccessTokenManager accessTokenService = new MemoryAccessTokenManager();
+        accessTokenService.setWeixinClient(weiXinClient);
 
         try {
             GetUserInfoRequest req = new GetUserInfoRequest("oeumFjrOrsYmEV-MAElyRnscFwoo");

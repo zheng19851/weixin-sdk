@@ -2,8 +2,8 @@ package com.runssnail.weixin.api.support;
 
 import com.runssnail.weixin.api.RetryWeiXinClient;
 import com.runssnail.weixin.api.DefaultWeixinClient;
-import com.runssnail.weixin.api.service.AccessTokenService;
-import com.runssnail.weixin.api.service.MemoryAccessTokenService;
+import com.runssnail.weixin.api.manager.token.AccessTokenManager;
+import com.runssnail.weixin.api.manager.token.MemoryAccessTokenManager;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
@@ -65,24 +65,24 @@ public class WeiXinClients {
      * 创建AccessTokenService
      *
      * @param defaultWeixinClient 默认的WeiXinApiClient
-     * @return AccessTokenService
+     * @return AccessTokenManager
      */
-    public static AccessTokenService buildAccessTokenService(DefaultWeixinClient defaultWeixinClient) {
+    public static AccessTokenManager buildAccessTokenService(DefaultWeixinClient defaultWeixinClient) {
         Validate.notNull(defaultWeixinClient, "DefaultWeixinClient is required");
 
-        MemoryAccessTokenService defaultAccessTokenService = new MemoryAccessTokenService();
-        defaultAccessTokenService.setWeiXinClient(defaultWeixinClient);
+        MemoryAccessTokenManager defaultAccessTokenService = new MemoryAccessTokenManager();
+        defaultAccessTokenService.setWeixinClient(defaultWeixinClient);
         return defaultAccessTokenService;
     }
 
     /**
-     * 创建 AccessTokenService
+     * 创建 AccessTokenManager
      *
      * @param appId     appId
      * @param appSecret appSecret
-     * @return AccessTokenService
+     * @return AccessTokenManager
      */
-    public static AccessTokenService buildAccessTokenService(String appId, String appSecret) {
+    public static AccessTokenManager buildAccessTokenService(String appId, String appSecret) {
         Validate.isTrue(StringUtils.isNotBlank(appId), "appId is required");
         Validate.isTrue(StringUtils.isNotBlank(appSecret), "appSecret is required");
 

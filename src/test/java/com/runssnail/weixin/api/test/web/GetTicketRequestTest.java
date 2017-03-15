@@ -3,7 +3,7 @@ package com.runssnail.weixin.api.test.web;
 import com.runssnail.weixin.api.RetryWeiXinClient;
 import com.runssnail.weixin.api.request.web.GetJsApiTicketRequest;
 import com.runssnail.weixin.api.response.Response;
-import com.runssnail.weixin.api.service.MemoryAccessTokenService;
+import com.runssnail.weixin.api.manager.token.MemoryAccessTokenManager;
 import com.runssnail.weixin.api.support.WeiXinClients;
 
 /**
@@ -23,8 +23,8 @@ public class GetTicketRequestTest {
         try {
             weixinApiClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);
 
-            MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
-            accessTokenService.setWeiXinClient(weixinApiClient);
+            MemoryAccessTokenManager accessTokenService = new MemoryAccessTokenManager();
+            accessTokenService.setWeixinClient(weixinApiClient);
 
             Response res = weixinApiClient.execute(new GetJsApiTicketRequest(), accessTokenService.getAccessToken());
 

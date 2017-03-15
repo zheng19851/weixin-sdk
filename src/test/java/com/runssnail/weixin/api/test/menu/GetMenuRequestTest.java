@@ -16,7 +16,7 @@ public class GetMenuRequestTest {
         try {
             weixinApiClient = WeiXinClients.buildRetryWeiXinClient(appId, appSecret);
 
-//            MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
+//            MemoryAccessTokenManager accessTokenService = new MemoryAccessTokenManager();
 //            accessTokenService.setWeiXinClient(weixinApiClient);
 
             GetMenuRequest req = new GetMenuRequest();

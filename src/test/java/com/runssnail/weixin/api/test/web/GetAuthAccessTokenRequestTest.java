@@ -3,7 +3,7 @@ package com.runssnail.weixin.api.test.web;
 import com.runssnail.weixin.api.WeixinClient;
 import com.runssnail.weixin.api.request.web.GetAuthAccessTokenRequest;
 import com.runssnail.weixin.api.response.web.GetAuthAccessTokenResponse;
-import com.runssnail.weixin.api.service.MemoryAccessTokenService;
+import com.runssnail.weixin.api.manager.token.MemoryAccessTokenManager;
 import com.runssnail.weixin.api.support.WeiXinClients;
 
 public class GetAuthAccessTokenRequestTest {
@@ -20,8 +20,8 @@ public class GetAuthAccessTokenRequestTest {
             String code = "";
             GetAuthAccessTokenRequest req = new GetAuthAccessTokenRequest(code);
 
-            MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
-            accessTokenService.setWeiXinClient(weiXinClient);
+            MemoryAccessTokenManager accessTokenService = new MemoryAccessTokenManager();
+            accessTokenService.setWeixinClient(weiXinClient);
 
             GetAuthAccessTokenResponse res = weiXinClient.execute(req, accessTokenService.getAccessToken());
 

@@ -2,12 +2,13 @@ package com.runssnail.weixin.api.service;
 
 import com.runssnail.weixin.api.constant.SignType;
 import com.runssnail.weixin.api.domain.jssdk.Config;
+import com.runssnail.weixin.api.domain.token.TokenDO;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
 
 /**
  * 微信服务
- *
+ * <p>
  * Created by zhengwei on 2016/3/17.
  */
 public interface WeiXinService {
@@ -39,10 +40,17 @@ public interface WeiXinService {
     String getAccessToken();
 
     /**
+     * 获取token信息
+     *
+     * @return
+     */
+    TokenDO getToken();
+
+    /**
      * 发送微信请求
      *
      * @param request 请求对象
-     * @param <R> 响应对象
+     * @param <R>     响应对象
      * @return
      */
     <R extends Response> R execute(Request<R> request);
@@ -58,9 +66,8 @@ public interface WeiXinService {
     /**
      * 获取微信js sdk配置信息
      *
-     * @param url 网页url
+     * @param url      网页url
      * @param signType 签名方式
-     *
      * @return
      */
     Config getJsSdkConfig(String url, SignType signType);

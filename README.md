@@ -34,14 +34,14 @@
 
         // 使用内存保存access token, 不建议在生产环境使用, 多台机器时, access token会有问题
         // 生产环境建议使用RedisAccessTokenService
-        MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
-        accessTokenService.setWeiXinClient(weiXinClient);
+        MemoryAccessTokenService accessTokenManager = new MemoryAccessTokenService();
+        accessTokenManager.setWeiXinClient(weiXinClient);
 
         // WeiXinService默认实现
         DefaultWeiXinService weiXinService = new DefaultWeiXinService();
         weiXinService.setWeixinClient(weiXinClient);
         // 设置accessTokenService
-        weiXinService.setAccessTokenService(accessTokenService);
+        weiXinService.setAccessTokenService(accessTokenManager);
 
         // 获取菜单
         GetMenuResponse getMenuResponse = weiXinService.execute(new GetMenuRequest());

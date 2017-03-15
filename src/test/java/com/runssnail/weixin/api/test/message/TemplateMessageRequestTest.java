@@ -4,7 +4,7 @@ import com.runssnail.weixin.api.DefaultWeixinClient;
 import com.runssnail.weixin.api.domain.message.KeyNoteValue;
 import com.runssnail.weixin.api.request.message.TemplateMessageRequest;
 import com.runssnail.weixin.api.response.message.TemplateMessageResponse;
-import com.runssnail.weixin.api.service.MemoryAccessTokenService;
+import com.runssnail.weixin.api.manager.token.MemoryAccessTokenManager;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -29,8 +29,8 @@ public class TemplateMessageRequestTest {
 
         DefaultWeixinClient weixinClient = new DefaultWeixinClient(appId, appSecret);
 
-        MemoryAccessTokenService accessTokenService = new MemoryAccessTokenService();
-        accessTokenService.setWeiXinClient(weixinClient);
+        MemoryAccessTokenManager accessTokenService = new MemoryAccessTokenManager();
+        accessTokenService.setWeixinClient(weixinClient);
 
 
         try {

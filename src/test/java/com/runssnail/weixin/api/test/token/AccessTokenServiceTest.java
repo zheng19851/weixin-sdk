@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.test.token;
 
-import com.runssnail.weixin.api.service.AccessTokenService;
+import com.runssnail.weixin.api.manager.token.AccessTokenManager;
 import com.runssnail.weixin.api.support.WeiXinClients;
 
 public class AccessTokenServiceTest {
@@ -10,7 +10,7 @@ public class AccessTokenServiceTest {
         String appId = "";
         String appSecret = "";
 
-        AccessTokenService accessTokenService = null;
+        AccessTokenManager accessTokenService = null;
         try {
 
             accessTokenService = WeiXinClients.buildAccessTokenService(appId, appSecret);

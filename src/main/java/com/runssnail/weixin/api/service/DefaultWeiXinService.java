@@ -2,16 +2,19 @@ package com.runssnail.weixin.api.service;
 
 import com.runssnail.weixin.api.WeixinClient;
 import com.runssnail.weixin.api.constant.SignType;
-import com.runssnail.weixin.api.util.JsSdkUtils;
 import com.runssnail.weixin.api.domain.jssdk.Config;
+import com.runssnail.weixin.api.domain.token.TokenDO;
+import com.runssnail.weixin.api.manager.ticket.TicketManager;
+import com.runssnail.weixin.api.manager.token.AccessTokenManager;
 import com.runssnail.weixin.api.request.Request;
 import com.runssnail.weixin.api.response.Response;
+import com.runssnail.weixin.api.util.JsSdkUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
  * 默认的微信服务实现
- *
+ * <p>
  * Created by zhengwei on 2016/3/17.
  */
 public class DefaultWeiXinService implements WeiXinService {
@@ -20,9 +23,9 @@ public class DefaultWeiXinService implements WeiXinService {
 
     private WeixinClient weixinClient;
 
-    private AccessTokenService accessTokenService;
+    private AccessTokenManager accessTokenManager;
 
-    private JsApiTicketService ticketService;
+    private TicketManager ticketManager;
 
     @Override
     public String getAppId() {
@@ -37,12 +40,17 @@ public class DefaultWeiXinService implements WeiXinService {
     @Override
     public String refreshAccessToken() {
 
-        return this.accessTokenService.refresh();
+        return this.accessTokenManager.refresh();
     }
 
     @Override
     public String getAccessToken() {
-        return this.accessTokenService.getAccessToken();
+        return this.accessTokenManager.getAccessToken();
+    }
+
+    @Override
+    public TokenDO getToken() {
+        return this.accessTokenManager.getValue();
     }
 
     @Override
@@ -50,7 +58,7 @@ public class DefaultWeiXinService implements WeiXinService {
 
         assert request != null;
 
-        String accessToken = this.accessTokenService.getAccessToken();
+        String accessToken = this.accessTokenManager.getAccessToken();
         return weixinClient.execute(request, accessToken);
     }
 
@@ -59,7 +67,7 @@ public class DefaultWeiXinService implements WeiXinService {
 
         assert url != null;
 
-        return JsSdkUtils.getConfig(this.getAppId(), ticketService.getTicket(), url);
+        return JsSdkUtils.getConfig(this.getAppId(), ticketManager.getTicket(), url);
     }
 
     @Override
@@ -67,17 +75,17 @@ public class DefaultWeiXinService implements WeiXinService {
         assert url != null;
         assert signType != null;
 
-        return JsSdkUtils.getConfig(this.getAppId(), ticketService.getTicket(), url, signType);
+        return JsSdkUtils.getConfig(this.getAppId(), ticketManager.getTicket(), url, signType);
     }
 
     @Override
     public String refreshTicket() {
-        return this.ticketService.refresh();
+        return this.ticketManager.refresh();
     }
 
     @Override
     public String getTicket() {
-        return this.ticketService.getTicket();
+        return this.ticketManager.getTicket();
     }
 
 //    @Override
@@ -87,20 +95,21 @@ public class DefaultWeiXinService implements WeiXinService {
 //        return PayUtils.buildJsApiPayReq(this.weixinPayClient.getAppId(), prepayId, this.weixinPayClient.getPaySignKey());
 //    }
 
-    public AccessTokenService getAccessTokenService() {
-        return accessTokenService;
+
+    public AccessTokenManager getAccessTokenManager() {
+        return accessTokenManager;
     }
 
-    public void setAccessTokenService(AccessTokenService accessTokenService) {
-        this.accessTokenService = accessTokenService;
+    public void setAccessTokenManager(AccessTokenManager accessTokenManager) {
+        this.accessTokenManager = accessTokenManager;
     }
 
-    public JsApiTicketService getTicketService() {
-        return ticketService;
+    public TicketManager getTicketManager() {
+        return ticketManager;
     }
 
-    public void setTicketService(JsApiTicketService ticketService) {
-        this.ticketService = ticketService;
+    public void setTicketManager(TicketManager ticketManager) {
+        this.ticketManager = ticketManager;
     }
 
     public WeixinClient getWeixinClient() {
