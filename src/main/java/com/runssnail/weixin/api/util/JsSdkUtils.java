@@ -3,7 +3,7 @@ package com.runssnail.weixin.api.util;
 import com.runssnail.weixin.api.constant.SignType;
 import com.runssnail.weixin.api.domain.jssdk.Config;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 
 import java.util.Map;
 import java.util.Set;

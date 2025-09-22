@@ -2,8 +2,8 @@ package com.runssnail.weixin.api.internal.util;
 
 import com.runssnail.weixin.api.constant.Constants;
 import com.runssnail.weixin.api.domain.FileItem;
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.net.ssl.*;
 import java.io.*;

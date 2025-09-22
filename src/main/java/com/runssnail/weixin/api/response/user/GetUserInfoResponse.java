@@ -2,7 +2,6 @@ package com.runssnail.weixin.api.response.user;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.runssnail.weixin.api.response.JSONResponse;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * 用户基本信息

@@ -1,7 +1,7 @@
 package com.runssnail.weixin.api.request.pay;
 
 import com.runssnail.weixin.api.response.pay.RefundResponse;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 import java.util.SortedMap;

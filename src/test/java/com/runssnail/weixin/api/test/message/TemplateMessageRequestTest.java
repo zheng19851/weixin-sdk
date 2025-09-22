@@ -5,7 +5,7 @@ import com.runssnail.weixin.api.domain.message.KeyNoteValue;
 import com.runssnail.weixin.api.request.message.TemplateMessageRequest;
 import com.runssnail.weixin.api.response.message.TemplateMessageResponse;
 import com.runssnail.weixin.api.manager.token.MemoryAccessTokenManager;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;

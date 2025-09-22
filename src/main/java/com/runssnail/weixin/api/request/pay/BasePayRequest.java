@@ -6,7 +6,7 @@ import com.runssnail.weixin.api.internal.support.ApiRuleValidate;
 import com.runssnail.weixin.api.exception.PayApiException;
 import com.runssnail.weixin.api.internal.support.WeixinPayResponseHelper;
 import com.runssnail.weixin.api.response.pay.PayResponse;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 微信支付请求基类

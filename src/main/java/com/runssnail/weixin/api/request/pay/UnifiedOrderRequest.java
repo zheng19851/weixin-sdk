@@ -5,7 +5,7 @@ import com.runssnail.weixin.api.constant.TradeType;
 import com.runssnail.weixin.api.exception.ApiRuleException;
 import com.runssnail.weixin.api.internal.util.DateUtil;
 import com.runssnail.weixin.api.response.pay.UnifiedOrderResponse;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
 import java.util.Map;

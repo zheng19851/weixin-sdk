@@ -4,7 +4,7 @@ import com.runssnail.weixin.api.util.SignUtils;
 import com.runssnail.weixin.api.internal.annotations.AppIdWired;
 import com.runssnail.weixin.api.internal.annotations.MerchantIdWired;
 import com.runssnail.weixin.api.response.pay.EnterprisePayResponse;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 import java.util.SortedMap;

@@ -4,8 +4,8 @@ import com.runssnail.weixin.api.RetryWeiXinClient;
 import com.runssnail.weixin.api.DefaultWeixinClient;
 import com.runssnail.weixin.api.manager.token.AccessTokenManager;
 import com.runssnail.weixin.api.manager.token.MemoryAccessTokenManager;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 /**
  * WeiXinApiClient创建帮助类

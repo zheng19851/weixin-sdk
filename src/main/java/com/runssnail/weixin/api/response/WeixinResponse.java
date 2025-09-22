@@ -1,6 +1,6 @@
 package com.runssnail.weixin.api.response;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by zhengwei on 2017/3/2.

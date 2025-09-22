@@ -2,7 +2,7 @@ package com.runssnail.weixin.api.manager;
 
 import com.runssnail.weixin.api.domain.Value;
 import com.runssnail.weixin.api.result.Result;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

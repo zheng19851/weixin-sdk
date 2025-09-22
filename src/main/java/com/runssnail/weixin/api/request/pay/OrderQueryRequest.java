@@ -4,7 +4,7 @@ import com.runssnail.weixin.api.util.SignUtils;
 import com.runssnail.weixin.api.exception.ApiRuleException;
 import com.runssnail.weixin.api.internal.support.ApiRuleValidate;
 import com.runssnail.weixin.api.response.pay.OrderQueryResponse;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 import java.util.SortedMap;

@@ -4,8 +4,8 @@ import com.runssnail.weixin.api.constant.SignType;
 import com.runssnail.weixin.api.internal.util.MD5Util;
 import com.runssnail.weixin.api.internal.util.XmlTool;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

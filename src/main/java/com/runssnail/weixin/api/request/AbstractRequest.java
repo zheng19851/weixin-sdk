@@ -5,7 +5,7 @@ import com.runssnail.weixin.api.domain.BaseDomain;
 import com.runssnail.weixin.api.exception.ApiRuleException;
 import com.runssnail.weixin.api.internal.support.ApiRuleValidate;
 import com.runssnail.weixin.api.response.Response;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 
 /**
